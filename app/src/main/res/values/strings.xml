@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">VTGone</string>
+    <string name="name_find_out">Tìm kiếm đồ ăn</string>
+    <string name="name_do_an_Nhanh">Đồ Ăn Nhanh</string>
+    <string name="name_do_uong">Đồ Uống</string>
+    <string name="name_Cơm">Cơm</string>
+    <string name="name_All">Nổi Bật</string>
+    ------Login-----
+    <string name="name_Login">Đăng Nhập</string>
+    <string name="name_register">Đăng Ký</string>
+    <string name="name_help">Trợ Giúp ?</string>
+    <string name="name_forget_pass">Quên Mật Khẩu</string>
+    ----Search----
+    <string name="name_search">Search...</string>
+    ----account----
+    <string name="name_name">Họ Tên:</string>
+    <string name="name_email">Email:</string>
+    <string name="name_address">Địa Chỉ:</string>
+    <string name="name_numberPhone">Số điện thoại:</string>
+    <string name="name_password">Mật Khẩu:</string>
+    <string name="name_confirm_pass">Xác Nhận:</string>
+    ----Detail Item----
+    <string name="name_button_order">Add to Cart</string>
+    ----Register----
+    <string name="name_NameRegister">Name:</string>
+    <string name="name_sdt">Number Phone:</string>
+    <string name="name_AddressRegister">Address:</string>
+    <string name="name_EmailRegister">Email:</string>
+    <string name="name_PassRegister">Password:</string>
+    <string name="name_ConformPassRegister">Conform Password:</string>
+    <string name="name_Register_title">Đăng ký "Hôm nay ăn gì"</string>
+    ----logout----
+    <string name="name_logout_title">Bạn muốn đăng xuất không?</string>
+    ---chat----
+    <string name="name_chat_administrator">Chúng tôi rất vui khi nhận được phản hồi của bạn.</string>
+    ----forgetPassword----
+    <string name="quayvetrangchu">Đăng Nhập</string>
+    ----help----
+    <string name="help_title">Hôm Nay Ăn Gì???</string>
+    <string name="help_content">App "Hôm nay ăn gì???" xin được phục vụ quý khách đồ ăn thuận tiện nhất, đặc biệt trong thời điiểm dịch bệnh này, trước hết bạn tạo tài khoản để truy
+    cập vào app của chúng tôi, sau khi vào bạn sẽ làm theo trình tự trong app...
+    Mọi thông tin chi tiết xin được liên hệ lại số: 0968942633</string>
+    <string name="help_gb">Hân hạnh phục vụ quý khách</string>
+    ----nganhang----
+    <string name="bank_title">Ngân Hàng Liên Kết: mời bạn chọn các dịch vụ ngân hàng bên dưới</string>
+    <string name="title_activity_maps">Map</string>
+</resources>

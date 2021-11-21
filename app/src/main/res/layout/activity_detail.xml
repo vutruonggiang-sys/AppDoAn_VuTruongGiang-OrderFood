@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A2D3EA"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.DetailActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideItem01"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideItem02"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintGuide_percent="0.05"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideItem03"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintGuide_percent="0.95"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideItem04"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75"/>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideItem02"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/but_back"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/arrow_back" />
+        <TextView
+            android:text="Xem Chi Tiết"
+            android:layout_toRightOf="@id/but_back"
+            android:textSize="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+        <ImageView
+            android:id="@+id/imAnhDetailItem"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/guideItem02"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/guideItem01"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/guideItem01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideItem03"
+        app:layout_constraintEnd_toEndOf="parent">
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RatingBar
+                android:layout_marginTop="5dp"
+                android:id="@+id/ReviewItem"
+                android:numStars="5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/tvNameItem"
+                android:text="Tennnnnn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tvPriceItem"
+                android:text="900000 VND"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/tvDetailItem"
+                android:text=""
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#393636"/>
+            <TextView
+                android:text="Bình luận"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/purple_700"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/input_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/vien_item_food"
+                    android:hint="Bình Luận ... "
+                    android:paddingLeft="20dp" />
+            <Button
+                android:id="@+id/but_Dang_binhluan"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/gui_binhluan"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/xemBinhLuan"
+                android:text="Xem Bình Luận"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="10dp"
+                android:id="@+id/dataBinhLuan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/vien_vuong_number"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/imAnhNhaHang"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginLeft= "10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RatingBar
+                    android:id="@+id/ratingNhaHang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tvnameNhaHang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="aaaaa"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/Webview_NhaHang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:text="HTTP:\\..."
+                        android:textColor="#EF0707" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/Webview_NhaHang"
+                        android:src="@drawable/www" />
+                    <WebView
+                        android:id="@+id/Webview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/Webview_NhaHang"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tvAddressNhaHang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="aaaaa"
+                        android:textSize="15dp" />
+
+                    <ImageView
+                        android:id="@+id/but_map"
+                        android:layout_width="48dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="60dp"
+                        android:src="@drawable/mapp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_Detail_OC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="open_close" />
+                    <TextView
+                        android:id="@+id/tv_Detail_mo_dong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="Đang mở cửa"
+                        android:textColor="#EF0707"
+                        android:layout_marginRight="10dp"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/guideItem03"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/but_order_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/but_login"
+            android:text="@string/name_button_order"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_margin="5dp">
+    <ImageView
+        android:id="@+id/image_giohang_chuagiao"
+        android:src="@drawable/cart_background"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/tv_name_giohang_chuagiao"
+            android:text="Com"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/tv_name_nhaHang"
+            android:text="Com"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_number_giohang_chuagiao"
+        android:text="Com"
+        android:gravity="center"
+        android:layout_width="50dp"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/tv_price_giohang_chuagiao"
+        android:layout_width="49dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Com" />
+    <CheckBox
+        android:id="@+id/butRadio_chon"
+        android:text="Chọn"
+        android:textColor="#0282E8"
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
+        />
+</LinearLayout>

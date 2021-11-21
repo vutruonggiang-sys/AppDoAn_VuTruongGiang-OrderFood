@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearlayout_magiamgia"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/vien_item_food"
+    android:layout_margin="20dp">
+    <ImageView
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/icon_khuyenmai"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/tvMa"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="Mã giảm giá là: vtg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/tvTen"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="Tên mã giảm giá là: vtg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/tv_GiaTri"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="Giá Trị mã giảm giá là: vtg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

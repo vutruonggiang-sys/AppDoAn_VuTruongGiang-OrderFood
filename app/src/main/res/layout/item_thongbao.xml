@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/nenthongbao"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="#A8A3A3"
+    android:layout_marginTop="10dp">
+    <ImageView
+        android:src="@drawable/icon_chuong"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/tvThongBao"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="abc 123 duy hahah "
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/thongbao"
+            android:src="@drawable/cirle"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+</LinearLayout>

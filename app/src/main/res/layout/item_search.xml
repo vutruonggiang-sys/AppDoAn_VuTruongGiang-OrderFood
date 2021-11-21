@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@drawable/vien_item_food"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+    <ImageView
+        android:id="@+id/imAnhSearch"
+        android:layout_margin="10dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        />
+    <LinearLayout
+        android:gravity="center|left"
+        android:orientation="vertical"
+        android:layout_marginLeft= "10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+            <TextView
+                android:id="@+id/tvNameSearch"
+                android:text="Tên"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_alignParentLeft="true"/>
+            <RelativeLayout
+                android:layout_marginTop="0dp"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true">
+                <TextView
+                    android:id="@+id/tvReviewSearch"
+                    android:text="đgg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_alignParentLeft="true"/>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/stat"
+                    android:layout_toRightOf="@+id/tvReview"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+        </RelativeLayout>
+            <TextView
+                android:id="@+id/tvPriceSearch"
+                android:text="Giá VND"
+                android:textColor="#5E5858"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"/>
+
+    </LinearLayout>
+</LinearLayout>
