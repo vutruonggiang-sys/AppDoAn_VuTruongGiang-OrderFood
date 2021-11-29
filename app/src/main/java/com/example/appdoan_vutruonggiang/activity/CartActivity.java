@@ -1,28 +1,22 @@
 package com.example.appdoan_vutruonggiang.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.appdoan_vutruonggiang.UI.Key;
+import com.example.appdoan_vutruonggiang.UI.ThongTinNguoiOrder;
 import com.example.appdoan_vutruonggiang.fragment.Fragment_Cart;
 import com.example.appdoan_vutruonggiang.fragment.Fragment_DaGiao;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.UI.Food_Order;
 import com.example.appdoan_vutruonggiang.presenter.Food;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -38,7 +32,7 @@ public class CartActivity extends AppCompatActivity {
     List<Food_Order> food_orderListCart;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference1,databaseReference2;
-    long tong=0;
+    long tong=0,tien_giam_gia=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -187,19 +181,10 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public void setFood_orderListDaGiao(List<Food_Order> list){
-        for(int i=0;i<list.size();i++){
-            tong=tong+list.get(i).getPrice()*list.get(i).getAmount();
-        }
-        Calendar calendar=Calendar.getInstance();
-        DateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        String time=dateFormat.format(calendar.getTime());
-        databaseReference1=firebaseDatabase.getReference().child("da_giao").child(sdt).child(time);
-        databaseReference2=firebaseDatabase.getReference().child("key_dagiao").child(sdt).child(time);
-        Key key=new Key(time,time);
-        databaseReference2.setValue(key);
-        for(int i=0;i<list.size();i++){
-            databaseReference1.child(list.get(i).getId()).setValue(list.get(i));
-        }
+
+    }
+    public  void setTien_giam_gia(long d){
+        this.tien_giam_gia=d;
     }
     public void anhXa(){
         tvGioHang=findViewById(R.id.tvGioHang);

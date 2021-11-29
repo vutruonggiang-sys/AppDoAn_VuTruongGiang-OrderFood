@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,8 @@ import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.UI.Food_Order;
 import com.example.appdoan_vutruonggiang.UI.NhaHang;
 import com.example.appdoan_vutruonggiang.activity.CartActivity;
+import com.example.appdoan_vutruonggiang.presenter.Presenter_SaveNguoiNhanHang;
+import com.example.appdoan_vutruonggiang.presenter.Process_MaGiamGia;
 import com.example.appdoan_vutruonggiang.sqlite.SqliteHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -42,6 +46,7 @@ public class Fragment_Cart extends Fragment {
     FirebaseDatabase firebaseDatabase;
     SqliteHelper sqliteHelper;
     List<Food_Order> listTable;
+    TextView tv_Chon,tv_MaGiamGia;
     public static Fragment newInstance() {
 
         Bundle args = new Bundle();
@@ -55,13 +60,17 @@ public class Fragment_Cart extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_cart,container,false);
+        //anhxa
         cartActivity= (CartActivity) getActivity();
         recyclerView=view.findViewById(R.id.dataGioHang);
         but_order=view.findViewById(R.id.but_order_cart);
+        tv_Chon=view.findViewById(R.id.tv_chonMaGiamGia);
+        tv_MaGiamGia=view.findViewById(R.id.tv_maGiamGia);
         sqliteHelper=new SqliteHelper(cartActivity);
+        sqliteHelper.onDeleteAllGioHang();
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
-
+        // lay food da them gio hang
         RecyclerView.ItemDecoration decoration=new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(decoration);
         firebaseDatabase=FirebaseDatabase.getInstance();
@@ -86,6 +95,7 @@ public class Fragment_Cart extends Fragment {
         });
 
         //databaseReference=firebaseDatabase.getReference().child("food_giohang").child(cartActivity.getSdt());
+        //xoa mot food khoi gio hang
         ItemTouchHelper itemTouchHelper=new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -103,7 +113,28 @@ public class Fragment_Cart extends Fragment {
             }
         });
         itemTouchHelper.attachToRecyclerView(recyclerView);
+        // chon giam gia
+        tv_Chon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Process_MaGiamGia.getMaGiamGia(cartActivity,cartActivity.getSdt());
+                DatabaseReference databaseReference1=firebaseDatabase.getReference().child("luu_ma_van_chuyen").child(cartActivity.getSdt());
+                databaseReference1.child("haha").child("giamGia").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        tv_MaGiamGia.setText(snapshot.getValue().toString());
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                databaseReference1.child("haha").child("giamGia").setValue(0);
+            }
+        });
+
+        // dat hang tu 1 quan
         but_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,7 +168,19 @@ public class Fragment_Cart extends Fragment {
                                        Date mo=simpleDateFormat.parse(nhaHang.getOpen());
                                        Date dong=simpleDateFormat.parse(nhaHang.getClose());
                                        if(hienTai.after(mo)&&hienTai.before(dong)){
-                                           cartActivity.setFood_orderListDaGiao(listTable);
+                                           cartActivity.setTien_giam_gia(Long.parseLong(tv_MaGiamGia.getText().toString()));
+                                           DatabaseReference databaseReference2=firebaseDatabase.getReference();
+                                           Calendar calendar1=Calendar.getInstance();
+                                           DateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                                           String time=dateFormat.format(calendar1.getTime());
+                                           //luu thong tin mon an trong hoa don
+                                           databaseReference2=firebaseDatabase.getReference().child("da_giao").child(cartActivity.getSdt()).child(time);
+                                           for(int i=0;i<listTable.size();i++){
+                                               databaseReference2.child(listTable.get(i).getId()).setValue(listTable.get(i));
+                                           }
+                                           //luu thong tin nguoi nhan.
+                                           Presenter_SaveNguoiNhanHang.saveNguoiNhanHang(cartActivity,time,Long.valueOf(tv_MaGiamGia.getText().toString()),
+                                                   cartActivity.getHoTen(),cartActivity.getSdt(),cartActivity.getDiaChi());
                                            Toast.makeText(cartActivity,"Hàng đã bắt giao",Toast.LENGTH_SHORT).show();
                                            for(int i=0;i<listTable.size();i++){
                                                databaseReference.child(listTable.get(i).getId()).removeValue();

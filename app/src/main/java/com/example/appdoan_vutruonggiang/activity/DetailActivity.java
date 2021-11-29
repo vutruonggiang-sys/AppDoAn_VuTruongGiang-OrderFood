@@ -48,7 +48,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class DetailActivity extends Activity implements ValueEventListener {
+public class DetailActivity extends Activity {
     TextView tvNameItem,tvPriceItem,tvDetailItem,xemBinhLuan,tvnameNhaHang,Webview_NhaHang,tvAddressNhaHang,tv_Detail_OC,tv_Detail_mo_dong;
     Button but_Dang_binhluan,but_order_item;
     ImageView but_back,imAnhDetailItem,imAnhNhaHang,but_map;
@@ -103,12 +103,37 @@ public class DetailActivity extends Activity implements ValueEventListener {
         dataBinhLuan.addItemDecoration(decoration);
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
-        databaseReference.child(id).addValueEventListener(this);
-        xemBinhLuan.setOnClickListener(new View.OnClickListener() {
+
+        databaseReference.child("comments").child(id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                binhLuanList=new ArrayList<>();
+                Iterable<DataSnapshot> dataSnapshotIterable= snapshot.getChildren();
+                for (DataSnapshot data: dataSnapshotIterable) {
+                    BinhLuan binhLuan=data.getValue(BinhLuan.class);
+                    binhLuanList.add(binhLuan);
+                }
+                AdapterRecyleViewBinhLuan adapterRecyleViewBinhLuan=new AdapterRecyleViewBinhLuan(binhLuanList,DetailActivity.this,sdt,id);
+                dataBinhLuan.setAdapter(adapterRecyleViewBinhLuan);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        but_Dang_binhluan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdapterRecyleViewBinhLuan adapterRecyleViewBinhLuan=new AdapterRecyleViewBinhLuan(binhLuanList);
+                if(input_comment.getText().toString().trim().equals(""))
+                    return;
+                BinhLuan binhLuan = new BinhLuan(hoTen, input_comment.getText().toString(),sdt,Long.valueOf(binhLuanList.size()+1));
+                binhLuanList.add(binhLuan);
+                databaseReference.child("comments").child(id).child(binhLuanList.size() + "").setValue(binhLuan);
+                AdapterRecyleViewBinhLuan adapterRecyleViewBinhLuan = new AdapterRecyleViewBinhLuan(binhLuanList,DetailActivity.this,sdt,id);
                 dataBinhLuan.setAdapter(adapterRecyleViewBinhLuan);
+                input_comment.setText("");
             }
         });
 
@@ -183,20 +208,6 @@ public class DetailActivity extends Activity implements ValueEventListener {
             }
         });
 
-        but_Dang_binhluan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(input_comment.getText().toString().trim().equals(""))
-                    return;
-                    BinhLuan binhLuan = new BinhLuan(hoTen, input_comment.getText().toString());
-                    binhLuanList.add(binhLuan);
-                    databaseReference.child(id).child(binhLuanList.size() + "").setValue(binhLuan);
-                    AdapterRecyleViewBinhLuan adapterRecyleViewBinhLuan = new AdapterRecyleViewBinhLuan(binhLuanList);
-                    dataBinhLuan.setAdapter(adapterRecyleViewBinhLuan);
-                    input_comment.setText("");
-            }
-        });
-
         Food food=new Food(id,url,name,detail,idNhaHang,type,price,rating);
         but_order_item.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -227,21 +238,6 @@ public class DetailActivity extends Activity implements ValueEventListener {
                 webView.loadUrl(urlWeb);
             }
         });
-    }
-
-    @Override
-    public void onDataChange(@NonNull DataSnapshot snapshot) {
-        binhLuanList=new ArrayList<>();
-        Iterable<DataSnapshot> dataSnapshotIterable= snapshot.getChildren();
-        for (DataSnapshot data: dataSnapshotIterable) {
-            BinhLuan binhLuan=data.getValue(BinhLuan.class);
-            binhLuanList.add(binhLuan);
-        }
-    }
-
-    @Override
-    public void onCancelled(@NonNull DatabaseError error) {
-
     }
     public void anhXa(){
         tvNameItem=findViewById(R.id.tvNameItem);

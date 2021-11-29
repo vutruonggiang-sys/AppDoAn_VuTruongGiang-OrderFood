@@ -1,18 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_marginLeft="20dp"
+    android:orientation="vertical"
+    android:layout_marginLeft="10dp"
     android:layout_marginTop="10dp"
+    android:layout_marginRight="10dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/tv_Name_binhluan"
-        android:textStyle="bold"
-        android:textSize="25dp"
-        android:text="Name:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    android:layout_height="wrap_content"
+    android:background="@drawable/vien_item_food">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_Name_binhluan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Name:"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/But_Edit_Delete_Comment"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/i" />
+        <TextView
+            android:id="@+id/edit_cmt"
+            android:text="Edit"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/delete_cmt"
+            android:background="@drawable/vien_vuong_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/delete_cmt"
+            android:layout_alignParentRight="true"
+            android:text="Delete"
+            android:layout_margin="5dp"
+            android:background="@drawable/vien_vuong_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/tv_noidung_binhluan"
         android:layout_marginLeft="15dp"
@@ -20,4 +56,24 @@
         android:textSize="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:id="@+id/Edit_Comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/ed_Edit_Comment"
+            android:background="@drawable/vien_item_food"
+            android:layout_margin="15dp"
+            android:textSize="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/but_Edit_Comment"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15dp"
+            android:background="@drawable/gui_binhluan" />
+    </RelativeLayout>
 </LinearLayout>

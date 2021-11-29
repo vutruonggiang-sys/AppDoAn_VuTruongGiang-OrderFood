@@ -36,7 +36,13 @@ public class AdapterChat  extends RecyclerView.Adapter<AdapterChat.ViewHoder> {
         if(chat==null)
             return;
         holder.tvContent.setText(chat.getContent());
-        holder.tvTime.setText(chat.getTime());
+        holder.tvContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.tvTime.setVisibility(View.VISIBLE);
+                holder.tvTime.setText(chat.getTime());
+            }
+        });
     }
 
     @Override

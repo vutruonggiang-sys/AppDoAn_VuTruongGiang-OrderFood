@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
@@ -62,8 +63,8 @@ public class ChatActivity extends Activity{
 
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child("chat").child(sdt);
-
-            databaseReference.addValueEventListener(new ValueEventListener() {
+        Query query=databaseReference.orderByChild("id");
+            query.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     chatList=new ArrayList<>();
@@ -74,7 +75,6 @@ public class ChatActivity extends Activity{
                     }
                     adapterChat = new AdapterChat(chatList);
                     dataChat.setAdapter(adapterChat);
-
                 }
 
                 @Override
@@ -86,7 +86,7 @@ public class ChatActivity extends Activity{
         but_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendData();
+                sendData(Long.valueOf(chatList.size()));
             }
         });
         chat_content.setOnClickListener(new View.OnClickListener() {
@@ -112,15 +112,15 @@ public class ChatActivity extends Activity{
             }
         });
     }
-    private void sendData(){
+    private void sendData(long d){
         String content=chat_content.getText().toString();
         if(content.isEmpty()) return;
         Calendar calendar=Calendar.getInstance();
         DateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String time=dateFormat.format(calendar.getTime());
-        Chat chat=new Chat(content,time);
+        Chat chat=new Chat(d,content,time);
         chatList.add(chat);
-        databaseReference.child(time).setValue(chat);
+        databaseReference.child(d+"").setValue(chat);
 //        adapterChat.notifyDataSetChanged();
 //        binding.dataChat.scrollToPosition(chatList.size()-1);
         chat_content.setText("");

@@ -2,12 +2,22 @@ package com.example.appdoan_vutruonggiang.UI;
 
 public class Chat {
     String content,time;
+    long id;
 
     public Chat(){}
 
-    public Chat(String content, String time) {
+    public Chat(long id,String content, String time) {
+        this.id=id;
         this.content = content;
         this.time = time;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getContent() {
@@ -25,4 +35,5 @@ public class Chat {
     public void setTime(String time) {
         this.time = time;
     }
+
 }

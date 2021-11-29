@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -32,7 +33,7 @@ import java.util.List;
 
 public class PrintBillActivity extends Activity {
     TextView tv_time_bill,tonghopmon,tv_tongtienhoadon,tv_phiShip,tv_giamGia,tv_tongtien;
-    EditText edNameUser,edSDTUser,edAddressUser;
+    TextView edNameUser,edSDTUser,edAddressUser;
     Button but_bill_Cancel,but_bill_OK;
     String sdt="",hoTen="",diaChi="",email="",pass="",key="";
     List<Food> foodList;
@@ -41,7 +42,8 @@ public class PrintBillActivity extends Activity {
     List<Food_Order> food_orderList;
     List<GiamGia> giamGiaList;
     String tonghop="";
-    long tong=0,giaPhi=0,t=0;
+    long tong=0,t=0;
+    long giaKhuyenMai=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,18 +94,12 @@ public class PrintBillActivity extends Activity {
 
             }
         });
-        databaseReference.child("luu_ma_van_chuyen").child(sdt).addValueEventListener(new ValueEventListener() {
+        databaseReference.child("key_dagiao").child(sdt).child(key).child("giaKhuyenMai").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                giamGiaList=new ArrayList<>();
-                Iterable<DataSnapshot> dataSnapshotIterable=snapshot.getChildren();
-                for(DataSnapshot data:dataSnapshotIterable){
-                    GiamGia giamGia=data.getValue(GiamGia.class);
-                    giamGiaList.add(giamGia);
-                    giaPhi=giaPhi+giamGia.getGiamGia();
-                }
-                tv_giamGia.setText(giaPhi+" VND");
-                t=t-giaPhi;
+                giaKhuyenMai=Long.valueOf(snapshot.getValue().toString());
+                tv_giamGia.setText(giaKhuyenMai+" VND");
+                t=t-giaKhuyenMai;
                 tv_tongtien.setText(t+" VND");
             }
 
@@ -126,7 +122,7 @@ public class PrintBillActivity extends Activity {
                 databaseReference.child("key_dagiao").child(sdt).child(key).removeValue();
                 databaseReference.child("da_giao").child(sdt).child(key).removeValue();
 
-                Intent intent=new Intent(getBaseContext(), CartActivity.class);
+                Intent intent=new Intent(getBaseContext(), MainActivity.class);
                 ArrayList<Food> listSearch= (ArrayList<Food>) foodList;
                 Bundle bundle1=new Bundle();
                 bundle1.putString("phoneNumber",sdt);
@@ -143,7 +139,7 @@ public class PrintBillActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Bill bill=new Bill(time,edNameUser.getText().toString(),edSDTUser.getText().toString(),edAddressUser.getText().toString(),
-                        tonghopmon.getText().toString(),tong,giaPhi);
+                        tonghopmon.getText().toString(),tong,giaKhuyenMai);
                 databaseReference.child("bill").child(sdt).child(time).setValue(bill);
 
                 HashMap<String,Object> valuesUpdate=new HashMap<>();
@@ -157,7 +153,7 @@ public class PrintBillActivity extends Activity {
                 databaseReference.child("key_dagiao").child(sdt).child(key).removeValue();
                 databaseReference.child("da_giao").child(sdt).child(key).removeValue();
 
-                Intent intent=new Intent(getBaseContext(), CartActivity.class);
+                Intent intent=new Intent(getBaseContext(), PrintBillActivity.class);
                 ArrayList<Food> listSearch= (ArrayList<Food>) foodList;
                 Bundle bundle1=new Bundle();
                 bundle1.putString("phoneNumber",sdt);

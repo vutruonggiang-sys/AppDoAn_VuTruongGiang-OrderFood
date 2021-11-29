@@ -18,7 +18,7 @@ import com.example.appdoan_vutruonggiang.Adapter.AdapterRecyleViewSumDaGiao;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.UI.Food_Order;
 import com.example.appdoan_vutruonggiang.UI.GiamGia;
-import com.example.appdoan_vutruonggiang.UI.Key;
+import com.example.appdoan_vutruonggiang.UI.ThongTinNguoiOrder;
 import com.example.appdoan_vutruonggiang.activity.CartActivity;
 import com.example.appdoan_vutruonggiang.activity.PrintBillActivity;
 import com.example.appdoan_vutruonggiang.inteface.IThanhToan;
@@ -34,17 +34,11 @@ import java.util.List;
 
 public class Fragment_DaGiao extends Fragment {
     RecyclerView recyclerView;
-    Button thanhToan;
-    TextView tvSum;
-    List<Food_Order> food_orderList;
-    List<Key> keyList;
+    List<ThongTinNguoiOrder> thongTinNguoiNhanList;
     CartActivity cartActivity;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     AdapterRecyleViewSumDaGiao adapterRecyleViewSumDaGiao;
-    List<GiamGia> giamGiaList;
-    long giaG=0;
-    IThanhToan iThanhToan;
     public static Fragment newInstance() {
         
         Bundle args = new Bundle();
@@ -63,33 +57,17 @@ public class Fragment_DaGiao extends Fragment {
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference().child("key_dagiao").child(cartActivity.getSdt());
+        databaseReference=firebaseDatabase.getReference().child("thong_tin_nguoi_nhan_hang").child(cartActivity.getSdt());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                keyList=new ArrayList<>();
+                thongTinNguoiNhanList=new ArrayList<>();
                 Iterable<DataSnapshot> dataSnapshotIterable=snapshot.getChildren();
                 for(DataSnapshot data:dataSnapshotIterable){
-                    Key key=data.getValue(Key.class);
-                    keyList.add(key);
+                    ThongTinNguoiOrder thongTinNguoiOrder=data.getValue(ThongTinNguoiOrder.class);
+                    thongTinNguoiNhanList.add(thongTinNguoiOrder);
                 }
-                adapterRecyleViewSumDaGiao=new AdapterRecyleViewSumDaGiao(keyList, cartActivity.getSdt(), cartActivity, new IThanhToan() {
-                    @Override
-                    public void getKey_delete(String key) {
-                        Intent intent=new Intent(cartActivity, PrintBillActivity.class);
-                        ArrayList<Food> listSearch= (ArrayList<Food>) cartActivity.getFoodList();
-                        Bundle bundle1=new Bundle();
-                        bundle1.putString("phoneNumber",cartActivity.getSdt());
-                        bundle1.putString("hoten",cartActivity.getHoTen());
-                        bundle1.putString("diachi",cartActivity.getDiaChi());
-                        bundle1.putString("gmail",cartActivity.getEmail());
-                        bundle1.putString("pass",cartActivity.getPass());
-                        bundle1.putString("maDelete",key);
-                        bundle1.putParcelableArrayList("list",listSearch);
-                        intent.putExtras(bundle1);
-                        startActivity(intent);
-                    }
-                });
+                adapterRecyleViewSumDaGiao=new AdapterRecyleViewSumDaGiao(thongTinNguoiNhanList, cartActivity.getSdt(), cartActivity);
                 recyclerView.setAdapter(adapterRecyleViewSumDaGiao);
             }
 
