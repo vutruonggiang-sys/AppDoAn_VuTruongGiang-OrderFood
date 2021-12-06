@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.Adapter;
+package com.example.appdoan_vutruonggiang.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.Bill;
+import com.example.appdoan_vutruonggiang.modle.Bill;
 import com.example.appdoan_vutruonggiang.presenter.Process_HoaDonGiaoDich;
 
 import java.util.List;

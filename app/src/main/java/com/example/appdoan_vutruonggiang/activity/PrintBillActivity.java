@@ -1,22 +1,19 @@
 package com.example.appdoan_vutruonggiang.activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.Bill;
-import com.example.appdoan_vutruonggiang.UI.Food_Order;
-import com.example.appdoan_vutruonggiang.UI.GiamGia;
+import com.example.appdoan_vutruonggiang.modle.Bill;
+import com.example.appdoan_vutruonggiang.modle.Food_Order;
+import com.example.appdoan_vutruonggiang.modle.GiamGia;
 import com.example.appdoan_vutruonggiang.presenter.Food;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

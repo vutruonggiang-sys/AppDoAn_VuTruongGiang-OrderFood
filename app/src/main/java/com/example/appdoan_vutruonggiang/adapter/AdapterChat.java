@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.Adapter;
+package com.example.appdoan_vutruonggiang.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appdoan_vutruonggiang.UI.Chat;
+import com.example.appdoan_vutruonggiang.modle.Chat;
 import com.example.appdoan_vutruonggiang.R;
 
 import java.util.List;

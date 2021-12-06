@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.Adapter;
+package com.example.appdoan_vutruonggiang.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,10 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.Bill;
-import com.example.appdoan_vutruonggiang.UI.Food_Order;
-import com.example.appdoan_vutruonggiang.UI.ThongTinNguoiOrder;
-import com.example.appdoan_vutruonggiang.inteface.IThanhToan;
+import com.example.appdoan_vutruonggiang.modle.Bill;
+import com.example.appdoan_vutruonggiang.modle.Food_Order;
+import com.example.appdoan_vutruonggiang.modle.ThongTinNguoiOrder;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +28,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 
 public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecyleViewSumDaGiao.ViewHoder> {

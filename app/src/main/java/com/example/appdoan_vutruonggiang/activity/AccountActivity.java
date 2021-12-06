@@ -15,11 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.User;
+import com.example.appdoan_vutruonggiang.modle.User;
 import com.example.appdoan_vutruonggiang.presenter.Food;
 import com.example.appdoan_vutruonggiang.presenter.Process_Bank;
-import com.example.appdoan_vutruonggiang.presenter.Process_Change_Pass;
-import com.example.appdoan_vutruonggiang.presenter.Process_Food;
 import com.example.appdoan_vutruonggiang.presenter.Processing_DangXuat;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

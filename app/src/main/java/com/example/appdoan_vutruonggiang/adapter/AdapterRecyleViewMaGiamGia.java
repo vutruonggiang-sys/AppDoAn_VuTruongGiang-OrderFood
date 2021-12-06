@@ -1,16 +1,15 @@
-package com.example.appdoan_vutruonggiang.Adapter;
+package com.example.appdoan_vutruonggiang.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.GiamGia;
+import com.example.appdoan_vutruonggiang.modle.GiamGia;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

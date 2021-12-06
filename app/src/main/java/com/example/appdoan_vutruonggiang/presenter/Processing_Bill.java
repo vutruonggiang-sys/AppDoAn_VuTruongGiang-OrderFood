@@ -8,17 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.Bill;
-import com.example.appdoan_vutruonggiang.UI.Food_Order;
-import com.example.appdoan_vutruonggiang.UI.GiamGia;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.example.appdoan_vutruonggiang.modle.Bill;
+import com.example.appdoan_vutruonggiang.modle.Food_Order;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 

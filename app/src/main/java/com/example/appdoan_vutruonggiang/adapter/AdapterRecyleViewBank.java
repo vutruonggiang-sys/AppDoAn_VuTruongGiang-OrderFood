@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.Adapter;
+package com.example.appdoan_vutruonggiang.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.appdoan_vutruonggiang.UI.Bank;
+import com.example.appdoan_vutruonggiang.modle.Bank;
 import com.example.appdoan_vutruonggiang.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

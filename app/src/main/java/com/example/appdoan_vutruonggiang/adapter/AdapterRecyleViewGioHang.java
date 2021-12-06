@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.Adapter;
+package com.example.appdoan_vutruonggiang.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.appdoan_vutruonggiang.UI.Food_Order;
+import com.example.appdoan_vutruonggiang.modle.Food_Order;
 import com.example.appdoan_vutruonggiang.R;
 
 import java.util.List;

@@ -1,8 +1,7 @@
 package com.example.appdoan_vutruonggiang.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.User;
+import com.example.appdoan_vutruonggiang.modle.User;
 import com.example.appdoan_vutruonggiang.presenter.Food;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

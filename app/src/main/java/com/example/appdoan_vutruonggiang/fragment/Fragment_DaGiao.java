@@ -1,12 +1,9 @@
 package com.example.appdoan_vutruonggiang.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,15 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appdoan_vutruonggiang.Adapter.AdapterRecyleViewSumDaGiao;
+import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewSumDaGiao;
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.Food_Order;
-import com.example.appdoan_vutruonggiang.UI.GiamGia;
-import com.example.appdoan_vutruonggiang.UI.ThongTinNguoiOrder;
+import com.example.appdoan_vutruonggiang.modle.ThongTinNguoiOrder;
 import com.example.appdoan_vutruonggiang.activity.CartActivity;
-import com.example.appdoan_vutruonggiang.activity.PrintBillActivity;
-import com.example.appdoan_vutruonggiang.inteface.IThanhToan;
-import com.example.appdoan_vutruonggiang.presenter.Food;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

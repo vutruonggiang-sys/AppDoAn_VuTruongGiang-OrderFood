@@ -11,15 +11,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.GiamGia;
-import com.example.appdoan_vutruonggiang.UI.User;
+import com.example.appdoan_vutruonggiang.modle.GiamGia;
+import com.example.appdoan_vutruonggiang.modle.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Processing_DangKy {

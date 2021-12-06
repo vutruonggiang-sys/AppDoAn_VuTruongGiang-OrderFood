@@ -9,19 +9,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.appdoan_vutruonggiang.UI.ThongTinNguoiOrder;
 import com.example.appdoan_vutruonggiang.fragment.Fragment_Cart;
 import com.example.appdoan_vutruonggiang.fragment.Fragment_DaGiao;
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.Food_Order;
+import com.example.appdoan_vutruonggiang.modle.Food_Order;
 import com.example.appdoan_vutruonggiang.presenter.Food;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class CartActivity extends AppCompatActivity {

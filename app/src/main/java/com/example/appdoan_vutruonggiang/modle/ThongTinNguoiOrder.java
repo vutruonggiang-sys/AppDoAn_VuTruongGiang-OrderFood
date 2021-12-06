@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.UI;
+package com.example.appdoan_vutruonggiang.modle;
 
 public class ThongTinNguoiOrder {
     String id,hoTen,sdt,diaChi;

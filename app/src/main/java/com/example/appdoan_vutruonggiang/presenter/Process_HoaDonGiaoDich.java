@@ -2,17 +2,10 @@ package com.example.appdoan_vutruonggiang.presenter;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.Food_Order;
-
-import java.util.List;
 
 public class Process_HoaDonGiaoDich {
     public static void getHoaDon(Context context, String name, String sdt, String address, String time, String tong,long tongTien,long giamGia){

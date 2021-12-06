@@ -1,5 +1,6 @@
 package com.example.appdoan_vutruonggiang.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +17,10 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.example.appdoan_vutruonggiang.Adapter.AdapterRecyleViewGiaoHangCart;
+import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewGiaoHangCart;
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.Food_Order;
-import com.example.appdoan_vutruonggiang.UI.NhaHang;
+import com.example.appdoan_vutruonggiang.modle.Food_Order;
+import com.example.appdoan_vutruonggiang.modle.NhaHang;
 import com.example.appdoan_vutruonggiang.activity.CartActivity;
 import com.example.appdoan_vutruonggiang.presenter.Presenter_SaveNguoiNhanHang;
 import com.example.appdoan_vutruonggiang.presenter.Process_MaGiamGia;
@@ -190,10 +190,11 @@ public class Fragment_Cart extends Fragment {
                                            recyclerView.setAdapter(adapterRecyleViewGiaoHangCart2);
                                            sqliteHelper.onDeleteAllGioHang();
                                        }else{
-                                           if(hienTai.before(mo))
-                                               Toast.makeText(cartActivity,"Hiện tại quán chưa mở cửa, Quý Khách Vui Lòng Chờ hoặc Chọn Cửa Hàng Mở Cửa",Toast.LENGTH_LONG).show();
-                                           if(hienTai.after(dong))
-                                               Toast.makeText(cartActivity,"Hiện tại quán đã đóng cửa, Quý Khách Vui Lòng Chờ hoặc Chọn Cửa Hàng Mở Cửa",Toast.LENGTH_LONG).show();
+                                           openAndClose(mo,dong,hienTai,cartActivity);
+//                                           if(hienTai.before(mo))
+//                                               Toast.makeText(cartActivity,"Hiện tại quán chưa mở cửa, Quý Khách Vui Lòng Chờ hoặc Chọn Cửa Hàng Mở Cửa",Toast.LENGTH_LONG).show();
+//                                           if(hienTai.after(dong))
+//                                               Toast.makeText(cartActivity,"Hiện tại quán đã đóng cửa, Quý Khách Vui Lòng Chờ hoặc Chọn Cửa Hàng Mở Cửa",Toast.LENGTH_LONG).show();
                                            sqliteHelper.onDeleteAllGioHang();
                                        }
                                    }catch (Exception e){
@@ -209,11 +210,22 @@ public class Fragment_Cart extends Fragment {
                        }
                    });
                 }else{
-                    Toast.makeText(cartActivity,"Bạn chưa chọn, Vui lòng bạn chọn để chúng tôi giao hàng nhanh nhất!!!",Toast.LENGTH_LONG).show();
+                    chuaChon(cartActivity);
+                    //Toast.makeText(cartActivity,"Bạn chưa chọn, Vui lòng bạn chọn để chúng tôi giao hàng nhanh nhất!!!",Toast.LENGTH_LONG).show();
                 }
 
             }
         });
         return view;
+    }
+    public static void openAndClose(Date mo, Date dong, Date hienTai, Context context){
+        if(hienTai.before(mo))
+            Toast.makeText(context,"Hiện tại quán chưa mở cửa, Quý Khách Vui Lòng Chờ hoặc Chọn Cửa Hàng Mở Cửa",Toast.LENGTH_LONG).show();
+        if(hienTai.after(dong))
+            Toast.makeText(context,"Hiện tại quán đã đóng cửa, Quý Khách Vui Lòng Chờ hoặc Chọn Cửa Hàng Mở Cửa",Toast.LENGTH_LONG).show();
+    }
+    public static void chuaChon(Context context){
+        Toast.makeText(context,"Bạn chưa chọn, Vui lòng bạn chọn để chúng tôi giao hàng nhanh nhất!!!",Toast.LENGTH_LONG).show();
+
     }
 }

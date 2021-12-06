@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 
-import com.example.appdoan_vutruonggiang.Adapter.AdpterRecyleViewSearch;
+import com.example.appdoan_vutruonggiang.adapter.AdpterRecyleViewSearch;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.inteface.IItemFood;
 import com.example.appdoan_vutruonggiang.presenter.Food;

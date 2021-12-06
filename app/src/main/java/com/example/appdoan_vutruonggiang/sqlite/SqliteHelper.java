@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.appdoan_vutruonggiang.UI.Food_Order;
+import com.example.appdoan_vutruonggiang.modle.Food_Order;
 
 import java.util.ArrayList;
 import java.util.List;

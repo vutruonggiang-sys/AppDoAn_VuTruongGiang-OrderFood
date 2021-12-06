@@ -1,7 +1,6 @@
 package com.example.appdoan_vutruonggiang.activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,9 +12,9 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
-import com.example.appdoan_vutruonggiang.Adapter.AdapterRecyleviewBilled;
+import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleviewBilled;
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.Bill;
+import com.example.appdoan_vutruonggiang.modle.Bill;
 import com.example.appdoan_vutruonggiang.presenter.Food;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

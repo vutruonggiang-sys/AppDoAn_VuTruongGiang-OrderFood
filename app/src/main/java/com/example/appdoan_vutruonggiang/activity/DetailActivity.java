@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -20,10 +19,10 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.appdoan_vutruonggiang.Adapter.AdapterRecyleViewBinhLuan;
+import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewBinhLuan;
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.BinhLuan;
-import com.example.appdoan_vutruonggiang.UI.NhaHang;
+import com.example.appdoan_vutruonggiang.modle.BinhLuan;
+import com.example.appdoan_vutruonggiang.modle.NhaHang;
 import com.example.appdoan_vutruonggiang.ggmap.MapsActivity;
 import com.example.appdoan_vutruonggiang.presenter.Food;
 import com.example.appdoan_vutruonggiang.presenter.Process_Food;
@@ -33,15 +32,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;

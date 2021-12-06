@@ -1,9 +1,6 @@
-package com.example.appdoan_vutruonggiang.Adapter;
+package com.example.appdoan_vutruonggiang.adapter;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +13,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appdoan_vutruonggiang.UI.BinhLuan;
+import com.example.appdoan_vutruonggiang.modle.BinhLuan;
 import com.example.appdoan_vutruonggiang.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class AdapterRecyleViewBinhLuan extends RecyclerView.Adapter<AdapterRecyleViewBinhLuan.ViewHoder> {

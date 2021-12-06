@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.UI.User;
+import com.example.appdoan_vutruonggiang.modle.User;
 import com.example.appdoan_vutruonggiang.inteface.ILogin;
 import com.example.appdoan_vutruonggiang.presenter.Process_Connection;
 import com.example.appdoan_vutruonggiang.presenter.Process_login;
