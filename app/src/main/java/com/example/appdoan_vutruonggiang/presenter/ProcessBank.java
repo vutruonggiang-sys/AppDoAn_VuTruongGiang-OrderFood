@@ -23,7 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProcessBank {
-    public void bank(Context context,String sdt){
+    public ProcessBank() {
+    }
+
+    public void bank(Context context, String sdt){
         List<Bank> bankList=new ArrayList<>();
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

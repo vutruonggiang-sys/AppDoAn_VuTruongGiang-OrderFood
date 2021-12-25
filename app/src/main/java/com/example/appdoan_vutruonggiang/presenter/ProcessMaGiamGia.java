@@ -21,7 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProcessMaGiamGia {
-    public void getMaGiamGia(Context context,String sdt){
+    public ProcessMaGiamGia() {
+    }
+
+    public void getMaGiamGia(Context context, String sdt){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);

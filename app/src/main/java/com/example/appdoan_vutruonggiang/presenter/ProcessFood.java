@@ -27,6 +27,9 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ProcessFood implements ValueEventListener {
+    public ProcessFood() {
+    }
+
     public List<Food> doAnNhanh(List<Food> foodList){
         List<Food> foodFast=new ArrayList<>();
         for(int i=0;i<foodList.size();i++){

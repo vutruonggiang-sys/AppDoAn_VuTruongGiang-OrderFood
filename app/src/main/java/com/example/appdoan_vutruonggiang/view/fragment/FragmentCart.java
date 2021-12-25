@@ -64,6 +64,9 @@ public class FragmentCart extends Fragment {
         View view =inflater.inflate(R.layout.fragment_cart,container,false);
         //anhxa
         cartActivity= (CartActivity) getActivity();
+        presenter_saveNguoiNhanHang=new PresenterSaveNguoiNhanHang();
+        process_maGiamGia=new ProcessMaGiamGia();
+
         recyclerView=view.findViewById(R.id.dataGioHang);
         but_order=view.findViewById(R.id.but_order_cart);
         tv_Chon=view.findViewById(R.id.tv_chonMaGiamGia);

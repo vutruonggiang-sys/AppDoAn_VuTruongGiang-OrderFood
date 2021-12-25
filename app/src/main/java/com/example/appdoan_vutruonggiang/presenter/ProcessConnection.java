@@ -9,6 +9,9 @@ import android.view.Window;
 import com.example.appdoan_vutruonggiang.R;
 
 public class ProcessConnection {
+    public ProcessConnection() {
+    }
+
     public  boolean check_inonline(Context context){
         final ConnectivityManager connectivityManager=(ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 

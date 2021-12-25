@@ -23,6 +23,7 @@ public class AdapterRecyleViewFood1 extends RecyclerView.Adapter<AdapterRecyleVi
     IItemFood iItemFood;
     Context context;
     String sdt;
+    ProcessFood processFood;
     public AdapterRecyleViewFood1(List<Food> foodList,Context context,IItemFood iItemFood,String sdt) {
         this.context=context;
         this.foodList = foodList;
@@ -49,7 +50,8 @@ public class AdapterRecyleViewFood1 extends RecyclerView.Adapter<AdapterRecyleVi
         holder.order_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProcessFood.getChoose(context,food,sdt);
+                processFood=new ProcessFood();
+                processFood.getChoose(context,food,sdt);
             }
         });
         holder.tvMore.setOnClickListener(new View.OnClickListener() {

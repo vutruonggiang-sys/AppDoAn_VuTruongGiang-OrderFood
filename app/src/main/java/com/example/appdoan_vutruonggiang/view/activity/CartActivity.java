@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -50,6 +51,10 @@ public class CartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getFragment(FragmentDaGiao.newInstance());
                 FragmentDaGiao.newInstance();
+                tvDaGiao.setTextColor(Color.WHITE);
+                tvDaGiao.setBackgroundResource(R.drawable.border_bgblue_colorwhite);
+                tvGioHang.setTextColor(Color.BLACK);
+                tvGioHang.setBackgroundResource(R.drawable.border_bgwhite_colorblack);
             }
         });
 
@@ -60,6 +65,10 @@ public class CartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getFragment(FragmentCart.newInstance());
                 FragmentCart.newInstance();
+                tvDaGiao.setTextColor(Color.BLACK);
+                tvDaGiao.setBackgroundResource(R.drawable.border_bgwhite_colorblack);
+                tvGioHang.setTextColor(Color.WHITE);
+                tvGioHang.setBackgroundResource(R.drawable.border_bgblue_colorwhite);
             }
         });
 

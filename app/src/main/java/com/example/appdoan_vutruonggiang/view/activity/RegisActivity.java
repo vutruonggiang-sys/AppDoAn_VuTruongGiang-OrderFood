@@ -14,6 +14,7 @@ import com.example.appdoan_vutruonggiang.presenter.ProcessingDangKy;
 public class RegisActivity extends Activity {
     EditText edName,edSdt,edAddress,edEmail,edPass,edConform;
     Button butCancel,butOK;
+    ProcessingDangKy processingDangKy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +32,20 @@ public class RegisActivity extends Activity {
         butOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProcessingDangKy.dangKy(RegisActivity.this,edAddress,edName,edConform,edPass,edEmail,edSdt);
+                processingDangKy.dangKy(RegisActivity.this,edAddress,edName,edConform,edPass,edEmail,edSdt);
             }
         });
     }
     public  void anhXa(){
-        EditText edName=findViewById(R.id.edNameRegister);
-        EditText edSdt=findViewById(R.id.edSdtRegister);
-        EditText edAddress=findViewById(R.id.edAddressRegister);
-        EditText edEmail=findViewById(R.id.edEmailRegister);
-        EditText edPass=findViewById(R.id.edPassRegister);
-        EditText edConform=findViewById(R.id.edConformPassRegister);
-        Button butCancel=findViewById(R.id.but_Register_Cancel);
-        Button butOK=findViewById(R.id.but_Register_OK);
+         edName=findViewById(R.id.edNameRegister);
+         edSdt=findViewById(R.id.edSdtRegister);
+         edAddress=findViewById(R.id.edAddressRegister);
+         edEmail=findViewById(R.id.edEmailRegister);
+         edPass=findViewById(R.id.edPassRegister);
+         edConform=findViewById(R.id.edConformPassRegister);
+         butCancel=findViewById(R.id.but_Register_Cancel);
+         butOK=findViewById(R.id.but_Register_OK);
+
+        processingDangKy=new ProcessingDangKy();
     }
 }

@@ -39,17 +39,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/guideCart03"
             app:layout_constraintEnd_toEndOf="@id/guideCart02"
-            android:background="#E1E89B">
+            android:background="@color/white">
+
             <TextView
                 android:id="@+id/tvGioHang"
-                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#F30808"
-                android:text="Giỏ Hàng"
                 android:layout_alignParentTop="true"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border_bgblue_colorwhite"
+                android:padding="10dp"
+                android:text="Giỏ Hàng"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
         </RelativeLayout>
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideCart04"
@@ -64,17 +67,20 @@
             app:layout_constraintStart_toStartOf="@id/guideCart02"
             app:layout_constraintBottom_toBottomOf="@id/guideCart03"
             app:layout_constraintEnd_toEndOf="parent"
-            android:background="#E1E89B">
+            android:background="@color/white">
+
             <TextView
                 android:id="@+id/tvDaGiao"
-                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#F30808"
-                android:text="Đã Giao"
                 android:layout_alignParentTop="true"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border_bgwhite_colorblack"
+                android:padding="10dp"
+                android:text="Đã Giao"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
         </RelativeLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -117,7 +123,7 @@
             app:layout_constraintStart_toStartOf="@id/guideCart04"
             app:layout_constraintBottom_toBottomOf="@id/guideCart03"
             app:layout_constraintEnd_toEndOf="parent"
-            android:background="#E1E89B">
+            android:background="@color/white">
 
             <ImageView
                 android:id="@+id/but_ThongBao"
@@ -126,5 +132,4 @@
                 android:layout_alignParentRight="true"
                 android:src="@drawable/bell_ring" />
         </RelativeLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -235,5 +235,7 @@ public class AccountActivity extends Activity {
         tv_chonThe=findViewById(R.id.tv_chonThe);
         tv_HoaDon=findViewById(R.id.tv_HoaDon);
         tv_DangXuat=findViewById(R.id.tv_DangXuat);
+
+        process_bank=new ProcessBank();
     }
 }

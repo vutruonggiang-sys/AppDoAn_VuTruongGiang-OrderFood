@@ -14,7 +14,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class ProcessChange_Pass {
-    public void getChange(Context context,String sdt, String hoTen, String diachi, String email,String pass){
+    public ProcessChange_Pass() {
+    }
+
+    public void getChange(Context context, String sdt, String hoTen, String diachi, String email, String pass){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);

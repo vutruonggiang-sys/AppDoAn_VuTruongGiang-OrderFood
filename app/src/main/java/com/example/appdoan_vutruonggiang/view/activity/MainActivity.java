@@ -337,5 +337,7 @@ public class MainActivity extends Activity {
         search=findViewById(R.id.search);
         giohang=findViewById(R.id.giohang);
         account=findViewById(R.id.account);
+
+        process_food=new ProcessFood();
     }
 }

@@ -11,6 +11,9 @@ import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.view.activity.LoginActivity;
 
 public class ProcessingDangXuat {
+    public ProcessingDangXuat() {
+    }
+
     public static void dangXuat(Context context, Class<LoginActivity> login_activityClass){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

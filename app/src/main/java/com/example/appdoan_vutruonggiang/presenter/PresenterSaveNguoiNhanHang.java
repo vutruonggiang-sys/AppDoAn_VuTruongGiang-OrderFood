@@ -13,7 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class PresenterSaveNguoiNhanHang {
-
+    public PresenterSaveNguoiNhanHang (){}
     public void saveNguoiNhanHang(Context context, String id, long giaKM, String hoTen, String sdt, String diaChi){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

@@ -22,7 +22,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 
 public class ProcessingDangKy {
-    public static void dangKy(Context context,EditText edAddress,EditText edName,EditText edConform,EditText edPass,EditText edEmail,EditText edSdt){
+    public ProcessingDangKy() {
+    }
+
+    public void dangKy(Context context, EditText edAddress, EditText edName, EditText edConform, EditText edPass, EditText edEmail, EditText edSdt){
                 if(edAddress.getText().toString().trim().equals("")||edConform.getText().toString().trim().equals("")||edEmail.getText().toString().trim().equals("")
                         ||edName.getText().toString().trim().equals("")||edPass.getText().toString().trim().equals("")||edSdt.getText().toString().trim().equals(""))
                 {

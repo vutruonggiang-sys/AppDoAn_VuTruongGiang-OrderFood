@@ -4,6 +4,7 @@ package com.example.appdoan_vutruonggiang.presenter;
 import com.example.appdoan_vutruonggiang.inteface.ILogin;
 
 public class ProcessLogin {
+
     ILogin iLogin;
 
     public ProcessLogin(ILogin iLogin) {

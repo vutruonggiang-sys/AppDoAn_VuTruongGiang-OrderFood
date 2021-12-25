@@ -56,6 +56,7 @@ public class DetailActivity extends Activity {
     List<NhaHang> nhaHangList;
     String urlWeb="https://www.facebook.com/vutruonggiang1912/";
     long V,V1;
+    ProcessFood processFood;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -202,7 +203,7 @@ public class DetailActivity extends Activity {
         but_order_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProcessFood.getChoose(DetailActivity.this,food,sdt);
+                processFood.getChoose(DetailActivity.this,food,sdt);
             }
         });
 
@@ -250,6 +251,8 @@ public class DetailActivity extends Activity {
         input_comment=findViewById(R.id.input_comment);
         webView=findViewById(R.id.Webview);
         but_map=findViewById(R.id.but_map);
+
+        processFood=new ProcessFood();
     }
 //    class data extends AsyncTask<Void,Void,String>{
 //        String result="";

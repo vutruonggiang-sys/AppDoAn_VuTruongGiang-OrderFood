@@ -25,6 +25,7 @@ public class AdapterRecyleViewFood extends RecyclerView.Adapter<AdapterRecyleVie
     IItemFood iItemFood;
     Context context;
     String sdt;
+    ProcessFood processFood;
     public AdapterRecyleViewFood(List<Food> foodList,Context context,IItemFood iItemFood,String sdt) {
         this.context=context;
         this.foodList = foodList;
@@ -68,7 +69,8 @@ public class AdapterRecyleViewFood extends RecyclerView.Adapter<AdapterRecyleVie
             @Override
             public void onClick(View v) {
                 //Toast.makeText(context,"hello",Toast.LENGTH_LONG).show();
-                ProcessFood.getChoose(context,food,sdt);
+                processFood=new ProcessFood();
+                processFood.getChoose(context,food,sdt);
             }
         });
         holder.tvMore.setOnClickListener(new View.OnClickListener() {

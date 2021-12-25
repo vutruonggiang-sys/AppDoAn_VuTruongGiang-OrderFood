@@ -124,6 +124,7 @@ public class LoginActivity extends Activity implements ILogin, ValueEventListene
 
     @Override
     protected void onStart() {
+        process_connection =new ProcessConnection();
         if(!process_connection.check_inonline(LoginActivity.this)){
             process_connection.show_disconnect(LoginActivity.this);
         }
