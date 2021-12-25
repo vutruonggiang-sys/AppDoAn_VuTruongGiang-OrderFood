@@ -1,6 +1,4 @@
-package com.example.appdoan_vutruonggiang.activity;
-
-import androidx.annotation.NonNull;
+package com.example.appdoan_vutruonggiang.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,11 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.appdoan_vutruonggiang.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -32,7 +27,7 @@ public class ForgetPasswordActivity extends Activity {
         tv_back_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getBaseContext(), Login_Activity.class);
+                Intent intent=new Intent(getBaseContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });

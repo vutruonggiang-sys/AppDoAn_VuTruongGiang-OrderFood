@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.activity;
+package com.example.appdoan_vutruonggiang.view.activity;
 
 import androidx.annotation.NonNull;
 
@@ -17,9 +17,8 @@ import android.widget.Toast;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.User;
 import com.example.appdoan_vutruonggiang.inteface.ILogin;
-import com.example.appdoan_vutruonggiang.presenter.Process_Connection;
-import com.example.appdoan_vutruonggiang.presenter.Process_login;
-import com.example.appdoan_vutruonggiang.presenter.Processing_DangKy;
+import com.example.appdoan_vutruonggiang.presenter.ProcessConnection;
+import com.example.appdoan_vutruonggiang.presenter.ProcessLogin;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,9 +28,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Login_Activity extends Activity implements ILogin, ValueEventListener {
+public class LoginActivity extends Activity implements ILogin, ValueEventListener {
     int d=0;
-    Process_login process_login;
+    ProcessLogin process_login;
     EditText ed_phoneNumber,ed_pass;
     CheckBox checkBoxStore;
     Button but_login;
@@ -41,6 +40,7 @@ public class Login_Activity extends Activity implements ILogin, ValueEventListen
     DatabaseReference databaseReference;
     User user;
     SharedPreferences sharedPreferences;
+    ProcessConnection process_connection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +58,7 @@ public class Login_Activity extends Activity implements ILogin, ValueEventListen
         databaseReference=firebaseDatabase.getReference().child("user");
         databaseReference.addValueEventListener(this);
 
-        process_login=new Process_login(this);
+        process_login=new ProcessLogin(this);
         but_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +87,7 @@ public class Login_Activity extends Activity implements ILogin, ValueEventListen
                         editor.remove("checked");
                         editor.commit();
                     }
-                    Intent intent = new Intent(Login_Activity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("phoneNumber",sdt);
                     bundle.putString("hoten",user.getName());
@@ -102,20 +102,21 @@ public class Login_Activity extends Activity implements ILogin, ValueEventListen
         tv_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Processing_DangKy.dangKy(Login_Activity.this,userList);
+                Intent intent=new Intent(getBaseContext(),RegisActivity.class);
+                startActivity(intent);
             }
         });
         tv_forgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Login_Activity.this, ForgetPasswordActivity.class);
+                Intent intent=new Intent(LoginActivity.this, ForgetPasswordActivity.class);
                 startActivity(intent);
             }
         });
         tv_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getBaseContext(), Help_Activity.class);
+                Intent intent=new Intent(getBaseContext(), HelpActivity.class);
                 startActivity(intent);
             }
         });
@@ -123,8 +124,8 @@ public class Login_Activity extends Activity implements ILogin, ValueEventListen
 
     @Override
     protected void onStart() {
-        if(!Process_Connection.check_inonline(Login_Activity.this)){
-            Process_Connection.show_disconnect(Login_Activity.this);
+        if(!process_connection.check_inonline(LoginActivity.this)){
+            process_connection.show_disconnect(LoginActivity.this);
         }
         super.onStart();
     }

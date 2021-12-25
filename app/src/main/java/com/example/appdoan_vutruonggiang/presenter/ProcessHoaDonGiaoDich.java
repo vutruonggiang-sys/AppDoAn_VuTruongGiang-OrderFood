@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.example.appdoan_vutruonggiang.R;
 
-public class Process_HoaDonGiaoDich {
+public class ProcessHoaDonGiaoDich {
     public static void getHoaDon(Context context, String name, String sdt, String address, String time, String tong,long tongTien,long giamGia){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

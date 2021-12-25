@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.fragment;
+package com.example.appdoan_vutruonggiang.view.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewSumDaGiao;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.ThongTinNguoiOrder;
-import com.example.appdoan_vutruonggiang.activity.CartActivity;
+import com.example.appdoan_vutruonggiang.view.activity.CartActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment_DaGiao extends Fragment {
+public class FragmentDaGiao extends Fragment {
     RecyclerView recyclerView;
     List<ThongTinNguoiOrder> thongTinNguoiNhanList;
     CartActivity cartActivity;
@@ -35,7 +35,7 @@ public class Fragment_DaGiao extends Fragment {
         
         Bundle args = new Bundle();
         
-        Fragment_DaGiao fragment = new Fragment_DaGiao();
+        FragmentDaGiao fragment = new FragmentDaGiao();
         fragment.setArguments(args);
         return fragment;
     }

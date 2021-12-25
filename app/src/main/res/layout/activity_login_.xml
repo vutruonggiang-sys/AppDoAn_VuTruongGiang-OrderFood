@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/doan1"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.Login_Activity">
+    tools:context=".view.activity.LoginActivity">
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelogin01"
         android:layout_width="match_parent"

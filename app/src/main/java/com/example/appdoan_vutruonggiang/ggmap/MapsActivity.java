@@ -2,13 +2,12 @@ package com.example.appdoan_vutruonggiang.ggmap;
 
 import androidx.fragment.app.FragmentActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.appdoan_vutruonggiang.activity.DetailActivity;
+import com.example.appdoan_vutruonggiang.view.activity.DetailActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

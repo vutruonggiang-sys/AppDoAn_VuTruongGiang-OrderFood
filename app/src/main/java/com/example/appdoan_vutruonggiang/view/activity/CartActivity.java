@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.activity;
+package com.example.appdoan_vutruonggiang.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.appdoan_vutruonggiang.fragment.Fragment_Cart;
-import com.example.appdoan_vutruonggiang.fragment.Fragment_DaGiao;
+import com.example.appdoan_vutruonggiang.view.fragment.FragmentCart;
+import com.example.appdoan_vutruonggiang.view.fragment.FragmentDaGiao;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.Food_Order;
 import com.example.appdoan_vutruonggiang.presenter.Food;
@@ -48,18 +48,18 @@ public class CartActivity extends AppCompatActivity {
         tvDaGiao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragment(Fragment_DaGiao.newInstance());
-                Fragment_DaGiao.newInstance();
+                getFragment(FragmentDaGiao.newInstance());
+                FragmentDaGiao.newInstance();
             }
         });
 
-        getFragment(Fragment_Cart.newInstance());
-        Fragment_Cart.newInstance();
+        getFragment(FragmentCart.newInstance());
+        FragmentCart.newInstance();
         tvGioHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragment(Fragment_Cart.newInstance());
-                Fragment_Cart.newInstance();
+                getFragment(FragmentCart.newInstance());
+                FragmentCart.newInstance();
             }
         });
 

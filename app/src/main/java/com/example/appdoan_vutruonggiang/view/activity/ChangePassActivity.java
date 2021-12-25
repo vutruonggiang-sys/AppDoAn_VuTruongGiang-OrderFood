@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.activity;
+package com.example.appdoan_vutruonggiang.view.activity;
 
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.User;
@@ -19,7 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Change_Pass_Activity extends Activity {
+public class ChangePassActivity extends Activity {
     ImageView but_back_account;
     EditText ed_old_pass,ed_new_pass,ed_confirm_pass;
     Button but_confirm;
@@ -47,25 +47,25 @@ public class Change_Pass_Activity extends Activity {
             @Override
             public void onClick(View v) {
         if(!pass.equals(ed_old_pass.getText().toString().trim())){
-            Toast.makeText(Change_Pass_Activity.this,"Bạn nhập sai mật khẩu cũ",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChangePassActivity.this,"Bạn nhập sai mật khẩu cũ",Toast.LENGTH_SHORT).show();
             return;
         }
         if(ed_old_pass.getText().toString().trim().equals("")||ed_new_pass.getText().toString().trim().equals("")||ed_confirm_pass.getText().toString().trim().equals("")){
-            Toast.makeText(Change_Pass_Activity.this,"Không được để trống",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChangePassActivity.this,"Không được để trống",Toast.LENGTH_SHORT).show();
             return;
         }
         if(pass.toString().trim().equals(ed_new_pass.getText().toString().trim())){
-            Toast.makeText(Change_Pass_Activity.this,"Bạn đã nhập mật khẩu cũ",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChangePassActivity.this,"Bạn đã nhập mật khẩu cũ",Toast.LENGTH_SHORT).show();
             return;
         }
         if(ed_new_pass.getText().toString().trim().equals(ed_confirm_pass.getText().toString().trim())){
-            Toast.makeText(Change_Pass_Activity.this,"Bạn đã thay đổi mật khẩu",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChangePassActivity.this,"Bạn đã thay đổi mật khẩu",Toast.LENGTH_SHORT).show();
             User user=new User(diaChi,email,hoTen,ed_new_pass.getText().toString(),sdt);
             FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
             DatabaseReference databaseReference=firebaseDatabase.getReference().child("user");
             databaseReference.child(sdt).setValue(user);
         }else{
-            Toast.makeText(Change_Pass_Activity.this,"xác nhận sai mật khẩu",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChangePassActivity.this,"xác nhận sai mật khẩu",Toast.LENGTH_SHORT).show();
             return;
         }
             }

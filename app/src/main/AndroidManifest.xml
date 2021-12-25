@@ -39,21 +39,21 @@
         <activity
             android:name=".ggmap.MapsActivity"
             android:label="@string/title_activity_maps"></activity>
-        <activity android:name=".activity.WebviewActivity" />
-        <activity android:name=".activity.Change_Pass_Activity" /> <!-- <meta-data -->
+        <activity android:name=".view.activity.RegisActivity" />
+        <activity android:name=".view.activity.ChangePassActivity" /> <!-- <meta-data -->
         <!-- android:name="com.google.android.geo.API_KEY" -->
         <!-- android:value="AIzaSyA-1kJHFl1lUuzjpfbh32BF6Is5mqC73zs" /> -->
-        <activity android:name=".activity.PrintBillActivity" />
-        <activity android:name=".activity.BillActivity" />
-        <activity android:name=".activity.Help_Activity" />
-        <activity android:name=".activity.ThongBaoActivity" />
-        <activity android:name=".activity.ForgetPasswordActivity" />
-        <activity android:name=".activity.ChatActivity" />
-        <activity android:name=".activity.CartActivity" />
-        <activity android:name=".activity.DetailActivity" />
-        <activity android:name=".activity.AccountActivity" />
-        <activity android:name=".activity.SearchActivity" />
-        <activity android:name=".activity.Login_Activity"
+        <activity android:name=".view.activity.PrintBillActivity" />
+        <activity android:name=".view.activity.BillActivity" />
+        <activity android:name=".view.activity.HelpActivity" />
+        <activity android:name=".view.activity.ThongBaoActivity" />
+        <activity android:name=".view.activity.ForgetPasswordActivity" />
+        <activity android:name=".view.activity.ChatActivity" />
+        <activity android:name=".view.activity.CartActivity" />
+        <activity android:name=".view.activity.DetailActivity" />
+        <activity android:name=".view.activity.AccountActivity" />
+        <activity android:name=".view.activity.SearchActivity" />
+        <activity android:name=".view.activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,7 +61,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".view.activity.MainActivity" />
     </application>
 
 </manifest>

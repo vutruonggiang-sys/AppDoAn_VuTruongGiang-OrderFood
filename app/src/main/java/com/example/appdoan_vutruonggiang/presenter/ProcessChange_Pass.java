@@ -13,8 +13,8 @@ import com.example.appdoan_vutruonggiang.modle.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Process_Change_Pass {
-    public static void getChange(Context context,String sdt, String hoTen, String diachi, String email,String pass){
+public class ProcessChange_Pass {
+    public void getChange(Context context,String sdt, String hoTen, String diachi, String email,String pass){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);

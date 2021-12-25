@@ -21,35 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class Processing_DangKy {
-    public static void dangKy(Context context, List<User> userList){
-        Dialog dialog=new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.activity_register);
-        EditText edName=dialog.findViewById(R.id.edNameRegister);
-        EditText edSdt=dialog.findViewById(R.id.edSdtRegister);
-        EditText edAddress=dialog.findViewById(R.id.edAddressRegister);
-        EditText edEmail=dialog.findViewById(R.id.edEmailRegister);
-        EditText edPass=dialog.findViewById(R.id.edPassRegister);
-        EditText edConform=dialog.findViewById(R.id.edConformPassRegister);
-        Button butCancel=dialog.findViewById(R.id.but_Register_Cancel);
-        Button butOK=dialog.findViewById(R.id.but_Register_OK);
-
-        butCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        butOK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(User user:userList){
-                    if(user.getSdt().toString().equals(edSdt.getText().toString())){
-                        Toast.makeText(context,"Số điện thoại đã tồn tại",Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
+public class ProcessingDangKy {
+    public static void dangKy(Context context,EditText edAddress,EditText edName,EditText edConform,EditText edPass,EditText edEmail,EditText edSdt){
                 if(edAddress.getText().toString().trim().equals("")||edConform.getText().toString().trim().equals("")||edEmail.getText().toString().trim().equals("")
                         ||edName.getText().toString().trim().equals("")||edPass.getText().toString().trim().equals("")||edSdt.getText().toString().trim().equals(""))
                 {
@@ -93,9 +66,5 @@ public class Processing_DangKy {
 
                     }
                 });
-                dialog.dismiss();
             }
-        });
-        dialog.show();
-    }
 }

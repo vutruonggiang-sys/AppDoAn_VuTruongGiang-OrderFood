@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.activity;
+package com.example.appdoan_vutruonggiang.view.activity;
 
 
 
@@ -17,8 +17,8 @@ import android.widget.Toast;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.User;
 import com.example.appdoan_vutruonggiang.presenter.Food;
-import com.example.appdoan_vutruonggiang.presenter.Process_Bank;
-import com.example.appdoan_vutruonggiang.presenter.Processing_DangXuat;
+import com.example.appdoan_vutruonggiang.presenter.ProcessBank;
+import com.example.appdoan_vutruonggiang.presenter.ProcessingDangXuat;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -35,6 +35,7 @@ public class AccountActivity extends Activity {
     List<Food> foodList;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    ProcessBank process_bank;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +84,7 @@ public class AccountActivity extends Activity {
         tv_change_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getBaseContext(), Change_Pass_Activity.class);
+                Intent intent=new Intent(getBaseContext(), ChangePassActivity.class);
                 ArrayList<Food> listSearch= (ArrayList<Food>) foodList;
                 Bundle bundle1=new Bundle();
 
@@ -104,13 +105,13 @@ public class AccountActivity extends Activity {
         tv_chonThe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Process_Bank.bank(AccountActivity.this,sdt);
+                process_bank.bank(AccountActivity.this,sdt);
             }
         });
         tv_DangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Processing_DangXuat.dangXuat(AccountActivity.this, Login_Activity.class);
+                ProcessingDangXuat.dangXuat(AccountActivity.this, LoginActivity.class);
             }
         });
         home.setOnClickListener(new View.OnClickListener() {

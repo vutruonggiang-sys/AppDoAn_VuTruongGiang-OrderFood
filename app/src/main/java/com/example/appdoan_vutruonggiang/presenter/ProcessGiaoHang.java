@@ -16,8 +16,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class Process_GiaoHang {
-    public static void thongBaoNhanHangThanhCong(Context context,String sdt){
+public class ProcessGiaoHang {
+    public void thongBaoNhanHangThanhCong(Context context,String sdt){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.activity_nhanhang);

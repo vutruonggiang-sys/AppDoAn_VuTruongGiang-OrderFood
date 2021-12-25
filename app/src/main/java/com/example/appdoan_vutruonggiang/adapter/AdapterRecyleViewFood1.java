@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.appdoan_vutruonggiang.presenter.Food;
 import com.example.appdoan_vutruonggiang.inteface.IItemFood;
-import com.example.appdoan_vutruonggiang.presenter.Process_Food;
+import com.example.appdoan_vutruonggiang.presenter.ProcessFood;
 import com.example.appdoan_vutruonggiang.R;
 
 import java.util.List;
@@ -49,7 +49,7 @@ public class AdapterRecyleViewFood1 extends RecyclerView.Adapter<AdapterRecyleVi
         holder.order_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Process_Food.getChoose(context,food,sdt);
+                ProcessFood.getChoose(context,food,sdt);
             }
         });
         holder.tvMore.setOnClickListener(new View.OnClickListener() {

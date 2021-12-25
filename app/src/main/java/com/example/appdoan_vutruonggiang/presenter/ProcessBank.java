@@ -22,8 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Process_Bank {
-    public static void bank(Context context,String sdt){
+public class ProcessBank {
+    public void bank(Context context,String sdt){
         List<Bank> bankList=new ArrayList<>();
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

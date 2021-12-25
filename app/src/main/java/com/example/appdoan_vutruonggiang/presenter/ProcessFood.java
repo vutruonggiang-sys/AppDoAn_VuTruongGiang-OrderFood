@@ -26,8 +26,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class Process_Food implements ValueEventListener {
-    public static List<Food> doAnNhanh(List<Food> foodList){
+public class ProcessFood implements ValueEventListener {
+    public List<Food> doAnNhanh(List<Food> foodList){
         List<Food> foodFast=new ArrayList<>();
         for(int i=0;i<foodList.size();i++){
             if(foodList.get(i).getType().equals("doannhanh")){
@@ -36,7 +36,7 @@ public class Process_Food implements ValueEventListener {
         }
         return foodFast;
     }
-    public static List<Food> doUong(List<Food> foodList){
+    public List<Food> doUong(List<Food> foodList){
         List<Food> foodDrink=new ArrayList<>();
         for(int i=0;i<foodList.size();i++){
             if(foodList.get(i).getType().equals("douong")){
@@ -45,7 +45,7 @@ public class Process_Food implements ValueEventListener {
         }
         return foodDrink;
     }
-    public static List<Food> com(List<Food> foodList){
+    public List<Food> com(List<Food> foodList){
         List<Food> foodPrice=new ArrayList<>();
         for(int i=0;i<foodList.size();i++){
             if(foodList.get(i).getType().equals("com")){
@@ -54,7 +54,7 @@ public class Process_Food implements ValueEventListener {
         }
         return foodPrice;
     }
-    public static List<Food> sapTheoDanhGia(List<Food> foodList){
+    public List<Food> sapTheoDanhGia(List<Food> foodList){
         Comparator<Food> c=new Comparator<Food>() {
             @Override
             public int compare(Food o1, Food o2) {
@@ -64,7 +64,7 @@ public class Process_Food implements ValueEventListener {
         Collections.sort(foodList,c);
         return foodList;
     }
-    public static void getChoose(Context context,Food food,String sdt){
+    public void getChoose(Context context,Food food,String sdt){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.activity_process_number_order);
@@ -129,7 +129,7 @@ public class Process_Food implements ValueEventListener {
         dialog.show();
 
     }
-    public static void khuyenMai(ViewFlipper viewFlipper){
+    public void khuyenMai(ViewFlipper viewFlipper){
         viewFlipper.setFlipInterval(3000);
         viewFlipper.setAutoStart(true);
     }
@@ -144,7 +144,7 @@ public class Process_Food implements ValueEventListener {
 
     }
 
-    public static  List<Food_Order> xoaHetArray(List<Food_Order> list){
+    public List<Food_Order> xoaHetArray(List<Food_Order> list){
         for(int i=0;i<list.size();i++){
             list.remove(i);
         }

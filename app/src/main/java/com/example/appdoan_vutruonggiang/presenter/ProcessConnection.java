@@ -8,8 +8,8 @@ import android.view.Window;
 
 import com.example.appdoan_vutruonggiang.R;
 
-public class Process_Connection {
-    public  static boolean check_inonline(Context context){
+public class ProcessConnection {
+    public  boolean check_inonline(Context context){
         final ConnectivityManager connectivityManager=(ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if(connectivityManager!=null){
@@ -19,7 +19,7 @@ public class Process_Connection {
         }
         return false;
     }
-    public static void show_disconnect(Context context){
+    public void show_disconnect(Context context){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);

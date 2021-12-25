@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.Bill;
-import com.example.appdoan_vutruonggiang.presenter.Process_HoaDonGiaoDich;
+import com.example.appdoan_vutruonggiang.presenter.ProcessHoaDonGiaoDich;
 
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class AdapterRecyleviewBilled extends RecyclerView.Adapter<AdapterRecylev
         holder.tvtime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Process_HoaDonGiaoDich.getHoaDon(context,bill.getName(),bill.getSdt(),bill.getAddress(),bill.getTime(),bill.getSumfood(),bill.getTongTien(),bill.getGiamGia());
+                ProcessHoaDonGiaoDich.getHoaDon(context,bill.getName(),bill.getSdt(),bill.getAddress(),bill.getTime(),bill.getSumfood(),bill.getTongTien(),bill.getGiamGia());
             }
         });
     }

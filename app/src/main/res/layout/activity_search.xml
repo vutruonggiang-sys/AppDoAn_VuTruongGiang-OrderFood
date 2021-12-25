@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/search_background"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.SearchActivity">
+    tools:context=".view.activity.SearchActivity">
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideSearch01"
         android:orientation="horizontal"

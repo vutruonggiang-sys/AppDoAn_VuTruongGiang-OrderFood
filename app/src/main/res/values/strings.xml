@@ -22,13 +22,14 @@
     ----Detail Item----
     <string name="name_button_order">Add to Cart</string>
     ----Register----
+    <string name="name_Code_Conform">Verification: </string>
     <string name="name_NameRegister">Name:</string>
     <string name="name_sdt">Number Phone:</string>
     <string name="name_AddressRegister">Address:</string>
     <string name="name_EmailRegister">Email:</string>
     <string name="name_PassRegister">Password:</string>
     <string name="name_ConformPassRegister">Conform Password:</string>
-    <string name="name_Register_title">Đăng ký "Hôm nay ăn gì"</string>
+    <string name="name_Register_title">Đăng ký One Food</string>
     ----logout----
     <string name="name_logout_title">Bạn muốn đăng xuất không?</string>
     ---chat----

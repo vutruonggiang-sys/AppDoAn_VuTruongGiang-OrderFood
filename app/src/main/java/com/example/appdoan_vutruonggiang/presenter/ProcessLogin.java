@@ -3,10 +3,10 @@ package com.example.appdoan_vutruonggiang.presenter;
 
 import com.example.appdoan_vutruonggiang.inteface.ILogin;
 
-public class Process_login  {
+public class ProcessLogin {
     ILogin iLogin;
 
-    public Process_login(ILogin iLogin) {
+    public ProcessLogin(ILogin iLogin) {
         this.iLogin = iLogin;
     }
     public void onLogin(int d){

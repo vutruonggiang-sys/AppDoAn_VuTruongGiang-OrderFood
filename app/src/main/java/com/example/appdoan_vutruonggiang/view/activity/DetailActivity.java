@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.activity;
+package com.example.appdoan_vutruonggiang.view.activity;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -25,7 +25,7 @@ import com.example.appdoan_vutruonggiang.modle.BinhLuan;
 import com.example.appdoan_vutruonggiang.modle.NhaHang;
 import com.example.appdoan_vutruonggiang.ggmap.MapsActivity;
 import com.example.appdoan_vutruonggiang.presenter.Food;
-import com.example.appdoan_vutruonggiang.presenter.Process_Food;
+import com.example.appdoan_vutruonggiang.presenter.ProcessFood;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -202,7 +202,7 @@ public class DetailActivity extends Activity {
         but_order_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Process_Food.getChoose(DetailActivity.this,food,sdt);
+                ProcessFood.getChoose(DetailActivity.this,food,sdt);
             }
         });
 

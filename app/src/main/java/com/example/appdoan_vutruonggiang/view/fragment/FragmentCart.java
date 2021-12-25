@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.fragment;
+package com.example.appdoan_vutruonggiang.view.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -21,9 +21,9 @@ import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewGiaoHangCart;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.Food_Order;
 import com.example.appdoan_vutruonggiang.modle.NhaHang;
-import com.example.appdoan_vutruonggiang.activity.CartActivity;
-import com.example.appdoan_vutruonggiang.presenter.Presenter_SaveNguoiNhanHang;
-import com.example.appdoan_vutruonggiang.presenter.Process_MaGiamGia;
+import com.example.appdoan_vutruonggiang.view.activity.CartActivity;
+import com.example.appdoan_vutruonggiang.presenter.PresenterSaveNguoiNhanHang;
+import com.example.appdoan_vutruonggiang.presenter.ProcessMaGiamGia;
 import com.example.appdoan_vutruonggiang.sqlite.SqliteHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,7 +38,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class Fragment_Cart extends Fragment {
+public class FragmentCart extends Fragment {
     RecyclerView recyclerView;
     Button but_order;
     List<Food_Order> food_orderList;
@@ -47,11 +47,13 @@ public class Fragment_Cart extends Fragment {
     SqliteHelper sqliteHelper;
     List<Food_Order> listTable;
     TextView tv_Chon,tv_MaGiamGia;
+    PresenterSaveNguoiNhanHang presenter_saveNguoiNhanHang;
+    ProcessMaGiamGia process_maGiamGia;
     public static Fragment newInstance() {
 
         Bundle args = new Bundle();
 
-        Fragment_Cart fragment = new Fragment_Cart();
+        FragmentCart fragment = new FragmentCart();
         fragment.setArguments(args);
         return fragment;
     }
@@ -117,7 +119,7 @@ public class Fragment_Cart extends Fragment {
         tv_Chon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Process_MaGiamGia.getMaGiamGia(cartActivity,cartActivity.getSdt());
+                process_maGiamGia.getMaGiamGia(cartActivity,cartActivity.getSdt());
                 DatabaseReference databaseReference1=firebaseDatabase.getReference().child("luu_ma_van_chuyen").child(cartActivity.getSdt());
                 databaseReference1.child("haha").child("giamGia").addValueEventListener(new ValueEventListener() {
                     @Override
@@ -179,7 +181,7 @@ public class Fragment_Cart extends Fragment {
                                                databaseReference2.child(listTable.get(i).getId()).setValue(listTable.get(i));
                                            }
                                            //luu thong tin nguoi nhan.
-                                           Presenter_SaveNguoiNhanHang.saveNguoiNhanHang(cartActivity,time,Long.valueOf(tv_MaGiamGia.getText().toString()),
+                                           presenter_saveNguoiNhanHang.saveNguoiNhanHang(cartActivity,time,Long.valueOf(tv_MaGiamGia.getText().toString()),
                                                    cartActivity.getHoTen(),cartActivity.getSdt(),cartActivity.getDiaChi());
                                            Toast.makeText(cartActivity,"Hàng đã bắt giao",Toast.LENGTH_SHORT).show();
                                            for(int i=0;i<listTable.size();i++){

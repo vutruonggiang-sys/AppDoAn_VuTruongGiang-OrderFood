@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/account.xml" value="0.23425925925925925" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/border_info_order.xml" value="0.2703125" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/camera.xml" value="0.26615384615384613" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/vien_chat.xml" value="0.26615384615384613" />
@@ -32,6 +33,7 @@
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_nhanhang.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_print_bill.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_process_number_order.xml" value="0.24094202898550723" />
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_regis.xml" value="0.14855072463768115" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_register.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_search.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_thong_bao.xml" value="0.24094202898550723" />

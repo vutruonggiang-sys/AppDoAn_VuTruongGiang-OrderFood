@@ -12,8 +12,9 @@ import com.example.appdoan_vutruonggiang.modle.ThongTinNguoiOrder;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Presenter_SaveNguoiNhanHang {
-    public static void saveNguoiNhanHang(Context context, String id, long giaKM, String hoTen, String sdt, String diaChi){
+public class PresenterSaveNguoiNhanHang {
+
+    public void saveNguoiNhanHang(Context context, String id, long giaKM, String hoTen, String sdt, String diaChi){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.border);

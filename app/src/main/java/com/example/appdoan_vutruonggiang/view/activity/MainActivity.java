@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.activity;
+package com.example.appdoan_vutruonggiang.view.activity;
 
 
 import androidx.annotation.NonNull;
@@ -19,7 +19,7 @@ import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewFood1;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.inteface.IItemFood;
 import com.example.appdoan_vutruonggiang.presenter.Food;
-import com.example.appdoan_vutruonggiang.presenter.Process_Food;
+import com.example.appdoan_vutruonggiang.presenter.ProcessFood;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +41,7 @@ public class MainActivity extends Activity {
     String sdt="",hoTen="",diaChi="",email="",pass="";
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    ProcessFood process_food;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,7 @@ public class MainActivity extends Activity {
         email=email+bundle.getString("gmail");
         pass=pass+bundle.get("pass");
 
-        Process_Food.khuyenMai(vf_Khuyen_mai);
+        process_food.khuyenMai(vf_Khuyen_mai);
         //new DataGetFood().execute();
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(MainActivity.this,RecyclerView.VERTICAL,false);
@@ -73,7 +74,7 @@ public class MainActivity extends Activity {
                     Food food=data.getValue(Food.class);
                     foodList.add(food);
                 }
-                Process_Food.sapTheoDanhGia(foodList);
+                process_food.sapTheoDanhGia(foodList);
                 adapterRecyleViewFood=new AdapterRecyleViewFood(foodList, MainActivity.this, new IItemFood() {
                     @Override
                     public void onClickItemFood(Food food) {
@@ -102,7 +103,7 @@ public class MainActivity extends Activity {
            @Override
            public void onClick(View v) {
                List<Food> fooDFast;
-               fooDFast=Process_Food.doAnNhanh(foodList);
+               fooDFast=process_food.doAnNhanh(foodList);
                adapterRecyleViewFood=new AdapterRecyleViewFood(fooDFast, MainActivity.this, new IItemFood() {
                    @Override
                    public void onClickItemFood(Food food) {
@@ -122,7 +123,7 @@ public class MainActivity extends Activity {
         DoUong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Food> foodDrink=Process_Food.doUong(foodList);
+                List<Food> foodDrink=process_food.doUong(foodList);
                 adapterRecyleViewFood=new AdapterRecyleViewFood(foodDrink, MainActivity.this, new IItemFood() {
                     @Override
                     public void onClickItemFood(Food food) {
@@ -142,7 +143,7 @@ public class MainActivity extends Activity {
         Com.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Food> foodRice=Process_Food.com(foodList);
+                List<Food> foodRice=process_food.com(foodList);
                 adapterRecyleViewFood=new AdapterRecyleViewFood(foodRice, MainActivity.this, new IItemFood() {
                     @Override
                     public void onClickItemFood(Food food) {

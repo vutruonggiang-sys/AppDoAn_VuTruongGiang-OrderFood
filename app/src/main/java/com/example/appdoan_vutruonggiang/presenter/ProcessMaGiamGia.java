@@ -20,8 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Process_MaGiamGia {
-    public static void getMaGiamGia(Context context,String sdt){
+public class ProcessMaGiamGia {
+    public void getMaGiamGia(Context context,String sdt){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);

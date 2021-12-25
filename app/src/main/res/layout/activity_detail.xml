@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#A2D3EA"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.DetailActivity">
+    tools:context=".view.activity.DetailActivity">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideItem01"

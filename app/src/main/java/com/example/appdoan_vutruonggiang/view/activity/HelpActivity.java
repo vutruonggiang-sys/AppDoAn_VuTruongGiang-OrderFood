@@ -1,6 +1,4 @@
-package com.example.appdoan_vutruonggiang.activity;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.appdoan_vutruonggiang.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.appdoan_vutruonggiang.R;
 
-public class Help_Activity extends Activity {
+public class HelpActivity extends Activity {
     TextView but_back_login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +20,7 @@ public class Help_Activity extends Activity {
         but_back_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getBaseContext(), Login_Activity.class);
+                Intent intent=new Intent(getBaseContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });

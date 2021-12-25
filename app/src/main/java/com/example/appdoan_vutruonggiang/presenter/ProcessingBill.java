@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class Processing_Bill {
+public class ProcessingBill {
     public static void getBill(Context context, String name, String sdt, String address, String time, List<Food_Order> list,long giaGiam){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

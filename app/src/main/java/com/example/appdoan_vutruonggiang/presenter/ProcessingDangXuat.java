@@ -8,10 +8,10 @@ import android.view.Window;
 import android.widget.Button;
 
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.activity.Login_Activity;
+import com.example.appdoan_vutruonggiang.view.activity.LoginActivity;
 
-public class Processing_DangXuat {
-    public static void dangXuat(Context context, Class<Login_Activity> login_activityClass){
+public class ProcessingDangXuat {
+    public static void dangXuat(Context context, Class<LoginActivity> login_activityClass){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.activity_dangxuat);
