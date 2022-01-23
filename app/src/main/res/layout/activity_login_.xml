@@ -87,7 +87,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:text="Lưu Tài Khoản"
-            android:textColor="#EF0518" />
+            android:textColor="#10F6C8" />
 
         <Button
             android:id="@+id/but_login"

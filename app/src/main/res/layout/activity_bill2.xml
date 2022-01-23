@@ -10,7 +10,7 @@
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide_bill_01"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.1"
+            app:layout_constraintGuide_percent="0.05"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
         <LinearLayout
@@ -23,14 +23,14 @@
             android:background="#F1D90C">
             <ImageView
                 android:id="@+id/but_bill_back_account"
-                android:layout_width="50dp"
+                android:layout_width="30dp"
                 android:layout_height="50dp"
                 android:src="@drawable/arrow_back"
                 android:layout_gravity="center"/>
             <TextView
                 android:text="Lịch Sử Hóa Đơn"
                 android:gravity="center"
-                android:textSize="30dp"
+                android:textSize="20dp"
                 android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"

@@ -43,7 +43,6 @@
         <activity android:name=".view.activity.ChangePassActivity" /> <!-- <meta-data -->
         <!-- android:name="com.google.android.geo.API_KEY" -->
         <!-- android:value="AIzaSyA-1kJHFl1lUuzjpfbh32BF6Is5mqC73zs" /> -->
-        <activity android:name=".view.activity.PrintBillActivity" />
         <activity android:name=".view.activity.BillActivity" />
         <activity android:name=".view.activity.HelpActivity" />
         <activity android:name=".view.activity.ThongBaoActivity" />

@@ -60,11 +60,14 @@
         android:id="@+id/Edit_Comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone">
+        android:visibility="visible">
         <EditText
             android:id="@+id/ed_Edit_Comment"
             android:background="@drawable/vien_item_food"
             android:layout_margin="15dp"
+            android:text="xxx"
+            android:paddingLeft="10dp"
+            android:paddingTop="0dp"
             android:textSize="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Bạn đang chọn món Banh My Den"
         android:textSize="20sp"
+        android:textColor="@color/black"
         android:gravity="center"/>
     <ImageView
         android:id="@+id/image_food_datHang"
@@ -27,6 +28,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:gravity="center"
+        android:textColor="@color/black"
         android:text="Số lượng : X1"/>
     <LinearLayout
         android:layout_marginTop="10dp"
@@ -52,7 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="01"
+            android:text="1"
             android:textSize="30sp"
             android:gravity="center"
             android:textStyle="bold"

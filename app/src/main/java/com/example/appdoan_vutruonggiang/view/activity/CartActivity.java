@@ -28,8 +28,7 @@ public class CartActivity extends AppCompatActivity {
     List<Food> foodList;
     List<Food_Order> food_orderListCart;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference1,databaseReference2;
-    long tong=0,tien_giam_gia=0;
+    long tien_giam_gia=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
