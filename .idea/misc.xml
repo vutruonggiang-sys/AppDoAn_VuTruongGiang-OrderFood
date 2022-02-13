@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/colors/activity_detail.xml" value="0.12360688956433637" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/account.xml" value="0.23425925925925925" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/border_bgblue_colorwhite.xml" value="0.20364583333333333" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/border_bgwhite_colorblack.xml" value="0.20364583333333333" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/border_info_order.xml" value="0.2703125" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/but_login.xml" value="0.2703125" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/camera.xml" value="0.26615384615384613" />
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/shaper_register.xml" value="0.26615384615384613" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/vien_chat.xml" value="0.26615384615384613" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/vien_item_food.xml" value="0.26615384615384613" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/vien_menu.xml" value="0.26615384615384613" />
@@ -36,13 +38,14 @@
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_nhanhang.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_print_bill.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_process_number_order.xml" value="0.24094202898550723" />
-        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_regis.xml" value="0.14855072463768115" />
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_regis.xml" value="1.6" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_register.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_search.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_thong_bao.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_webview.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/border.xml" value="0.24365942028985507" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/border_register.xml" value="0.25416666666666665" />
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/demo.xml" value="0.24456521739130435" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/form_disconnect.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/fragment_cart.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/fragment_dagiao.xml" value="0.24094202898550723" />
@@ -51,10 +54,12 @@
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/item_billed.xml" value="0.25416666666666665" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/item_binhluan.xml" value="0.23958333333333334" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/item_chat.xml" value="0.2259963768115942" />
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/item_giohang.xml" value="0.2210144927536232" />
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/register.xml" value="0.23097826086956522" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
