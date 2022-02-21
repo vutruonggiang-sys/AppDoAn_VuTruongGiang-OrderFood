@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 
-import com.example.appdoan_vutruonggiang.adapter.AdpterRecyleViewSearch;
+import com.example.appdoan_vutruonggiang.view.adapter.AdapterRecyleViewSearch;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.inteface.IItemFood;
 import com.example.appdoan_vutruonggiang.presenter.Food;
@@ -22,12 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
-    AdpterRecyleViewSearch adpterRecyleViewSearch;
+    AdapterRecyleViewSearch adpterRecyleViewSearch;
     RecyclerView dataSearch;
     ImageView home,search,giohang,account;
     List<Food> foodList;
     SearchView searchView;
-    String sdt="",hoTen="",diaChi="",email="",pass="";
+    String sdt="",hoTen="",pass="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,7 @@ public class SearchActivity extends AppCompatActivity {
 
         Bundle bundle=this.getIntent().getExtras();
         foodList=bundle.getParcelableArrayList("list");
-        adpterRecyleViewSearch=new AdpterRecyleViewSearch(foodList, SearchActivity.this, new IItemFood() {
+        adpterRecyleViewSearch=new AdapterRecyleViewSearch(foodList, SearchActivity.this, new IItemFood() {
             @Override
             public void onClickItemFood(Food food) {
                 chuyenManHinh(food);
@@ -51,8 +51,6 @@ public class SearchActivity extends AppCompatActivity {
 
         sdt=sdt+bundle.getString("phoneNumber");
         hoTen=hoTen+bundle.getString("hoten");
-        diaChi=diaChi+bundle.getString("diachi");
-        email=email+bundle.getString("gmail");
         pass=pass+bundle.get("pass");
 
         home.setOnClickListener(new View.OnClickListener() {
@@ -62,8 +60,6 @@ public class SearchActivity extends AppCompatActivity {
                 Bundle bundle1=new Bundle();
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 intent1.putExtras(bundle1);
                 startActivity(intent1);
@@ -77,8 +73,6 @@ public class SearchActivity extends AppCompatActivity {
                 Bundle bundle1=new Bundle();
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent1.putExtras(bundle1);
@@ -93,8 +87,6 @@ public class SearchActivity extends AppCompatActivity {
                 Bundle bundle1=new Bundle();
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent1.putExtras(bundle1);
@@ -132,8 +124,6 @@ public class SearchActivity extends AppCompatActivity {
         Bundle bundle1=new Bundle();
         bundle1.putString("phoneNumber",sdt);
         bundle1.putString("hoten",hoTen);
-        bundle1.putString("diachi",diaChi);
-        bundle1.putString("gmail",email);
         bundle1.putString("pass",pass);
 
         bundle1.putString("url",food.getUrl());
@@ -144,6 +134,8 @@ public class SearchActivity extends AppCompatActivity {
         bundle1.putString("food_idnhahang",food.getIdNhaHang());
         bundle1.putString("food_id",food.getId());
         bundle1.putString("food_type",food.getType());
+        bundle1.putLong("food_combo",food.getCombo());
+        bundle1.putLong("food_promotion",food.getPromotion());
         intent.putExtras(bundle1);
         startActivity(intent);
     }

@@ -18,13 +18,15 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:textSize="25dp"
+        android:textColor="#07D9F4"
+        android:textStyle="bold"
         android:text="@string/name_Register_title"
         android:gravity="center"/>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilYourNumber"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:boxCornerRadiusTopStart="5dp"
         app:boxCornerRadiusTopEnd="5dp"
@@ -32,7 +34,8 @@
         app:boxCornerRadiusBottomEnd="5dp"
         android:textColorHint="#08DEFA"
         app:boxStrokeColor="@color/shaper_register"
-        android:hint="Your Number">
+        android:hint="Your Number"
+        app:helperText="10">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tielYourNumber"
             android:textColor="@color/black"
@@ -40,13 +43,13 @@
             android:padding="0dp"
             android:textSize="14dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="50dp"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilYourName"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:boxCornerRadiusTopStart="5dp"
         app:boxCornerRadiusTopEnd="5dp"
@@ -54,7 +57,9 @@
         app:boxCornerRadiusBottomEnd="5dp"
         android:textColorHint="#08DEFA"
         app:boxStrokeColor="@color/shaper_register"
-        android:hint="Your Name">
+        android:hint="Your Name"
+        app:helperText="30"
+        >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietYourName"
             android:textColor="@color/black"
@@ -62,76 +67,11 @@
             android:padding="0dp"
             android:textSize="14dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="50dp"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilCity"
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        app:boxCornerRadiusTopStart="5dp"
-        app:boxCornerRadiusTopEnd="5dp"
-        app:boxCornerRadiusBottomStart="5dp"
-        app:boxCornerRadiusBottomEnd="5dp"
-        android:textColorHint="#08DEFA"
-        app:boxStrokeColor="@color/shaper_register"
-        android:hint="City"
-        app:errorEnabled="true">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietCity"
-            android:textColor="@color/black"
-            android:text="Vu truong giang"
-            android:padding="0dp"
-            android:textSize="14dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilDistrict"
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        app:boxCornerRadiusTopStart="5dp"
-        app:boxCornerRadiusTopEnd="5dp"
-        app:boxCornerRadiusBottomStart="5dp"
-        app:boxCornerRadiusBottomEnd="5dp"
-        android:textColorHint="#8C8787"
-        app:boxStrokeColor="@color/shaper_register"
-        android:hint="Your Number">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietDistrict"
-            android:textColor="@color/black"
-            android:text="Vu truong giang"
-            android:padding="0dp"
-            android:textSize="14dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxCornerRadiusTopStart="5dp"
-        app:boxCornerRadiusTopEnd="5dp"
-        app:boxCornerRadiusBottomStart="5dp"
-        app:boxCornerRadiusBottomEnd="5dp"
-        android:textColorHint="#8C8787"
-        app:boxStrokeColor="@color/shaper_register"
-        android:hint="Your Number"
-        app:hintTextColor="#08DEFA">
-        <com.google.android.material.textfield.TextInputEditText
-            android:textColor="@color/black"
-            android:text="Vu truong giang"
-            android:padding="0dp"
-            android:textSize="14dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginTop="30dp"
+        android:id="@+id/tilPassword"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -141,14 +81,71 @@
         app:boxCornerRadiusBottomEnd="5dp"
         android:textColorHint="#08DEFA"
         app:boxStrokeColor="@color/shaper_register"
-        android:hint="Your Number">
+        android:hint="Password"
+        app:errorEnabled="true"
+        app:passwordToggleEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietPassword"
             android:textColor="@color/black"
+            android:inputType="textPassword"
             android:text="Vu truong giang"
             android:padding="0dp"
             android:textSize="14dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </com.google.android.material.textfield.TextInputLayout>
-
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilConfirmPassword"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxCornerRadiusTopStart="5dp"
+        app:boxCornerRadiusTopEnd="5dp"
+        app:boxCornerRadiusBottomStart="5dp"
+        app:boxCornerRadiusBottomEnd="5dp"
+        android:textColorHint="#08DEFA"
+        app:boxStrokeColor="@color/shaper_register"
+        android:hint="Confirm Password"
+        app:passwordToggleEnabled="true">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietConfirmPassword"
+            android:textColor="@color/black"
+            android:text="Vu truong giang"
+            android:padding="0dp"
+            android:inputType="textPassword"
+            android:textSize="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="Cancel"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/but_send"
+            android:alpha="0.5"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="Regis"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/but_send"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_BackLogin"
+        android:textColor="@color/black"
+        android:text="Back Login"
+        android:gravity="right"
+        android:textStyle="normal"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
 </LinearLayout>

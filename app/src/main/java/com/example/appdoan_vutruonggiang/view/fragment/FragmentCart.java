@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewGiaoHangCart;
+import com.example.appdoan_vutruonggiang.view.adapter.AdapterRecyleViewGiaoHangCart;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.Food_Order;
 import com.example.appdoan_vutruonggiang.modle.NhaHang;
@@ -185,7 +185,7 @@ public class FragmentCart extends Fragment {
                                            }
                                            //luu thong tin nguoi nhan.
                                            presenter_saveNguoiNhanHang.saveNguoiNhanHang(cartActivity,time,Long.valueOf(tv_MaGiamGia.getText().toString()),
-                                                   cartActivity.getHoTen(),cartActivity.getSdt(),cartActivity.getDiaChi());
+                                                   cartActivity.getHoTen(),cartActivity.getSdt());
                                            Toast.makeText(cartActivity,"Hàng đã bắt giao",Toast.LENGTH_SHORT).show();
                                            for(int i=0;i<listTable.size();i++){
                                                databaseReference.child(listTable.get(i).getId()).removeValue();
@@ -196,11 +196,7 @@ public class FragmentCart extends Fragment {
                                            sqliteHelper.onDeleteAllGioHang();
                                        }else{
                                            openAndClose(mo,dong,hienTai,cartActivity);
-//                                           if(hienTai.before(mo))
-//                                               Toast.makeText(cartActivity,"Hiện tại quán chưa mở cửa, Quý Khách Vui Lòng Chờ hoặc Chọn Cửa Hàng Mở Cửa",Toast.LENGTH_LONG).show();
-//                                           if(hienTai.after(dong))
-//                                               Toast.makeText(cartActivity,"Hiện tại quán đã đóng cửa, Quý Khách Vui Lòng Chờ hoặc Chọn Cửa Hàng Mở Cửa",Toast.LENGTH_LONG).show();
-                                           sqliteHelper.onDeleteAllGioHang();
+                                              sqliteHelper.onDeleteAllGioHang();
                                        }
                                    }catch (Exception e){
 

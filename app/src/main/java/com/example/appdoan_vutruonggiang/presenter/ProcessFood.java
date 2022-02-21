@@ -26,7 +26,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class ProcessFood implements ValueEventListener {
+public class ProcessFood {
     public ProcessFood() {
     }
 
@@ -83,7 +83,7 @@ public class ProcessFood implements ValueEventListener {
         title.setText("Bạn đang chọn món "+food.getName());
         tru.setEnabled(false);
         Glide.with(context).load(food.getUrl()).into(imageView);
-        Food_Order food_order=new Food_Order(1,food.id,food.getName(),(long) food.getPrice(),food.getUrl(),food.getIdNhaHang());
+        Food_Order food_order=new Food_Order(1,food.id,food.getName(),(long) food.getPrice(),food.getUrl(),food.getIdNhaHang(),food.getCombo(),food.getPromotion());
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,23 +135,6 @@ public class ProcessFood implements ValueEventListener {
     public void khuyenMai(ViewFlipper viewFlipper){
         viewFlipper.setFlipInterval(3000);
         viewFlipper.setAutoStart(true);
-    }
-
-    @Override
-    public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-    }
-
-    @Override
-    public void onCancelled(@NonNull DatabaseError error) {
-
-    }
-
-    public List<Food_Order> xoaHetArray(List<Food_Order> list){
-        for(int i=0;i<list.size();i++){
-            list.remove(i);
-        }
-        return list;
     }
 
 }

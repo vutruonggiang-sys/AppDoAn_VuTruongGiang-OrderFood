@@ -19,6 +19,8 @@ import com.example.appdoan_vutruonggiang.modle.User;
 import com.example.appdoan_vutruonggiang.inteface.ILogin;
 import com.example.appdoan_vutruonggiang.presenter.ProcessConnection;
 import com.example.appdoan_vutruonggiang.presenter.ProcessLogin;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +33,8 @@ import java.util.List;
 public class LoginActivity extends Activity implements ILogin, ValueEventListener {
     int d=0;
     ProcessLogin process_login;
-    EditText ed_phoneNumber,ed_pass;
+    TextInputLayout tilPhoneNumber,tilPass;
+    TextInputEditText tietPhoneNumber,tietPass;
     CheckBox checkBoxStore;
     Button but_login;
     TextView tv_forgetPass,tv_help,tv_register;
@@ -51,8 +54,8 @@ public class LoginActivity extends Activity implements ILogin, ValueEventListene
 
         sharedPreferences= getSharedPreferences("dataLogin",MODE_PRIVATE);
 
-        ed_phoneNumber.setText(sharedPreferences.getString("sdt",""));
-        ed_pass.setText(sharedPreferences.getString("pass",""));
+        tietPhoneNumber.setText(sharedPreferences.getString("sdt",""));
+        tietPass.setText(sharedPreferences.getString("pass",""));
         checkBoxStore.setChecked(sharedPreferences.getBoolean("checked",false));
 
         databaseReference=firebaseDatabase.getReference().child("user");
@@ -62,8 +65,8 @@ public class LoginActivity extends Activity implements ILogin, ValueEventListene
         but_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sdt=ed_phoneNumber.getText().toString();
-                String pass=ed_pass.getText().toString();
+                String sdt=tietPhoneNumber.getText().toString();
+                String pass=tietPass.getText().toString();
                 for(User user1:userList){
                     if(user1.getPass().equals(pass) && user1.getSdt().equals(sdt)) {
                         d++;
@@ -91,8 +94,6 @@ public class LoginActivity extends Activity implements ILogin, ValueEventListene
                     Bundle bundle = new Bundle();
                     bundle.putString("phoneNumber",sdt);
                     bundle.putString("hoten",user.getName());
-                    bundle.putString("diachi",user.getAddress());
-                    bundle.putString("gmail",user.getEmail());
                     bundle.putString("pass",pass);
                     intent.putExtras(bundle);
                     startActivity(intent);
@@ -157,8 +158,10 @@ public class LoginActivity extends Activity implements ILogin, ValueEventListene
 
     }
     public void anhXa(){
-        ed_phoneNumber=findViewById(R.id.et_phoneNumber);
-        ed_pass=findViewById(R.id.et_pass);
+        tilPhoneNumber=findViewById(R.id.tilPhoneNumber);
+        tilPass=findViewById(R.id.tilPass);
+        tietPhoneNumber=findViewById(R.id.tietPhoneNumber);
+        tietPass=findViewById(R.id.tietPass);
         checkBoxStore=findViewById(R.id.checkBoxStore);
         but_login=findViewById(R.id.but_login);
         tv_forgetPass=findViewById(R.id.tv_forgetPass);

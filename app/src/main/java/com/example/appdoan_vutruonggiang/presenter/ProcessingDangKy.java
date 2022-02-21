@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.GiamGia;
 import com.example.appdoan_vutruonggiang.modle.User;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,32 +26,28 @@ public class ProcessingDangKy {
     public ProcessingDangKy() {
     }
 
-    public void dangKy(Context context, EditText edAddress, EditText edName, EditText edConform, EditText edPass, EditText edEmail, EditText edSdt){
-                if(edAddress.getText().toString().trim().equals("")||edConform.getText().toString().trim().equals("")||edEmail.getText().toString().trim().equals("")
-                        ||edName.getText().toString().trim().equals("")||edPass.getText().toString().trim().equals("")||edSdt.getText().toString().trim().equals(""))
+    public void dangKy(Context context, TextInputEditText tietYourNumber,TextInputEditText tietYourName,TextInputEditText tietPass,TextInputEditText tietConfirmPass){
+                if(tietConfirmPass.getText().toString().trim().equals("") ||tietPass.getText().toString().trim().equals("")||
+                        tietYourName.getText().toString().trim().equals("")||tietYourNumber.getText().toString().trim().equals(""))
                 {
                     Toast.makeText(context,"Không được để trống",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(!edConform.getText().toString().equals(edPass.getText().toString()))
+                if(!tietConfirmPass.getText().toString().equals(tietPass.getText().toString()))
                 {
                     Toast.makeText(context,"Mât khẩu không đúng",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(!edEmail.getText().toString().contains("@gmail.com")){
-                    Toast.makeText(context,"Email không đúng",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference=firebaseDatabase.getReference().child("user");
 
-                User user=new User(edAddress.getText().toString(),edEmail.getText().toString(),edName.getText().toString(),edPass.getText().toString(),edSdt.getText().toString());
-                databaseReference.child(edSdt.getText().toString()).setValue(user);
+                User user=new User(tietYourName.getText().toString(),tietPass.getText().toString(),tietYourNumber.getText().toString());
+                databaseReference.child(tietYourNumber.getText().toString()).setValue(user);
 
                 Toast.makeText(context,"Bạn đã đăng ký thành công",Toast.LENGTH_SHORT).show();
 
                 DatabaseReference databaseReference1=firebaseDatabase.getReference().child("bank");
-                databaseReference1.child(edSdt.getText().toString()).setValue("Bạn chưa chọn dịch vụ");
+                databaseReference1.child(tietYourNumber.getText().toString()).setValue("Bạn chưa chọn dịch vụ");
 
                 DatabaseReference databaseReference2=firebaseDatabase.getReference().child("ma_giam_gia");
                 databaseReference2.addValueEventListener(new ValueEventListener() {
@@ -60,7 +57,7 @@ public class ProcessingDangKy {
                         for(DataSnapshot data:dataSnapshotIterable){
                             GiamGia giamGia=data.getValue(GiamGia.class);
                             DatabaseReference databaseReference3=firebaseDatabase.getReference().child("giam_gia");
-                            databaseReference3.child(edSdt.getText().toString()).child(giamGia.getId()).setValue(giamGia);
+                            databaseReference3.child(tietYourNumber.getText().toString()).child(giamGia.getId()).setValue(giamGia);
                         }
                     }
 

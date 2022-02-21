@@ -7,13 +7,22 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.presenter.ProcessingDangKy;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisActivity extends Activity {
-    EditText edName,edSdt,edAddress,edEmail,edPass,edConform;
-    Button butCancel,butOK;
+    TextInputLayout tilYourNumber,tilYourName,tilPass,tilConfirmPass;
+    TextInputEditText tietYourNumber,tietYourName,tietPass,tietConfirmPass;
+    TextView tvBackLogin;
+    ImageView imgBackArrow;
+    AppCompatButton butCancel,butRegis;
     ProcessingDangKy processingDangKy;
 
     @Override
@@ -22,30 +31,40 @@ public class RegisActivity extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_regis);
         anhXa();
-        butCancel.setOnClickListener(new View.OnClickListener() {
+        tvBackLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getBaseContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
-        butOK.setOnClickListener(new View.OnClickListener() {
+        imgBackArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                processingDangKy.dangKy(RegisActivity.this,edAddress,edName,edConform,edPass,edEmail,edSdt);
+                Intent intent=new Intent(getBaseContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        butRegis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                processingDangKy.dangKy(RegisActivity.this,tietYourNumber,tietYourName,tietPass,tietConfirmPass);
             }
         });
     }
     public  void anhXa(){
-         edName=findViewById(R.id.edNameRegister);
-         edSdt=findViewById(R.id.edSdtRegister);
-         edAddress=findViewById(R.id.edAddressRegister);
-         edEmail=findViewById(R.id.edEmailRegister);
-         edPass=findViewById(R.id.edPassRegister);
-         edConform=findViewById(R.id.edConformPassRegister);
-         butCancel=findViewById(R.id.but_Register_Cancel);
-         butOK=findViewById(R.id.but_Register_OK);
-
-        processingDangKy=new ProcessingDangKy();
+         tilYourNumber=findViewById(R.id.tilYourNumber);
+         tietYourNumber=findViewById(R.id.tietYourNumber);
+         tietYourName=findViewById(R.id.tietYourName);
+         tilYourName=findViewById(R.id.tilYourName);
+         tilPass=findViewById(R.id.tilPassword);
+         tietPass=findViewById(R.id.tietPassword);
+         tilConfirmPass=findViewById(R.id.tilConfirmPassword);
+         tietConfirmPass=findViewById(R.id.tietConfirmPassword);
+         butCancel=findViewById(R.id.acbCancel);
+         butRegis=findViewById(R.id.acbRegis);
+         tvBackLogin=findViewById(R.id.tv_BackLogin);
+         imgBackArrow=findViewById(R.id.imgBackArrow);
+         processingDangKy=new ProcessingDangKy();
     }
 }

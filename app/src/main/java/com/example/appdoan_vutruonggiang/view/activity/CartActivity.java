@@ -24,7 +24,7 @@ import java.util.List;
 public class CartActivity extends AppCompatActivity {
     TextView tvGioHang,tvDaGiao;
     ImageView but_ThongBao,home,search,giohang,account;
-    String sdt="",hoTen="",diaChi="",email="",pass="";
+    String sdt="",hoTen="",pass="";
     List<Food> foodList;
     List<Food_Order> food_orderListCart;
     FirebaseDatabase firebaseDatabase;
@@ -37,8 +37,6 @@ public class CartActivity extends AppCompatActivity {
         Bundle bundle=this.getIntent().getExtras();
         sdt=sdt+bundle.getString("phoneNumber");
         hoTen=hoTen+bundle.getString("hoten");
-        diaChi=diaChi+bundle.getString("diachi");
-        email=email+bundle.getString("gmail");
         pass=pass+bundle.getString("pass");
         foodList=bundle.getParcelableArrayList("list");
 
@@ -78,8 +76,6 @@ public class CartActivity extends AppCompatActivity {
                 Bundle bundle1=new Bundle();
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
 
                 intent.putExtras(bundle1);
@@ -94,8 +90,6 @@ public class CartActivity extends AppCompatActivity {
                 Bundle bundle1=new Bundle();
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);
@@ -110,8 +104,6 @@ public class CartActivity extends AppCompatActivity {
                 Bundle bundle1=new Bundle();
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);
@@ -126,8 +118,6 @@ public class CartActivity extends AppCompatActivity {
                 Bundle bundle1=new Bundle();
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);
@@ -146,7 +136,6 @@ public class CartActivity extends AppCompatActivity {
         return sdt;
     }
     public String getHoTen(){return hoTen;}
-    public String getDiaChi(){return diaChi;}
 
     public void setSdt(String sdt) {
         this.sdt = sdt;
@@ -154,18 +143,6 @@ public class CartActivity extends AppCompatActivity {
 
     public void setHoTen(String hoTen) {
         this.hoTen = hoTen;
-    }
-
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPass() {

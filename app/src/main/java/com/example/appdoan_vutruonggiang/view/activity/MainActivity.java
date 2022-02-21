@@ -14,8 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ViewFlipper;
 
-import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewFood;
-import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewFood1;
+import com.example.appdoan_vutruonggiang.view.adapter.AdapterRecyleViewFood;
+import com.example.appdoan_vutruonggiang.view.adapter.AdapterRecyleViewFood1;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.inteface.IItemFood;
 import com.example.appdoan_vutruonggiang.presenter.Food;
@@ -35,10 +35,9 @@ public class MainActivity extends Activity {
     RecyclerView dataRecyleView1,dataRecyleView;
     ImageView home,search,giohang,account;
     List<Food> foodList=new ArrayList<>();
-    //String urlStr="https://demo1859626.mockable.io/itemfood2";
     AdapterRecyleViewFood adapterRecyleViewFood;
     AdapterRecyleViewFood1 adapterRecyleViewFood1;
-    String sdt="",hoTen="",diaChi="",email="",pass="";
+    String sdt="",hoTen="",pass="";
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     ProcessFood process_food;
@@ -52,8 +51,6 @@ public class MainActivity extends Activity {
         Bundle bundle=getIntent().getExtras();
         sdt=sdt+bundle.getString("phoneNumber");
         hoTen=hoTen+bundle.getString("hoten");
-        diaChi=diaChi+bundle.getString("diachi");
-        email=email+bundle.getString("gmail");
         pass=pass+bundle.get("pass");
 
         process_food.khuyenMai(vf_Khuyen_mai);
@@ -96,8 +93,6 @@ public class MainActivity extends Activity {
 
             }
         });
-
-
         //chon do an nhanh, do uong, com...
         DoAnNhanh.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -188,8 +183,6 @@ public class MainActivity extends Activity {
                 bundle1.putParcelableArrayList("list",listSearch);
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 intent.putExtras(bundle1);
                 startActivity(intent);
@@ -202,8 +195,6 @@ public class MainActivity extends Activity {
                 Bundle bundle1=new Bundle();
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 ArrayList<Food> listSearch= (ArrayList<Food>) foodList;
                 bundle1.putParcelableArrayList("list",listSearch);
@@ -218,8 +209,6 @@ public class MainActivity extends Activity {
                 Bundle bundle1=new Bundle();
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 ArrayList<Food> listSearch= (ArrayList<Food>) foodList;
                 bundle1.putParcelableArrayList("list",listSearch);
@@ -228,70 +217,6 @@ public class MainActivity extends Activity {
             }
         });
     }
-//    class DataGetFood extends AsyncTask<Void,Void,String>{
-//        String result ="";
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//        }
-//
-//        @Override
-//        protected String doInBackground(Void... voids) {
-//            try{
-//                URL url=new URL(urlStr);
-//                URLConnection urlConnection=url.openConnection();
-//                InputStream is=urlConnection.getInputStream();
-//                int byteChar;
-//                while((byteChar=is.read())!=-1){
-//                    result+=(char)byteChar;
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            return result;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String s) {
-//            super.onPostExecute(s);
-//            try {
-//                JSONArray jsonArray=new JSONArray(result);
-//                for(int i=0;i<jsonArray.length();i++){
-//                    JSONObject jsonObject=jsonArray.getJSONObject(i);
-//                    String id=jsonObject.getString("id");
-//                    String url=jsonObject.getString("url");
-//                    String name=jsonObject.getString("name");
-//                    float price=(float) jsonObject.getDouble("price");
-//                    String idNhaHang=jsonObject.getString("idNhaHang");
-//                    String detail=jsonObject.getString("detail");
-//                    float review=(float) jsonObject.getDouble("review");
-//                    String type=jsonObject.getString("type");
-//                    Food food=new Food(id,url,name,detail,idNhaHang,type,price,review);
-//                    foodList.add(food);
-//                }
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-////            RecyclerView.ItemDecoration decoration=new DividerItemDecoration(MainActivity.this,DividerItemDecoration.VERTICAL);
-////            binding.dataRecyleView.addItemDecoration(decoration);
-//            foodList=Process_Food.sapTheoDanhGia(foodList);
-//            binding.dataRecyleView.setHasFixedSize(true);
-//            adapterRecyleViewFood=new AdapterRecyleViewFood(foodList, MainActivity.this, new IItemFood() {
-//                @Override
-//                public void onClickItemFood(Food food) {
-//                    chuyenManHinh(food);
-//                }
-//            },sdt);
-//            adapterRecyleViewFood1=new AdapterRecyleViewFood1(foodList, MainActivity.this, new IItemFood() {
-//                @Override
-//                public void onClickItemFood(Food food) {
-//                    chuyenManHinh(food);
-//                }
-//            },sdt);
-//            binding.dataRecyleView.setAdapter(adapterRecyleViewFood);
-//            binding.dataRecyleView1.setAdapter(adapterRecyleViewFood1);
-//        }
-//    }
 
     private void chuyenManHinh(Food food){
 
@@ -299,10 +224,7 @@ public class MainActivity extends Activity {
         Bundle bundle1=new Bundle();
         bundle1.putString("phoneNumber",sdt);
         bundle1.putString("hoten",hoTen);
-        bundle1.putString("diachi",diaChi);
-        bundle1.putString("gmail",email);
         bundle1.putString("pass",pass);
-
         bundle1.putString("url",food.getUrl());
         bundle1.putString("food_name",food.getName());
         bundle1.putFloat("food_price",food.getPrice());
@@ -311,6 +233,8 @@ public class MainActivity extends Activity {
         bundle1.putString("food_idnhahang",food.getIdNhaHang());
         bundle1.putString("food_id",food.getId());
         bundle1.putString("food_type",food.getType());
+        bundle1.putLong("food_combo",food.getCombo());
+        bundle1.putLong("food_promotion",food.getPromotion());
         intent.putExtras(bundle1);
         startActivity(intent);
     }

@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.appdoan_vutruonggiang.adapter.AdapterChat;
+import com.example.appdoan_vutruonggiang.view.adapter.AdapterChat;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.Chat;
 import com.example.appdoan_vutruonggiang.presenter.Food;
@@ -38,7 +38,7 @@ public class ChatActivity extends Activity{
     Button but_send;
     RecyclerView dataChat;
     List<Chat> chatList;
-    String sdt="",hoTen="",diaChi="",email="",pass="";
+    String sdt="",hoTen="",pass="";
     List<Food> foodList;
     AdapterChat adapterChat;
     FirebaseDatabase firebaseDatabase;
@@ -53,8 +53,6 @@ public class ChatActivity extends Activity{
         Bundle bundle=this.getIntent().getExtras();
         sdt=sdt+bundle.getString("phoneNumber");
         hoTen=hoTen+bundle.getString("hoten");
-        diaChi=diaChi+bundle.getString("diachi");
-        email=email+bundle.getString("gmail");
         pass=pass+bundle.get("pass");
         foodList=bundle.getParcelableArrayList("list");
 
@@ -103,8 +101,6 @@ public class ChatActivity extends Activity{
                 Bundle bundle1=new Bundle();
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);

@@ -123,54 +123,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/name_email"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/emailAccount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:background="@color/white"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name_address"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/addressAccount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:background="@color/white"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="@string/name_numberPhone"
                     android:textSize="20sp"
                     android:textStyle="bold" />

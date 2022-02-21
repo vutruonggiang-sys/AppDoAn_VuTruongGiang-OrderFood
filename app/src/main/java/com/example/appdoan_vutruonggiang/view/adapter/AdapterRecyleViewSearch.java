@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.adapter;
+package com.example.appdoan_vutruonggiang.view.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -20,11 +20,11 @@ import com.example.appdoan_vutruonggiang.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdpterRecyleViewSearch extends RecyclerView.Adapter<AdpterRecyleViewSearch.ViewHoder> implements Filterable {
+public class AdapterRecyleViewSearch extends RecyclerView.Adapter<AdapterRecyleViewSearch.ViewHoder> implements Filterable {
     List<Food> foodList,foodListSearch;
     Context context;
     IItemFood iItemFood;
-    public AdpterRecyleViewSearch(List<Food> foodList,Context context,IItemFood iItemFood) {
+    public AdapterRecyleViewSearch(List<Food> foodList, Context context, IItemFood iItemFood) {
         this.foodList = foodList;
         this.foodListSearch=foodList;
         this.context=context;
@@ -33,7 +33,7 @@ public class AdpterRecyleViewSearch extends RecyclerView.Adapter<AdpterRecyleVie
 
     @NonNull
     @Override
-    public AdpterRecyleViewSearch.ViewHoder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterRecyleViewSearch.ViewHoder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater=LayoutInflater.from(parent.getContext());
         View view=layoutInflater.inflate(R.layout.item_search,parent,false);
         ViewHoder viewHoder=new ViewHoder(view);
@@ -41,7 +41,7 @@ public class AdpterRecyleViewSearch extends RecyclerView.Adapter<AdpterRecyleVie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdpterRecyleViewSearch.ViewHoder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterRecyleViewSearch.ViewHoder holder, int position) {
         Food food=foodList.get(position);
         if(food==null){
             return;

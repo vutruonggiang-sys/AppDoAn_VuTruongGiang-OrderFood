@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
-import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleThongBao;
+import com.example.appdoan_vutruonggiang.view.adapter.AdapterRecyleThongBao;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.ThongBao;
 import com.example.appdoan_vutruonggiang.presenter.Food;
@@ -32,7 +32,7 @@ public class ThongBaoActivity extends Activity{
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     List<ThongBao> thongBaoList,thongBaos;
-    String sdt="",hoTen="",diaChi="",email="",pass="";
+    String sdt="",hoTen="",pass="";
     List<Food> foodList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,6 @@ public class ThongBaoActivity extends Activity{
         Bundle bundle=this.getIntent().getExtras();
         sdt=sdt+bundle.getString("phoneNumber");
         hoTen=hoTen+bundle.getString("hoten");
-        diaChi=diaChi+bundle.getString("diachi");
-        email=email+bundle.getString("gmail");
         pass=pass+bundle.get("pass");
         foodList=bundle.getParcelableArrayList("list");
 
@@ -86,8 +84,6 @@ public class ThongBaoActivity extends Activity{
                 Bundle bundle1=new Bundle();
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);

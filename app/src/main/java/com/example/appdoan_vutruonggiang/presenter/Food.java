@@ -5,28 +5,36 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Food implements Parcelable {
-    public String id,url,name,detail,nhaHang,type;
-    public float price,review;
+    public String id, url, name, detail, nhaHang, type;
+    public float price, review;
+    public long combo, promotion;
 
-    public Food(String id, String url, String name, String detail, String idNhaHang,String type, float price, float review) {
+    public Food(String id, String url, String name, String detail, String idNhaHang, String type, float price, float review, long combo, long promotion) {
         this.id = id;
         this.url = url;
         this.name = name;
         this.detail = detail;
         this.nhaHang = idNhaHang;
-        this.type=type;
+        this.type = type;
         this.price = price;
         this.review = review;
+        this.combo = combo;
+        this.promotion = promotion;
     }
-    public Food( String url, String name, String detail,String type, float price, float review) {
+
+    public Food(String url, String name, String detail, String type, float price, float review, long combo, long promotion) {
         this.url = url;
         this.name = name;
         this.detail = detail;
-        this.type=type;
+        this.type = type;
         this.price = price;
         this.review = review;
+        this.combo = combo;
+        this.promotion = promotion;
     }
-    public Food(){}
+
+    public Food() {
+    }
 
     protected Food(Parcel in) {
         id = in.readString();
@@ -37,6 +45,8 @@ public class Food implements Parcelable {
         type = in.readString();
         price = in.readFloat();
         review = in.readFloat();
+        combo = in.readLong();
+        promotion = in.readLong();
     }
 
     public static final Creator<Food> CREATOR = new Creator<Food>() {
@@ -50,6 +60,22 @@ public class Food implements Parcelable {
             return new Food[size];
         }
     };
+
+    public long getCombo() {
+        return combo;
+    }
+
+    public void setCombo(long combo) {
+        this.combo = combo;
+    }
+
+    public long getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(long promotion) {
+        this.promotion = promotion;
+    }
 
     public String getType() {
         return type;
@@ -131,5 +157,7 @@ public class Food implements Parcelable {
         dest.writeString(type);
         dest.writeFloat(price);
         dest.writeFloat(review);
+        dest.writeFloat(combo);
+        dest.writeFloat(promotion);
     }
 }

@@ -31,7 +31,7 @@ public class AccountActivity extends Activity {
     EditText nameAccount,emailAccount,addressAccount,sdtAccount;
     Button but_save_account,but_cancel_account;
     LinearLayout tv_phanHoi,tv_change_pass,tv_HoaDon,tv_chonThe,tv_DangXuat;
-    String sdt="",hoTen="",diaChi="",email="",pass="";
+    String sdt="",hoTen="",pass="";
     List<Food> foodList;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -48,14 +48,10 @@ public class AccountActivity extends Activity {
         Bundle bundle=this.getIntent().getExtras();
         sdt=sdt+bundle.getString("phoneNumber");
         hoTen=hoTen+bundle.getString("hoten");
-        diaChi=diaChi+bundle.getString("diachi");
-        email=email+bundle.getString("gmail");
         pass=pass+bundle.get("pass");
         foodList=bundle.getParcelableArrayList("list");
 
         nameAccount.setText(hoTen);
-        emailAccount.setText(email);
-        addressAccount.setText(diaChi);
         sdtAccount.setText(sdt);
         sdtAccount.setEnabled(false);
         passAccount.setText("*******");
@@ -63,11 +59,9 @@ public class AccountActivity extends Activity {
             @Override
             public void onClick(View v) {
                 nameAccount.setText(hoTen);
-                emailAccount.setText(email);
-                addressAccount.setText(diaChi);
                 sdtAccount.setText(sdt);
                 passAccount.setText("*******");
-                User user=new User(diaChi,email,hoTen,pass,sdt);
+                User user=new User(hoTen,pass,sdt);
                 databaseReference.child(sdtAccount.getText().toString().trim()).setValue(user);
             }
         });
@@ -75,8 +69,7 @@ public class AccountActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                User user=new User(addressAccount.getText().toString(),emailAccount.getText().toString(),
-                        nameAccount.getText().toString(),pass,sdt);
+                User user=new User(nameAccount.getText().toString(),pass,sdt);
                 databaseReference.child(sdtAccount.getText().toString().trim()).setValue(user);
                 Toast.makeText(AccountActivity.this,"Bạn đã lưu thành công",Toast.LENGTH_SHORT).show();
             }
@@ -94,8 +87,6 @@ public class AccountActivity extends Activity {
 
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);
@@ -126,8 +117,6 @@ public class AccountActivity extends Activity {
 
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 intent.putExtras(bundle1);
                 startActivity(intent);
@@ -144,8 +133,6 @@ public class AccountActivity extends Activity {
                 String email=emailAccount.getText().toString();
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);
@@ -165,8 +152,6 @@ public class AccountActivity extends Activity {
 
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);
@@ -186,8 +171,6 @@ public class AccountActivity extends Activity {
 
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);
@@ -207,8 +190,6 @@ public class AccountActivity extends Activity {
 
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);

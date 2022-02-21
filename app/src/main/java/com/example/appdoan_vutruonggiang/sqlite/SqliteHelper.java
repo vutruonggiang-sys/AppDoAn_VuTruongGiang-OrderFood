@@ -24,6 +24,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
     private static final String DB_IDNHAHANG="idnhahang";
     private static final String DB_PRICE="price";
     private static final String DB_AMOUNT="amount";
+    private static final String DB_COMBO="combo";
+    private static final String DB_PROMOTION="promotion";
 
     public SqliteHelper(@Nullable Context context) {
         super(context, DB_Name, null, DB_Version);
@@ -37,7 +39,9 @@ public class SqliteHelper extends SQLiteOpenHelper {
                 "name text," +
                 "idnhahang text," +
                 "price long," +
-                "amount long" +
+                "amount long," +
+                "combo long,"+
+                "promotion long"+
                 ")";
         db.execSQL(sqlString);
     }
@@ -59,6 +63,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
         contentValues.put(DB_IDNHAHANG,food_order.getIdNhaHang());
         contentValues.put(DB_PRICE,food_order.getPrice());
         contentValues.put(DB_AMOUNT,food_order.getAmount());
+        contentValues.put(DB_COMBO,food_order.getCombo());
+        contentValues.put(DB_PROMOTION,food_order.getPromotion());
         sqLiteDatabase.insert(TB_Cart,null,contentValues);
         sqLiteDatabase.close();
         contentValues.clear();
@@ -85,7 +91,9 @@ public class SqliteHelper extends SQLiteOpenHelper {
             String idNhaHang=cursor.getString(cursor.getColumnIndex(DB_IDNHAHANG)+0);
             long price=cursor.getLong(cursor.getColumnIndex(DB_PRICE)+0);
             long amount=cursor.getLong(cursor.getColumnIndex(DB_AMOUNT)+0);
-            Food_Order food_order=new Food_Order(amount,id,name,price,url,idNhaHang);
+            long combo=cursor.getLong(cursor.getColumnIndex(DB_COMBO)+0);
+            long promotion=cursor.getLong(cursor.getColumnIndex(DB_PROMOTION)+0);
+            Food_Order food_order=new Food_Order(amount,id,name,price,url,idNhaHang,combo,promotion);
             food_orderList.add(food_order);
         }
         return food_orderList;

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewBank;
+import com.example.appdoan_vutruonggiang.view.adapter.AdapterRecyleViewBank;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.Bank;
 import com.google.firebase.database.DataSnapshot;

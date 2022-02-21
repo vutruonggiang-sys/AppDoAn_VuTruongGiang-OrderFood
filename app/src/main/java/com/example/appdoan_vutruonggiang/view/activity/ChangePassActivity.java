@@ -23,7 +23,7 @@ public class ChangePassActivity extends Activity {
     ImageView but_back_account;
     EditText ed_old_pass,ed_new_pass,ed_confirm_pass;
     Button but_confirm;
-    String sdt="",hoTen="",diaChi="",email="",pass="",pass1="";
+    String sdt="",hoTen="",pass="";
     List<Food> foodList;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -39,8 +39,6 @@ public class ChangePassActivity extends Activity {
         Bundle bundle=this.getIntent().getExtras();
         sdt=sdt+bundle.getString("phoneNumber");
         hoTen=hoTen+bundle.getString("hoten");
-        diaChi=diaChi+bundle.getString("diachi");
-        email=email+bundle.getString("gmail");
         pass=pass+bundle.get("pass");
         foodList=bundle.getParcelableArrayList("list");
         but_confirm.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +58,7 @@ public class ChangePassActivity extends Activity {
         }
         if(ed_new_pass.getText().toString().trim().equals(ed_confirm_pass.getText().toString().trim())){
             Toast.makeText(ChangePassActivity.this,"Bạn đã thay đổi mật khẩu",Toast.LENGTH_SHORT).show();
-            User user=new User(diaChi,email,hoTen,ed_new_pass.getText().toString(),sdt);
+            User user=new User(hoTen,ed_new_pass.getText().toString(),sdt);
             FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
             DatabaseReference databaseReference=firebaseDatabase.getReference().child("user");
             databaseReference.child(sdt).setValue(user);
@@ -78,8 +76,6 @@ public class ChangePassActivity extends Activity {
                 Bundle bundle1=new Bundle();
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
-                bundle1.putString("diachi",diaChi);
-                bundle1.putString("gmail",email);
                 bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);

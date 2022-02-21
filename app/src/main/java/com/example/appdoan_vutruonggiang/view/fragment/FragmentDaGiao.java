@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewSumDaGiao;
+import com.example.appdoan_vutruonggiang.view.adapter.AdapterRecyleViewSumDaGiao;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.ThongTinNguoiOrder;
 import com.example.appdoan_vutruonggiang.view.activity.CartActivity;
@@ -68,31 +68,6 @@ public class FragmentDaGiao extends Fragment {
 
             }
         });
-//        tvSum=view.findViewById(R.id.tv_sum_money);
-//        recyclerView.setLayoutManager(layoutManager);
-//        food_orderList=new ArrayList<>();
-//        food_orderList=cartActivity.getFood_orderListDaGiao();
-//        tvSum.setText(cartActivity.getSum()+"");
-//        RecyclerView.ItemDecoration decoration=new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
-//        recyclerView.addItemDecoration(decoration);
-//        firebaseDatabase=FirebaseDatabase.getInstance();
-//        databaseReference=firebaseDatabase.getReference().child("da_giao").child(cartActivity.getSdt());
-////        databaseReference1=firebaseDatabase.getReference().child("da_giao").child(cartActivity.getSdt());
-////
-////        databaseReference1.addValueEventListener(new ValueEventListener() {
-////            @Override
-////            public void onDataChange(@NonNull DataSnapshot snapshot) {
-////                Iterable<DataSnapshot> dataSnapshotIterable=snapshot.getChildren();
-////
-////            }
-////
-////            @Override
-////            public void onCancelled(@NonNull DatabaseError error) {
-////
-////            }
-////        });
-//        AdapterRecyleViewGioHang adapterRecyleViewGioHang=new AdapterRecyleViewGioHang(food_orderList);
-//        recyclerView.setAdapter(adapterRecyleViewGioHang);
         return view;
     }
 
