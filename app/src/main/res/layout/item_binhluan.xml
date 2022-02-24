@@ -60,17 +60,21 @@
         android:id="@+id/Edit_Comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:visibility="gone">
+
         <EditText
             android:id="@+id/ed_Edit_Comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/vien_item_food"
-            android:layout_margin="15dp"
-            android:text="xxx"
             android:paddingLeft="10dp"
             android:paddingTop="0dp"
-            android:textSize="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:text="xxx"
+            android:textSize="25dp" />
         <Button
             android:id="@+id/but_Edit_Comment"
             android:layout_width="30dp"

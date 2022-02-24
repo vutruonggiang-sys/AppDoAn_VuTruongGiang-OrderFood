@@ -23,7 +23,7 @@ import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
     TextView tvGioHang,tvDaGiao;
-    ImageView but_ThongBao,home,search,giohang,account;
+    ImageView home,search,giohang,account;
     String sdt="",hoTen="",pass="";
     List<Food> foodList;
     List<Food_Order> food_orderListCart;
@@ -110,20 +110,6 @@ public class CartActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        but_ThongBao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getBaseContext(), ThongBaoActivity.class);
-                ArrayList<Food> listSearch= (ArrayList<Food>) foodList;
-                Bundle bundle1=new Bundle();
-                bundle1.putString("phoneNumber",sdt);
-                bundle1.putString("hoten",hoTen);
-                bundle1.putString("pass",pass);
-                bundle1.putParcelableArrayList("list",listSearch);
-                intent.putExtras(bundle1);
-                startActivity(intent);
-            }
-        });
     }
     private void getFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.Fra_GioHang,fragment).commit();
@@ -170,7 +156,6 @@ public class CartActivity extends AppCompatActivity {
     public void anhXa(){
         tvGioHang=findViewById(R.id.tvGioHang);
         tvDaGiao=findViewById(R.id.tvDaGiao);
-        but_ThongBao=findViewById(R.id.but_ThongBao);
         home=findViewById(R.id.homeCart);
         search=findViewById(R.id.searchCart);
         giohang=findViewById(R.id.giohang);

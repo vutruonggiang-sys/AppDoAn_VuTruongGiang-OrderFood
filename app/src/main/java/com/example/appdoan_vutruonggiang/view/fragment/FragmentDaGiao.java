@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appdoan_vutruonggiang.view.adapter.AdapterRecyleViewSumDaGiao;
+import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewSumDaGiao;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.ThongTinNguoiOrder;
 import com.example.appdoan_vutruonggiang.view.activity.CartActivity;

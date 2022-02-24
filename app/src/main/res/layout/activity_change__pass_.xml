@@ -96,7 +96,7 @@
                 android:textSize="20dp" />
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/but_confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

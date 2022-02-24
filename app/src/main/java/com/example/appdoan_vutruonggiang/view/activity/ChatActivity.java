@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.appdoan_vutruonggiang.view.adapter.AdapterChat;
+import com.example.appdoan_vutruonggiang.adapter.AdapterChat;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.Chat;
 import com.example.appdoan_vutruonggiang.presenter.Food;

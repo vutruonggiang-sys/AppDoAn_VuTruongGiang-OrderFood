@@ -83,7 +83,7 @@ public class ProcessFood {
         title.setText("Bạn đang chọn món "+food.getName());
         tru.setEnabled(false);
         Glide.with(context).load(food.getUrl()).into(imageView);
-        Food_Order food_order=new Food_Order(1,food.id,food.getName(),(long) food.getPrice(),food.getUrl(),food.getIdNhaHang(),food.getCombo(),food.getPromotion());
+        Food_Order food_order=new Food_Order(1,food.id,food.getName(),(long) food.getPrice(),food.getUrl(),food.getIdNhaHang());
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

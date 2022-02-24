@@ -155,13 +155,13 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/but_bill_Cancel"
             android:text="Cancel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/but_bill_OK"
             android:text="OK"
             android:layout_width="0dp"

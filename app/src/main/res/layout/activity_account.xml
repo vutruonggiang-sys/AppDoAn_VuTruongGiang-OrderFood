@@ -167,7 +167,7 @@
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/but_cancel_account"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -175,7 +175,7 @@
                     android:alpha="0.4"
                     android:text="Cancel" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/but_save_account"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"

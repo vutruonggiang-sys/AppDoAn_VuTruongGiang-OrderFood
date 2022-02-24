@@ -8,12 +8,14 @@
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/arrow_back.xml" value="0.2703125" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/border_bgblue_colorwhite.xml" value="0.20364583333333333" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/border_bgwhite_colorblack.xml" value="0.20364583333333333" />
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/border_black_yellow.xml" value="0.2703125" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/border_info_order.xml" value="0.2703125" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/borderyellow_bgwhite.xml" value="0.2703125" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/but_login.xml" value="0.2703125" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/but_order_cart.xml" value="0.2703125" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/but_send.xml" value="0.2703125" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/camera.xml" value="0.26615384615384613" />
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/logout.xml" value="0.2703125" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/order_food.xml" value="0.2703125" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/shaper_register.xml" value="0.26615384615384613" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/drawable/vien_chat.xml" value="0.26615384615384613" />
@@ -37,6 +39,7 @@
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_help_.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_hoadongiaodich.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_item_food.xml" value="0.21603260869565216" />
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_item_food2.xml" value="0.12360688956433637" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_login_.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_magiamgia.xml" value="0.24094202898550723" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/activity_main.xml" value="0.24094202898550723" />
@@ -62,6 +65,10 @@
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/item_chat.xml" value="0.2259963768115942" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/item_city_district.xml" value="0.13405797101449277" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/item_giohang.xml" value="0.2210144927536232" />
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/item_giohang_chuagiao.xml" value="0.12360688956433637" />
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/item_magiamgia.xml" value="0.12360688956433637" />
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/item_search.xml" value="0.12360688956433637" />
+        <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/item_thongbao.xml" value="0.12360688956433637" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/register.xml" value="0.264" />
         <entry key="..\:/Download/AppDoAn_VuTruongGiang-main/app/src/main/res/layout/register1.xml" value="0.21603260869565216" />
       </map>

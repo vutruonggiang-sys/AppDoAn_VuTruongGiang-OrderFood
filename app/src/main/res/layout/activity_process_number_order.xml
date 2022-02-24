@@ -79,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp">
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/but_Cancel"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
@@ -88,7 +88,7 @@
         android:layout_weight="1"
         android:text="Cancel"
         android:alpha="0.4"/>
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/but_order"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"

@@ -80,14 +80,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:background="#EFD913">
-            <Button
-                android:layout_margin="10dp"
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/but_send"
-                android:text="SEND"
-                android:background="@drawable/but_send"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                 />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/but_send"
+                android:text="SEND" />
         </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dataChat"

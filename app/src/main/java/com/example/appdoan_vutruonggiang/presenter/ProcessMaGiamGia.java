@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appdoan_vutruonggiang.view.adapter.AdapterRecyleViewMaGiamGia;
+import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewMaGiamGia;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.GiamGia;
 import com.google.firebase.database.DataSnapshot;

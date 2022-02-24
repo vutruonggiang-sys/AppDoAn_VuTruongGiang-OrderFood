@@ -1,6 +1,7 @@
 package com.example.appdoan_vutruonggiang.view.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -36,7 +37,7 @@ public class LoginActivity extends Activity implements ILogin, ValueEventListene
     TextInputLayout tilPhoneNumber,tilPass;
     TextInputEditText tietPhoneNumber,tietPass;
     CheckBox checkBoxStore;
-    Button but_login;
+    AppCompatButton but_login;
     TextView tv_forgetPass,tv_help,tv_register;
     List<User> userList;
     FirebaseDatabase firebaseDatabase;

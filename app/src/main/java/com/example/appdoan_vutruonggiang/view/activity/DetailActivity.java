@@ -19,7 +19,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.appdoan_vutruonggiang.view.adapter.AdapterRecyleViewBinhLuan;
+import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewBinhLuan;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.BinhLuan;
 import com.example.appdoan_vutruonggiang.modle.NhaHang;
@@ -49,7 +49,6 @@ public class DetailActivity extends Activity {
     WebView webView;
     String sdt = "", hoTen = "", pass = "";
     String url = "", name = "", detail = "", id = "", idNhaHang = "", type = "";
-    long combo, promotion;
     float price = 0, rating = 5;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -80,8 +79,6 @@ public class DetailActivity extends Activity {
         id = id + bundle.getString("food_id");
         idNhaHang = idNhaHang + bundle.getString("food_idnhahang");
         type = type + bundle.getString("food_type");
-        combo = bundle.getLong("food_combo");
-        promotion = bundle.getLong("food_promotion");
 
         Glide.with(DetailActivity.this).load(url).into(imAnhDetailItem);
         tvNameItem.setText(name);
@@ -183,8 +180,6 @@ public class DetailActivity extends Activity {
                                 bundle1.putString("food_idnhahang", idNhaHang);
                                 bundle1.putString("food_id", id);
                                 bundle1.putString("food_type", type);
-                                bundle1.putLong("food_combo",combo);
-                                bundle1.putLong("food_promotion",promotion);
 
                                 intent.putExtras(bundle1);
                                 startActivity(intent);
@@ -200,7 +195,7 @@ public class DetailActivity extends Activity {
             }
         });
 
-        Food food = new Food(id, url, name, detail, idNhaHang, type, price, rating, combo, promotion);
+        Food food = new Food(id, url, name, detail, idNhaHang, type, price, rating);
         but_order_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

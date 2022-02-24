@@ -16,13 +16,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatButton;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChangePassActivity extends Activity {
     ImageView but_back_account;
     EditText ed_old_pass,ed_new_pass,ed_confirm_pass;
-    Button but_confirm;
+    AppCompatButton but_confirm;
     String sdt="",hoTen="",pass="";
     List<Food> foodList;
     FirebaseDatabase firebaseDatabase;

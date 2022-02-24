@@ -1,4 +1,4 @@
-package com.example.appdoan_vutruonggiang.view.adapter;
+package com.example.appdoan_vutruonggiang.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

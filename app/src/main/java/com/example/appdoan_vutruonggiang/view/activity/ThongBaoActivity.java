@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
-import com.example.appdoan_vutruonggiang.view.adapter.AdapterRecyleThongBao;
+import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleThongBao;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.ThongBao;
 import com.example.appdoan_vutruonggiang.presenter.Food;

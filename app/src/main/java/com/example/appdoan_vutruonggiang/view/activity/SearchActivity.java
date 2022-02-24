@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 
-import com.example.appdoan_vutruonggiang.view.adapter.AdapterRecyleViewSearch;
+import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewSearch;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.inteface.IItemFood;
 import com.example.appdoan_vutruonggiang.presenter.Food;
@@ -134,8 +134,6 @@ public class SearchActivity extends AppCompatActivity {
         bundle1.putString("food_idnhahang",food.getIdNhaHang());
         bundle1.putString("food_id",food.getId());
         bundle1.putString("food_type",food.getType());
-        bundle1.putLong("food_combo",food.getCombo());
-        bundle1.putLong("food_promotion",food.getPromotion());
         intent.putExtras(bundle1);
         startActivity(intent);
     }

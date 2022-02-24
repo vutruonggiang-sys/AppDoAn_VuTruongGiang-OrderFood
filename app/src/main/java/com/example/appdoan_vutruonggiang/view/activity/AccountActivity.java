@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatButton;
+
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.User;
 import com.example.appdoan_vutruonggiang.presenter.Food;
@@ -29,7 +31,7 @@ public class AccountActivity extends Activity {
     TextView tien,passAccount;
     ImageView eye_open,home,search,giohang,account;
     EditText nameAccount,emailAccount,addressAccount,sdtAccount;
-    Button but_save_account,but_cancel_account;
+    AppCompatButton but_save_account,but_cancel_account;
     LinearLayout tv_phanHoi,tv_change_pass,tv_HoaDon,tv_chonThe,tv_DangXuat;
     String sdt="",hoTen="",pass="";
     List<Food> foodList;
@@ -48,7 +50,7 @@ public class AccountActivity extends Activity {
         Bundle bundle=this.getIntent().getExtras();
         sdt=sdt+bundle.getString("phoneNumber");
         hoTen=hoTen+bundle.getString("hoten");
-        pass=pass+bundle.get("pass");
+        pass=pass+bundle.getString("pass");
         foodList=bundle.getParcelableArrayList("list");
 
         nameAccount.setText(hoTen);
@@ -82,8 +84,6 @@ public class AccountActivity extends Activity {
                 Bundle bundle1=new Bundle();
 
                 String hoTen=nameAccount.getText().toString();
-                String diaChi=addressAccount.getText().toString();
-                String email=emailAccount.getText().toString();
 
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
@@ -112,8 +112,6 @@ public class AccountActivity extends Activity {
                 Bundle bundle1=new Bundle();
 
                 String hoTen=nameAccount.getText().toString();
-                String diaChi=addressAccount.getText().toString();
-                String email=emailAccount.getText().toString();
 
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
@@ -129,8 +127,6 @@ public class AccountActivity extends Activity {
                 ArrayList<Food> listSearch= (ArrayList<Food>) foodList;
                 Bundle bundle1=new Bundle();
                 String hoTen=nameAccount.getText().toString();
-                String diaChi=addressAccount.getText().toString();
-                String email=emailAccount.getText().toString();
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
                 bundle1.putString("pass",pass);
@@ -147,8 +143,6 @@ public class AccountActivity extends Activity {
                 Bundle bundle1=new Bundle();
 
                 String hoTen=nameAccount.getText().toString();
-                String diaChi=addressAccount.getText().toString();
-                String email=emailAccount.getText().toString();
 
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
@@ -166,8 +160,6 @@ public class AccountActivity extends Activity {
                 Bundle bundle1=new Bundle();
 
                 String hoTen=nameAccount.getText().toString();
-                String diaChi=addressAccount.getText().toString();
-                String email=emailAccount.getText().toString();
 
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
@@ -185,8 +177,6 @@ public class AccountActivity extends Activity {
                 Bundle bundle1=new Bundle();
 
                 String hoTen=nameAccount.getText().toString();
-                String diaChi=addressAccount.getText().toString();
-                String email=emailAccount.getText().toString();
 
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
@@ -205,8 +195,6 @@ public class AccountActivity extends Activity {
         giohang=findViewById(R.id.giohang);
         account=findViewById(R.id.account);
         nameAccount=findViewById(R.id.nameAccount);
-        emailAccount=findViewById(R.id.emailAccount);
-        addressAccount=findViewById(R.id.addressAccount);
         sdtAccount=findViewById(R.id.sdtAccount);
         passAccount=findViewById(R.id.passAccount);
         but_cancel_account=findViewById(R.id.but_cancel_account);

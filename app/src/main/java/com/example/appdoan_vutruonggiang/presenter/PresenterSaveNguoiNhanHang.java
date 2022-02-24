@@ -43,11 +43,6 @@ public class PresenterSaveNguoiNhanHang {
         But_OK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-                DatabaseReference databaseReference=firebaseDatabase.getReference().child("thong_tin_nguoi_nhan_hang").child(sdt);
-                ThongTinNguoiOrder thongTinNguoiOrder=new ThongTinNguoiOrder(id,giaKM,tietName.getText().toString()
-                        ,tietPhoneNumber.getText().toString(),address.getText().toString());
-                databaseReference.child(id).setValue(thongTinNguoiOrder);
                 dialog.dismiss();
             }
         });

@@ -5,19 +5,16 @@ public class Food_Order{
     String name,id,url,idNhaHang;
     long amount;
     long price;
-    long combo,promotion;
 
     public Food_Order(){}
 
-    public Food_Order(long amount,String id,String name,long price,String url,String idNhaHang,long combo,long promotion) {
+    public Food_Order(long amount,String id,String name,long price,String url,String idNhaHang) {
         this.id=id;
         this.name = name;
         this.amount = amount;
         this.price = price;
         this.url=url;
         this.idNhaHang=idNhaHang;
-        this.combo=combo;
-        this.promotion=promotion;
     }
 
     public String getId() {
@@ -66,21 +63,5 @@ public class Food_Order{
 
     public void setIdNhaHang(String idNhaHang) {
         this.idNhaHang = idNhaHang;
-    }
-
-    public long getCombo() {
-        return combo;
-    }
-
-    public void setCombo(long combo) {
-        this.combo = combo;
-    }
-
-    public long getPromotion() {
-        return promotion;
-    }
-
-    public void setPromotion(long promotion) {
-        this.promotion = promotion;
     }
 }

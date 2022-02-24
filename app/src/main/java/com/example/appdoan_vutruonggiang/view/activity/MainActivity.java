@@ -14,8 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ViewFlipper;
 
-import com.example.appdoan_vutruonggiang.view.adapter.AdapterRecyleViewFood;
-import com.example.appdoan_vutruonggiang.view.adapter.AdapterRecyleViewFood1;
+import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewFood;
+import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewFood1;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.inteface.IItemFood;
 import com.example.appdoan_vutruonggiang.presenter.Food;
@@ -180,10 +180,10 @@ public class MainActivity extends Activity {
                 ArrayList<Food> listSearch= (ArrayList<Food>) foodList;
                 Intent intent=new Intent(MainActivity.this, SearchActivity.class);
                 Bundle bundle1=new Bundle();
-                bundle1.putParcelableArrayList("list",listSearch);
                 bundle1.putString("phoneNumber",sdt);
                 bundle1.putString("hoten",hoTen);
                 bundle1.putString("pass",pass);
+                bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);
                 startActivity(intent);
             }
@@ -233,8 +233,6 @@ public class MainActivity extends Activity {
         bundle1.putString("food_idnhahang",food.getIdNhaHang());
         bundle1.putString("food_id",food.getId());
         bundle1.putString("food_type",food.getType());
-        bundle1.putLong("food_combo",food.getCombo());
-        bundle1.putLong("food_promotion",food.getPromotion());
         intent.putExtras(bundle1);
         startActivity(intent);
     }
@@ -261,7 +259,6 @@ public class MainActivity extends Activity {
         search=findViewById(R.id.search);
         giohang=findViewById(R.id.giohang);
         account=findViewById(R.id.account);
-
         process_food=new ProcessFood();
     }
 }
