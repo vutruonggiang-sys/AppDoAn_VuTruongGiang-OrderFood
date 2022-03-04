@@ -19,6 +19,8 @@ import com.example.appdoan_vutruonggiang.adapter.AdapterChat;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.Chat;
 import com.example.appdoan_vutruonggiang.presenter.Food;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,29 +40,29 @@ public class ChatActivity extends Activity{
     Button but_send;
     RecyclerView dataChat;
     List<Chat> chatList;
-    String sdt="",hoTen="",pass="";
     List<Food> foodList;
     AdapterChat adapterChat;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    int d=0;
+    FirebaseUser user;
+    String email="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_chat);
         anhXa();
+        user= FirebaseAuth.getInstance().getCurrentUser();
+        String[] arrayEmail=user.getEmail().split("@");
+        email=email+arrayEmail[0];
         Bundle bundle=this.getIntent().getExtras();
-        sdt=sdt+bundle.getString("phoneNumber");
-        hoTen=hoTen+bundle.getString("hoten");
-        pass=pass+bundle.get("pass");
         foodList=bundle.getParcelableArrayList("list");
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(ChatActivity.this,RecyclerView.VERTICAL,false);
         dataChat.setLayoutManager(layoutManager);
 
         firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference().child("chat").child(sdt);
+        databaseReference=firebaseDatabase.getReference().child("chat").child(email);
         Query query=databaseReference.orderByChild("id");
             query.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -99,9 +101,6 @@ public class ChatActivity extends Activity{
                 Intent intent=new Intent(getBaseContext(), AccountActivity.class);
                 ArrayList<Food> listSearch= (ArrayList<Food>) foodList;
                 Bundle bundle1=new Bundle();
-                bundle1.putString("phoneNumber",sdt);
-                bundle1.putString("hoten",hoTen);
-                bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);
                 startActivity(intent);
@@ -117,8 +116,6 @@ public class ChatActivity extends Activity{
         Chat chat=new Chat(d,content,time);
         chatList.add(chat);
         databaseReference.child(d+"").setValue(chat);
-//        adapterChat.notifyDataSetChanged();
-//        binding.dataChat.scrollToPosition(chatList.size()-1);
         chat_content.setText("");
     }
     private void checkKeyboard(){

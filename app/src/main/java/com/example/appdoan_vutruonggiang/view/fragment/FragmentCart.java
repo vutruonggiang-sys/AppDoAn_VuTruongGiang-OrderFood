@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +27,6 @@ import com.example.appdoan_vutruonggiang.modle.Food_Order;
 import com.example.appdoan_vutruonggiang.modle.NhaHang;
 import com.example.appdoan_vutruonggiang.modle.ThongTinNguoiOrder;
 import com.example.appdoan_vutruonggiang.view.activity.CartActivity;
-import com.example.appdoan_vutruonggiang.presenter.PresenterSaveNguoiNhanHang;
 import com.example.appdoan_vutruonggiang.presenter.ProcessMaGiamGia;
 import com.example.appdoan_vutruonggiang.sqlite.SqliteHelper;
 import com.google.android.material.textfield.TextInputEditText;
@@ -107,7 +104,7 @@ public class FragmentCart extends Fragment {
         sqliteHelper.onDeleteAllGioHang();
 
         tietName.setText(cartActivity.getHoTen());
-        tietPhoneNumber.setText(cartActivity.getSdt());
+        tietPhoneNumber.setText("");
         List<String> cities = Arrays.asList("Hà Nội", "Ninh Bình", "Hà Nam");
         AdapterMenuCityDistrict adapterMenuCity = new AdapterMenuCityDistrict(cartActivity, R.layout.item_city_district, cities);
         acCity.setAdapter(adapterMenuCity);
@@ -142,7 +139,7 @@ public class FragmentCart extends Fragment {
         RecyclerView.ItemDecoration decoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(decoration);
         firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference().child("food_giohang").child(cartActivity.getSdt());
+        DatabaseReference databaseReference = firebaseDatabase.getReference().child("food_giohang").child(cartActivity.getEmail());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -185,8 +182,8 @@ public class FragmentCart extends Fragment {
         tv_Chon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                process_maGiamGia.getMaGiamGia(cartActivity, cartActivity.getSdt());
-                DatabaseReference databaseReference1 = firebaseDatabase.getReference().child("luu_ma_van_chuyen").child(cartActivity.getSdt());
+                process_maGiamGia.getMaGiamGia(cartActivity, cartActivity.getEmail());
+                DatabaseReference databaseReference1 = firebaseDatabase.getReference().child("luu_ma_van_chuyen").child(cartActivity.getEmail());
                 databaseReference1.child("haha").child("giamGia").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -233,40 +230,40 @@ public class FragmentCart extends Fragment {
                                         Date mo = simpleDateFormat.parse(nhaHang.getOpen());
                                         Date dong = simpleDateFormat.parse(nhaHang.getClose());
                                         if (hienTai.after(mo) && hienTai.before(dong)) {
-                                            cartActivity.setTien_giam_gia(Long.parseLong(tv_MaGiamGia.getText().toString()));
-                                            DatabaseReference databaseReference2 = firebaseDatabase.getReference();
-                                            Calendar calendar1 = Calendar.getInstance();
-                                            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                                            String time = dateFormat.format(calendar1.getTime());
-                                            //luu thong tin mon an trong hoa don
-                                            databaseReference2 = firebaseDatabase.getReference().child("da_giao").child(cartActivity.getSdt()).child(time);
-                                            for (int i = 0; i < listTable.size(); i++) {
-                                                databaseReference2.child(listTable.get(i).getId()).setValue(listTable.get(i));
-                                            }
                                             //luu thong tin nguoi nhan.
-                                            if (tietPhoneNumber.getText().toString().trim().equals("") || tietName.getText().toString().trim().equals("")
-                                                    || tietAddress.getText().toString().trim().equals("") || acCity.getText().toString().trim().equals("") ||
-                                                    acDistrict.getText().toString().trim().equals("")) {
-                                                if (acCity.getText().toString().trim().equals("City") || acDistrict.getText().toString().trim().equals("District")) {
+                                            if (!tietPhoneNumber.getText().toString().trim().equals("") || !tietName.getText().toString().trim().equals("")
+                                                    || !tietAddress.getText().toString().trim().equals("") || !acCity.getText().toString().trim().equals("") ||
+                                                    !acDistrict.getText().toString().trim().equals("")) {
+                                                if (!acCity.getText().toString().trim().equals("City") && !acDistrict.getText().toString().trim().equals("District")) {
+                                                    cartActivity.setTien_giam_gia(Long.parseLong(tv_MaGiamGia.getText().toString()));
+                                                    DatabaseReference databaseReference2;
+                                                    Calendar calendar1 = Calendar.getInstance();
+                                                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                                                    String time = dateFormat.format(calendar1.getTime());
+                                                    //luu thong tin mon an trong hoa don
+                                                    databaseReference2 = firebaseDatabase.getReference().child("da_giao").child(cartActivity.getEmail()).child(time);
+                                                    for (int i = 0; i < listTable.size(); i++) {
+                                                        databaseReference2.child(listTable.get(i).getId()).setValue(listTable.get(i));
+                                                    }
                                                     String address = tietAddress.getText().toString().trim() + ", " + acDistrict.getText().toString().trim() + ", " + acCity.getText().toString().trim();
                                                     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                                                    DatabaseReference databaseReference = firebaseDatabase.getReference().child("thong_tin_nguoi_nhan_hang").child(cartActivity.getSdt());
+                                                    DatabaseReference databaseReference = firebaseDatabase.getReference().child("thong_tin_nguoi_nhan_hang").child(cartActivity.getEmail());
                                                     ThongTinNguoiOrder thongTinNguoiOrder = new ThongTinNguoiOrder(time, Long.parseLong(tv_MaGiamGia.getText().toString()), tietName.getText().toString()
                                                             , tietPhoneNumber.getText().toString(), address);
                                                     databaseReference.child(time).setValue(thongTinNguoiOrder);
+                                                    DatabaseReference databaseReference3=firebaseDatabase.getReference().child("food_giohang").child(cartActivity.getEmail());
+                                                    for (int i = 0; i < listTable.size(); i++) {
+                                                        databaseReference3.child(listTable.get(i).getId()).removeValue();
+                                                        food_orderList.remove(listTable.get(i));
+                                                    }
+                                                    AdapterRecyleViewGiaoHangCart adapterRecyleViewGiaoHangCart2 = new AdapterRecyleViewGiaoHangCart(food_orderList, cartActivity);
+                                                    recyclerView.setAdapter(adapterRecyleViewGiaoHangCart2);
+                                                    sqliteHelper.onDeleteAllGioHang();
                                                     Toast.makeText(cartActivity, "Hàng đã bắt giao", Toast.LENGTH_SHORT).show();
                                                 }
                                             }else{
                                                 Toast.makeText(cartActivity, "Bạn cần điền đủ thông tin người nhận", Toast.LENGTH_SHORT).show();
                                             }
-
-                                            for (int i = 0; i < listTable.size(); i++) {
-                                                databaseReference.child(listTable.get(i).getId()).removeValue();
-                                                food_orderList.remove(listTable.get(i));
-                                            }
-                                            AdapterRecyleViewGiaoHangCart adapterRecyleViewGiaoHangCart2 = new AdapterRecyleViewGiaoHangCart(food_orderList, cartActivity);
-                                            recyclerView.setAdapter(adapterRecyleViewGiaoHangCart2);
-                                            sqliteHelper.onDeleteAllGioHang();
                                         } else {
                                             openAndClose(mo, dong, hienTai, cartActivity);
                                             sqliteHelper.onDeleteAllGioHang();

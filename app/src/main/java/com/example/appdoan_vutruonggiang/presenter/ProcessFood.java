@@ -67,7 +67,7 @@ public class ProcessFood {
         Collections.sort(foodList,c);
         return foodList;
     }
-    public void getChoose(Context context,Food food,String sdt){
+    public void getChoose(Context context,Food food,String email){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.activity_process_number_order);
@@ -125,7 +125,7 @@ public class ProcessFood {
                 Toast.makeText(context,"Bạn vừa thêm vào giỏ hàng món "+food.getName()+" với sô lượng là "+food_order.getAmount(),Toast.LENGTH_SHORT).show();
                 FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference=firebaseDatabase.getReference();
-                databaseReference.child("food_giohang").child(sdt).child(food_order.getId()).setValue(food_order);
+                databaseReference.child("food_giohang").child(email).child(food_order.getId()).setValue(food_order);
                 dialog.dismiss();
             }
         });

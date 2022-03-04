@@ -18,11 +18,11 @@ import java.util.List;
 
 public class AdapterRecyleViewMaGiamGia extends RecyclerView.Adapter<AdapterRecyleViewMaGiamGia.ViewHoder> {
     List<GiamGia> giamGiaList;
-    String sdt;
+    String email;
 
-    public AdapterRecyleViewMaGiamGia(List<GiamGia> giamGiaList,String sdt) {
+    public AdapterRecyleViewMaGiamGia(List<GiamGia> giamGiaList,String email) {
         this.giamGiaList = giamGiaList;
-        this.sdt=sdt;
+        this.email=email;
     }
 
     @NonNull
@@ -41,7 +41,7 @@ public class AdapterRecyleViewMaGiamGia extends RecyclerView.Adapter<AdapterRecy
         holder.tv_ten.setText("Tên mã giảm giá là: "+giamGia.getName());
         holder.tv_giaTri.setText("Giá Trị mã giảm giá là: "+giamGia.getGiamGia());
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference=firebaseDatabase.getReference().child("luu_ma_van_chuyen").child(sdt);
+        DatabaseReference databaseReference=firebaseDatabase.getReference().child("luu_ma_van_chuyen").child(email);
         GiamGia giamGia1=new GiamGia("abc","haha",0);
         databaseReference.child("haha").setValue(giamGia1);
         databaseReference.child("haha1").setValue(giamGia1);

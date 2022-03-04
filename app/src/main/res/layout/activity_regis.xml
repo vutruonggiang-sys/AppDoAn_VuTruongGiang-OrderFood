@@ -44,12 +44,12 @@
         app:boxCornerRadiusBottomEnd="5dp"
         android:textColorHint="#08DEFA"
         app:boxStrokeColor="@color/shaper_register"
-        android:hint="Your Number"
-        app:helperText="10">
+        android:hint="Your Email">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietYourNumber"
             android:textColor="@color/black"
-            android:text="Vu truong giang"
+            android:text=""
+            android:inputType="textEmailAddress"
             android:padding="0dp"
             android:textSize="14dp"
             android:layout_width="match_parent"
@@ -68,12 +68,12 @@
         android:textColorHint="#08DEFA"
         app:boxStrokeColor="@color/shaper_register"
         android:hint="Your Name"
-        app:helperText="30"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietYourName"
             android:textColor="@color/black"
-            android:text="Vu truong giang"
+            android:text=""
+            android:inputType="textNoSuggestions"
             android:padding="0dp"
             android:textSize="14dp"
             android:layout_width="match_parent"
@@ -98,7 +98,7 @@
             android:id="@+id/tietPassword"
             android:textColor="@color/black"
             android:inputType="textPassword"
-            android:text="Vu truong giang"
+            android:text=""
             android:padding="0dp"
             android:textSize="14dp"
             android:layout_width="match_parent"
@@ -121,7 +121,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietConfirmPassword"
             android:textColor="@color/black"
-            android:text="Vu truong giang"
+            android:text=""
             android:padding="0dp"
             android:inputType="textPassword"
             android:textSize="14dp"

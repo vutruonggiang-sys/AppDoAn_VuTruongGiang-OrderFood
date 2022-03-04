@@ -24,7 +24,7 @@ public class ProcessMaGiamGia {
     public ProcessMaGiamGia() {
     }
 
-    public void getMaGiamGia(Context context, String sdt){
+    public void getMaGiamGia(Context context, String email){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
@@ -34,7 +34,7 @@ public class ProcessMaGiamGia {
         recyclerView.setLayoutManager(layoutManager);
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference databaseReference=firebaseDatabase.getReference().child("giam_gia");
-        databaseReference.child(sdt).addValueEventListener(new ValueEventListener() {
+        databaseReference.child(email).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<GiamGia> giamGiaList;
@@ -44,7 +44,7 @@ public class ProcessMaGiamGia {
                     GiamGia giamGia=data.getValue(GiamGia.class);
                     giamGiaList.add(giamGia);
                 }
-                AdapterRecyleViewMaGiamGia adapterRecyleViewMaGiamGia=new AdapterRecyleViewMaGiamGia(giamGiaList,sdt);
+                AdapterRecyleViewMaGiamGia adapterRecyleViewMaGiamGia=new AdapterRecyleViewMaGiamGia(giamGiaList,email);
                 recyclerView.setAdapter(adapterRecyleViewMaGiamGia);
             }
 

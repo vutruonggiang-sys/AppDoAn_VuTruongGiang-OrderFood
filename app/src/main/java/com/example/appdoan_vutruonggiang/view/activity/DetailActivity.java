@@ -26,6 +26,8 @@ import com.example.appdoan_vutruonggiang.modle.NhaHang;
 import com.example.appdoan_vutruonggiang.ggmap.MapsActivity;
 import com.example.appdoan_vutruonggiang.presenter.Food;
 import com.example.appdoan_vutruonggiang.presenter.ProcessFood;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,7 +49,6 @@ public class DetailActivity extends Activity {
     RecyclerView dataBinhLuan;
     EditText input_comment;
     WebView webView;
-    String sdt = "", hoTen = "", pass = "";
     String url = "", name = "", detail = "", id = "", idNhaHang = "", type = "";
     float price = 0, rating = 5;
     FirebaseDatabase firebaseDatabase;
@@ -57,6 +58,8 @@ public class DetailActivity extends Activity {
     String urlWeb = "https://www.facebook.com/vutruonggiang1912/";
     long V, V1;
     ProcessFood processFood;
+    FirebaseUser user;
+    String email = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +67,10 @@ public class DetailActivity extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_detail);
         anhXa();
-
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        String[] arrayEmail = user.getEmail().split("@");
+        email = email + arrayEmail[0];
         Bundle bundle = getIntent().getExtras();
-
-        sdt = sdt + bundle.getString("phoneNumber");
-        hoTen = hoTen + bundle.getString("hoten");
-        pass = pass + bundle.getString("pass");
-
         url = url + bundle.getString("url");
         name = name + bundle.getString("food_name");
         detail = detail + bundle.getString("food_detail");
@@ -102,7 +102,7 @@ public class DetailActivity extends Activity {
                     BinhLuan binhLuan = data.getValue(BinhLuan.class);
                     binhLuanList.add(binhLuan);
                 }
-                AdapterRecyleViewBinhLuan adapterRecyleViewBinhLuan = new AdapterRecyleViewBinhLuan(binhLuanList, DetailActivity.this, sdt, id);
+                AdapterRecyleViewBinhLuan adapterRecyleViewBinhLuan = new AdapterRecyleViewBinhLuan(binhLuanList, DetailActivity.this, email, id);
                 dataBinhLuan.setAdapter(adapterRecyleViewBinhLuan);
             }
 
@@ -117,10 +117,10 @@ public class DetailActivity extends Activity {
             public void onClick(View v) {
                 if (input_comment.getText().toString().trim().equals(""))
                     return;
-                BinhLuan binhLuan = new BinhLuan(hoTen, input_comment.getText().toString(), sdt, Long.valueOf(binhLuanList.size() + 1));
+                BinhLuan binhLuan = new BinhLuan(user.getEmail(), input_comment.getText().toString(), email, Long.valueOf(binhLuanList.size() + 1));
                 binhLuanList.add(binhLuan);
                 databaseReference.child("comments").child(id).child(binhLuanList.size() + "").setValue(binhLuan);
-                AdapterRecyleViewBinhLuan adapterRecyleViewBinhLuan = new AdapterRecyleViewBinhLuan(binhLuanList, DetailActivity.this, sdt, id);
+                AdapterRecyleViewBinhLuan adapterRecyleViewBinhLuan = new AdapterRecyleViewBinhLuan(binhLuanList, DetailActivity.this, email, id);
                 dataBinhLuan.setAdapter(adapterRecyleViewBinhLuan);
                 input_comment.setText("");
             }
@@ -163,15 +163,9 @@ public class DetailActivity extends Activity {
                             public void onClick(View v) {
                                 Intent intent = new Intent(DetailActivity.this, MapsActivity.class);
                                 Bundle bundle1 = new Bundle();
-
-                                bundle1.putString("phoneNumber", sdt);
-                                bundle1.putString("hoten", hoTen);
-                                bundle1.putString("pass", pass);
-
                                 bundle1.putLong("v", V);
                                 bundle1.putLong("v1", V1);
                                 bundle1.putString("name_NH", nhaHang.getName());
-
                                 bundle1.putString("url", url);
                                 bundle1.putString("food_name", name);
                                 bundle1.putFloat("food_price", price);
@@ -180,7 +174,6 @@ public class DetailActivity extends Activity {
                                 bundle1.putString("food_idnhahang", idNhaHang);
                                 bundle1.putString("food_id", id);
                                 bundle1.putString("food_type", type);
-
                                 intent.putExtras(bundle1);
                                 startActivity(intent);
                             }
@@ -199,20 +192,14 @@ public class DetailActivity extends Activity {
         but_order_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                processFood.getChoose(DetailActivity.this, food, sdt);
+                processFood.getChoose(DetailActivity.this, food, email);
             }
         });
 
         but_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Bundle bundle=getIntent().getExtras();
                 Intent intent = new Intent(DetailActivity.this, MainActivity.class);
-                Bundle bundle1 = new Bundle();
-                bundle1.putString("phoneNumber", sdt);
-                bundle1.putString("hoten", hoTen);
-                bundle1.putString("pass", pass);
-                intent.putExtras(bundle1);
                 startActivity(intent);
             }
         });
@@ -246,7 +233,6 @@ public class DetailActivity extends Activity {
         input_comment = findViewById(R.id.input_comment);
         webView = findViewById(R.id.Webview);
         but_map = findViewById(R.id.but_map);
-
         processFood = new ProcessFood();
     }
 }

@@ -49,7 +49,7 @@ public class FragmentDaGiao extends Fragment {
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference().child("thong_tin_nguoi_nhan_hang").child(cartActivity.getSdt());
+        databaseReference=firebaseDatabase.getReference().child("thong_tin_nguoi_nhan_hang").child(cartActivity.getEmail());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -59,7 +59,7 @@ public class FragmentDaGiao extends Fragment {
                     ThongTinNguoiOrder thongTinNguoiOrder=data.getValue(ThongTinNguoiOrder.class);
                     thongTinNguoiNhanList.add(thongTinNguoiOrder);
                 }
-                adapterRecyleViewSumDaGiao=new AdapterRecyleViewSumDaGiao(thongTinNguoiNhanList, cartActivity.getSdt(), cartActivity);
+                adapterRecyleViewSumDaGiao=new AdapterRecyleViewSumDaGiao(thongTinNguoiNhanList, cartActivity.getEmail(), cartActivity);
                 recyclerView.setAdapter(adapterRecyleViewSumDaGiao);
             }
 

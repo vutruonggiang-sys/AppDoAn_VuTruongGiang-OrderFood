@@ -23,12 +23,12 @@ import java.util.List;
 public class AdapterRecyleViewBinhLuan extends RecyclerView.Adapter<AdapterRecyleViewBinhLuan.ViewHoder> {
     List<BinhLuan> binhLuanList;
     Context context;
-    String sdt,id;
+    String email,id;
 
-    public AdapterRecyleViewBinhLuan(List<BinhLuan> binhLuanList,Context context,String sdt,String id) {
+    public AdapterRecyleViewBinhLuan(List<BinhLuan> binhLuanList,Context context,String email,String id) {
         this.binhLuanList = binhLuanList;
         this.context=context;
-        this.sdt=sdt;
+        this.email=email;
         this.id=id;
     }
 
@@ -46,7 +46,7 @@ public class AdapterRecyleViewBinhLuan extends RecyclerView.Adapter<AdapterRecyl
         BinhLuan binhLuan=binhLuanList.get(position);
         holder.tvName.setText(binhLuan.getName());
         holder.tvNoiDung.setText(binhLuan.getNoidung());
-        if(binhLuan.getSdt().equals(sdt)) {
+        if(binhLuan.getEmail().equals(email)) {
             FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
             DatabaseReference databaseReference=firebaseDatabase.getReference().child("comments").child(id);
             holder.i.setOnClickListener(new View.OnClickListener() {
@@ -69,23 +69,8 @@ public class AdapterRecyleViewBinhLuan extends RecyclerView.Adapter<AdapterRecyl
                             holder.but_Edit_Comment.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    /*
-                                    Handler handler=new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            HashMap<String,Object> valuesObject=new HashMap<>();
-                                            valuesObject.put("d",binhLuan.getD());
-                                            valuesObject.put("name",binhLuan.getName());
-                                            valuesObject.put("noidung",holder.ed_Edit_Comment.getText());
-                                            valuesObject.put("sdt",binhLuan.getSdt());
-                                            HashMap<String,Object> keyObject=new HashMap<>();
-                                            keyObject.put(binhLuan.getD()+"",valuesObject);
-                                            databaseReference.updateChildren(keyObject);
-                                        }
-                                    },3000);*/
                                     BinhLuan binhLuan1=new BinhLuan(binhLuan.getName(),holder.ed_Edit_Comment.getText().toString(),
-                                            binhLuan.getSdt(),binhLuan.getD());
+                                            binhLuan.getEmail(),binhLuan.getD());
                                     databaseReference.child(binhLuan.getD()+"").removeValue();
                                     databaseReference.child(binhLuan.getD()+"").setValue(binhLuan1);
                                     holder.tvNoiDung.setText(holder.ed_Edit_Comment.getText());

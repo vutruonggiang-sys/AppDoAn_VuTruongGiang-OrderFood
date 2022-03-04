@@ -1,14 +1,14 @@
 package com.example.appdoan_vutruonggiang.modle;
 
 public class User {
-    String name,pass,sdt;
+    String name,pass,email;
 
     public User() {}
 
-    public User(String name, String pass, String sdt) {
+    public User(String name, String pass, String email) {
         this.name = name;
         this.pass = pass;
-        this.sdt = sdt;
+        this.email = email;
     }
 
     public String getName() {
@@ -27,11 +27,11 @@ public class User {
         this.pass = pass;
     }
 
-    public String getSdt() {
-        return sdt;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

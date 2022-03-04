@@ -22,11 +22,11 @@ import java.util.List;
 public class AdapterRecyleViewBank extends RecyclerView.Adapter<AdapterRecyleViewBank.ViewHoder> {
     List<Bank> bankList;
     Context context;
-    String sdt;
-    public AdapterRecyleViewBank(List<Bank> bankList,Context context,String sdt) {
+    String email;
+    public AdapterRecyleViewBank(List<Bank> bankList,Context context,String email) {
         this.bankList = bankList;
         this.context=context;
-        this.sdt=sdt;
+        this.email=email;
     }
 
     @NonNull
@@ -48,7 +48,7 @@ public class AdapterRecyleViewBank extends RecyclerView.Adapter<AdapterRecyleVie
             @Override
             public void onClick(View v) {
                 FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-                DatabaseReference databaseReference=firebaseDatabase.getReference().child("bank").child(sdt);
+                DatabaseReference databaseReference=firebaseDatabase.getReference().child("bank").child(email);
                 databaseReference.setValue(bank.getName());
             }
         });

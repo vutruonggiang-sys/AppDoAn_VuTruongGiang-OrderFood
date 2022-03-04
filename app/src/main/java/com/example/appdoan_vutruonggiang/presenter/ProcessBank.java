@@ -26,7 +26,7 @@ public class ProcessBank {
     public ProcessBank() {
     }
 
-    public void bank(Context context, String sdt){
+    public void bank(Context context, String email){
         List<Bank> bankList=new ArrayList<>();
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -48,7 +48,7 @@ public class ProcessBank {
                     Bank bank=data.getValue(Bank.class);
                     bankList.add(bank);
                 }
-                AdapterRecyleViewBank adapterRecyleViewBank=new AdapterRecyleViewBank(bankList,context,sdt);
+                AdapterRecyleViewBank adapterRecyleViewBank=new AdapterRecyleViewBank(bankList,context,email);
                 recyclerView.setAdapter(adapterRecyleViewBank);
             }
             @Override
@@ -56,7 +56,7 @@ public class ProcessBank {
 
             }
         });
-        databaseReference.child("bank").child(sdt).addValueEventListener(new ValueEventListener() {
+        databaseReference.child("bank").child(email).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 tv_bank.setText(snapshot.getValue().toString());

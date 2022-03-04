@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.modle.Bill;
 import com.example.appdoan_vutruonggiang.modle.Food_Order;
 import com.example.appdoan_vutruonggiang.modle.ThongTinNguoiOrder;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +31,7 @@ import java.util.List;
 
 public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecyleViewSumDaGiao.ViewHoder> {
     List<ThongTinNguoiOrder> thongTinNguoiOrderList;
-    String sdt;
+    String email;
     List<Food_Order> food_orderList;
     Context context;
     AdapterRecyleViewGioHang adapterRecyleViewGioHang;
@@ -42,9 +41,9 @@ public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecy
     //IThanhToan iThanhToan;
     String tongFood="";
     long tong=0;
-    public AdapterRecyleViewSumDaGiao(List<ThongTinNguoiOrder> thongTinNguoiOrderList, String sdt, Context context) {
+    public AdapterRecyleViewSumDaGiao(List<ThongTinNguoiOrder> thongTinNguoiOrderList, String email, Context context) {
         this.thongTinNguoiOrderList = thongTinNguoiOrderList;
-        this.sdt=sdt;
+        this.email=email;
         this.context=context;
     }
 
@@ -70,10 +69,11 @@ public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecy
         holder.dataDagiao.setLayoutManager(layoutManager);
         firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference databaseReference=firebaseDatabase.getReference();
-        databaseReference.child("da_giao").child(sdt).child(thongTinNguoiOrder.getId()).addValueEventListener(new ValueEventListener() {
+        databaseReference.child("da_giao").child(email).child(thongTinNguoiOrder.getId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 food_orderList=new ArrayList<>();
+                tong=0;
                 Iterable<DataSnapshot> dataSnapshotIterable=snapshot.getChildren();
                 for(DataSnapshot data:dataSnapshotIterable){
                     Food_Order food_order=data.getValue(Food_Order.class);
@@ -84,6 +84,7 @@ public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecy
                 adapterRecyleViewGioHang=new AdapterRecyleViewGioHang(food_orderList,context);
                 holder.dataDagiao.setAdapter(adapterRecyleViewGioHang);
                 holder.tv_sum_dagiao.setText(tong+"");
+                holder.tvTotalPayable.setText(tong+20000-thongTinNguoiOrder.getGiaKhuyenMai()+" VND");
             }
 
             @Override
@@ -98,15 +99,6 @@ public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecy
                 d=1;
             }
         });
-        /*
-        holder.tv_Chon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Process_MaGiamGia.getMaGiamGia(context,sdt);
-                holder.tv_hienThiMaGiamGia.setText("");
-            }
-        });
-        */
 
         holder.but_ThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,16 +111,13 @@ public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecy
                     Calendar calendar=Calendar.getInstance();
                     DateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                     String time=dateFormat.format(calendar.getTime());
-                    Bill bill=new Bill(time,thongTinNguoiOrder.getHoTen(),thongTinNguoiOrder.getSdt(),thongTinNguoiOrder.getDiaChi(),
-                            tongFood,tong,thongTinNguoiOrder.getGiaKhuyenMai());
-                    databaseReference.child("bill").child(sdt).child(time).setValue(bill);
-
-                    databaseReference.child("thong_tin_nguoi_nhan_hang").child(sdt).child(thongTinNguoiOrder.getId()).removeValue();
-                    databaseReference.child("da_giao").child(sdt).child(thongTinNguoiOrder.getId()).removeValue();
+                    
+                    databaseReference.child("thong_tin_nguoi_nhan_hang").child(email).child(thongTinNguoiOrder.getId()).removeValue();
+                    databaseReference.child("da_giao").child(email).child(thongTinNguoiOrder.getId()).removeValue();
                 }
             }
         });
-        holder.tv_hienThiMaGiamGia.setText(thongTinNguoiOrder.getGiaKhuyenMai()+"");
+        holder.tv_hienThiMaGiamGia.setText(thongTinNguoiOrder.getGiaKhuyenMai()+" VND");
 
     }
     public void release(){
@@ -147,17 +136,17 @@ public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecy
         TextView tv_sum_dagiao;
         RecyclerView dataDagiao;
         CheckBox checkBox_ThanhToan;
-        TextView tv_Chon;
         TextView tv_hienThiMaGiamGia;
         Button but_ThanhToan;
+        TextView tvTotalPayable;
         public ViewHoder(@NonNull View itemView) {
             super(itemView);
             tv_sum_dagiao=itemView.findViewById(R.id.tv_sum_money);
             dataDagiao=itemView.findViewById(R.id.data_sum_dagiao);
             checkBox_ThanhToan=itemView.findViewById(R.id.check_thanhToan);
-            tv_Chon=itemView.findViewById(R.id.tv_chonMaGiamGia);
-            tv_hienThiMaGiamGia=itemView.findViewById(R.id.tv_maGiamGia);
+            tv_hienThiMaGiamGia=itemView.findViewById(R.id.tvMaGiamGia);
             but_ThanhToan=itemView.findViewById(R.id.but_order_cart);
+            tvTotalPayable=itemView.findViewById(R.id.tvTotalPayable);
         }
     }
 }

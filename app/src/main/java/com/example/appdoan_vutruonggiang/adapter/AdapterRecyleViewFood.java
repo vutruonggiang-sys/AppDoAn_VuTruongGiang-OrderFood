@@ -24,13 +24,13 @@ public class AdapterRecyleViewFood extends RecyclerView.Adapter<AdapterRecyleVie
     List<Food> foodList;
     IItemFood iItemFood;
     Context context;
-    String sdt;
+    String email;
     ProcessFood processFood;
-    public AdapterRecyleViewFood(List<Food> foodList,Context context,IItemFood iItemFood,String sdt) {
+    public AdapterRecyleViewFood(List<Food> foodList,Context context,IItemFood iItemFood,String email) {
         this.context=context;
         this.foodList = foodList;
         this.iItemFood=iItemFood;
-        this.sdt=sdt;
+        this.email=email;
     }
     @NonNull
     @Override
@@ -44,22 +44,6 @@ public class AdapterRecyleViewFood extends RecyclerView.Adapter<AdapterRecyleVie
     @Override
     public void onBindViewHolder(@NonNull AdapterRecyleViewFood.ViewHoder holder, int position) {
         Food food=foodList.get(position);
-//        try {
-//            URL url = new URL(food.getUrl());
-//            HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
-//
-//            httpConn.connect();
-//            int resCode = httpConn.getResponseCode();
-//
-//            if (resCode == HttpURLConnection.HTTP_OK) {
-//                InputStream in = httpConn.getInputStream();
-//                Bitmap bitmap = BitmapFactory.decodeStream(in);
-//
-//                holder.image.setImageBitmap(bitmap);
-//            }
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
         Glide.with(context).load(food.getUrl()).into(holder.image);
         holder.tvName.setText(food.getName());
         holder.tvPrice.setText(food.getPrice()+" VND");
@@ -70,7 +54,7 @@ public class AdapterRecyleViewFood extends RecyclerView.Adapter<AdapterRecyleVie
             public void onClick(View v) {
                 //Toast.makeText(context,"hello",Toast.LENGTH_LONG).show();
                 processFood=new ProcessFood();
-                processFood.getChoose(context,food,sdt);
+                processFood.getChoose(context,food,email);
             }
         });
         holder.tvMore.setOnClickListener(new View.OnClickListener() {

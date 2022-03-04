@@ -25,7 +25,6 @@ public class ChangePassActivity extends Activity {
     ImageView but_back_account;
     EditText ed_old_pass,ed_new_pass,ed_confirm_pass;
     AppCompatButton but_confirm;
-    String sdt="",hoTen="",pass="";
     List<Food> foodList;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -39,35 +38,32 @@ public class ChangePassActivity extends Activity {
         databaseReference=firebaseDatabase.getReference().child("user");
 
         Bundle bundle=this.getIntent().getExtras();
-        sdt=sdt+bundle.getString("phoneNumber");
-        hoTen=hoTen+bundle.getString("hoten");
-        pass=pass+bundle.get("pass");
         foodList=bundle.getParcelableArrayList("list");
         but_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-        if(!pass.equals(ed_old_pass.getText().toString().trim())){
-            Toast.makeText(ChangePassActivity.this,"Bạn nhập sai mật khẩu cũ",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(ed_old_pass.getText().toString().trim().equals("")||ed_new_pass.getText().toString().trim().equals("")||ed_confirm_pass.getText().toString().trim().equals("")){
-            Toast.makeText(ChangePassActivity.this,"Không được để trống",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(pass.toString().trim().equals(ed_new_pass.getText().toString().trim())){
-            Toast.makeText(ChangePassActivity.this,"Bạn đã nhập mật khẩu cũ",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(ed_new_pass.getText().toString().trim().equals(ed_confirm_pass.getText().toString().trim())){
-            Toast.makeText(ChangePassActivity.this,"Bạn đã thay đổi mật khẩu",Toast.LENGTH_SHORT).show();
-            User user=new User(hoTen,ed_new_pass.getText().toString(),sdt);
-            FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference=firebaseDatabase.getReference().child("user");
-            databaseReference.child(sdt).setValue(user);
-        }else{
-            Toast.makeText(ChangePassActivity.this,"xác nhận sai mật khẩu",Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        if(!pass.equals(ed_old_pass.getText().toString().trim())){
+//            Toast.makeText(ChangePassActivity.this,"Bạn nhập sai mật khẩu cũ",Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        if(ed_old_pass.getText().toString().trim().equals("")||ed_new_pass.getText().toString().trim().equals("")||ed_confirm_pass.getText().toString().trim().equals("")){
+//            Toast.makeText(ChangePassActivity.this,"Không được để trống",Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        if(pass.toString().trim().equals(ed_new_pass.getText().toString().trim())){
+//            Toast.makeText(ChangePassActivity.this,"Bạn đã nhập mật khẩu cũ",Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        if(ed_new_pass.getText().toString().trim().equals(ed_confirm_pass.getText().toString().trim())){
+//            Toast.makeText(ChangePassActivity.this,"Bạn đã thay đổi mật khẩu",Toast.LENGTH_SHORT).show();
+//            User user=new User(hoTen,ed_new_pass.getText().toString(),email);
+//            FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
+//            DatabaseReference databaseReference=firebaseDatabase.getReference().child("user");
+//            databaseReference.child(email).setValue(user);
+//        }else{
+//            Toast.makeText(ChangePassActivity.this,"xác nhận sai mật khẩu",Toast.LENGTH_SHORT).show();
+//            return;
+//        }
             }
         });
         but_back_account.setOnClickListener(new View.OnClickListener() {
@@ -76,9 +72,6 @@ public class ChangePassActivity extends Activity {
                 Intent intent=new Intent(getBaseContext(), AccountActivity.class);
                 ArrayList<Food> listSearch= (ArrayList<Food>) foodList;
                 Bundle bundle1=new Bundle();
-                bundle1.putString("phoneNumber",sdt);
-                bundle1.putString("hoten",hoTen);
-                bundle1.putString("pass",pass);
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);
                 startActivity(intent);

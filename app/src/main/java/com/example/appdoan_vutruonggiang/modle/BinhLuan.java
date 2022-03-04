@@ -1,16 +1,18 @@
 package com.example.appdoan_vutruonggiang.modle;
 
 public class BinhLuan {
-    String name,noidung,sdt;
+    String name, noidung, email;
     long d;
 
-    public BinhLuan(String name, String noidung, String sdt,long d) {
+    public BinhLuan(String name, String noidung, String email, long d) {
         this.name = name;
         this.noidung = noidung;
-        this.sdt=sdt;
-        this.d=d;
+        this.email = email;
+        this.d = d;
     }
-    public BinhLuan(){}
+
+    public BinhLuan() {
+    }
 
     public String getName() {
         return name;
@@ -28,12 +30,12 @@ public class BinhLuan {
         this.noidung = noidung;
     }
 
-    public String getSdt() {
-        return sdt;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public long getD() {
