@@ -76,6 +76,7 @@ public class CartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         search.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +88,7 @@ public class CartActivity extends AppCompatActivity {
                 bundle1.putParcelableArrayList("list", listSearch);
                 intent.putExtras(bundle1);
                 startActivity(intent);
+                finish();
             }
         });
         account.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +100,7 @@ public class CartActivity extends AppCompatActivity {
                 bundle1.putParcelableArrayList("list", listSearch);
                 intent.putExtras(bundle1);
                 startActivity(intent);
+                finish();
             }
         });
     }

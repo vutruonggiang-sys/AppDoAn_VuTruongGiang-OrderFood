@@ -29,6 +29,7 @@ public class ForgetPasswordActivity extends Activity {
             public void onClick(View v) {
                 Intent intent=new Intent(getBaseContext(), LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 //        binding.butSendEmail.setOnClickListener(new View.OnClickListener() {

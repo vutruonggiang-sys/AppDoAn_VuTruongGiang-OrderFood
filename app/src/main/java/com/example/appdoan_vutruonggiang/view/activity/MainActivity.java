@@ -183,6 +183,7 @@ public class MainActivity extends Activity {
                 bundle1.putParcelableArrayList("list", listSearch);
                 intent.putExtras(bundle1);
                 startActivity(intent);
+                finish();
             }
         });
         account.setOnClickListener(new View.OnClickListener() {
@@ -194,6 +195,7 @@ public class MainActivity extends Activity {
                 bundle1.putParcelableArrayList("list", listSearch);
                 intent.putExtras(bundle1);
                 startActivity(intent);
+                finish();
             }
         });
         giohang.setOnClickListener(new View.OnClickListener() {
@@ -205,6 +207,7 @@ public class MainActivity extends Activity {
                 bundle1.putParcelableArrayList("list", listSearch);
                 intent.putExtras(bundle1);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -223,6 +226,7 @@ public class MainActivity extends Activity {
         bundle1.putString("food_type", food.getType());
         intent.putExtras(bundle1);
         startActivity(intent);
+        finish();
     }
 
     @Override

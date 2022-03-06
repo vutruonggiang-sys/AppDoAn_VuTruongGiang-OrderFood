@@ -22,6 +22,7 @@ public class HelpActivity extends Activity {
             public void onClick(View v) {
                 Intent intent=new Intent(getBaseContext(), LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

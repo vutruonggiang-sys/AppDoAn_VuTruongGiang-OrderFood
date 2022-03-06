@@ -57,6 +57,7 @@ public class SearchActivity extends AppCompatActivity {
                 Bundle bundle1 = new Bundle();
                 intent1.putExtras(bundle1);
                 startActivity(intent1);
+                finish();
             }
         });
         giohang.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +69,7 @@ public class SearchActivity extends AppCompatActivity {
                 bundle1.putParcelableArrayList("list", listSearch);
                 intent1.putExtras(bundle1);
                 startActivity(intent1);
+                finish();
             }
         });
         account.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +81,7 @@ public class SearchActivity extends AppCompatActivity {
                 bundle1.putParcelableArrayList("list", listSearch);
                 intent1.putExtras(bundle1);
                 startActivity(intent1);
+                finish();
             }
         });
     }

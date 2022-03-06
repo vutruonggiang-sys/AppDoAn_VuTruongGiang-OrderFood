@@ -104,6 +104,7 @@ public class ChatActivity extends Activity{
                 bundle1.putParcelableArrayList("list",listSearch);
                 intent.putExtras(bundle1);
                 startActivity(intent);
+                finish();
             }
         });
     }

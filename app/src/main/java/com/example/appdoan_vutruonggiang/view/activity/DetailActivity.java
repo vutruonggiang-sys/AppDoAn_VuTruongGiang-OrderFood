@@ -176,6 +176,7 @@ public class DetailActivity extends Activity {
                                 bundle1.putString("food_type", type);
                                 intent.putExtras(bundle1);
                                 startActivity(intent);
+                                finish();
                             }
                         });
                     }
@@ -201,6 +202,7 @@ public class DetailActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(DetailActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         Webview_NhaHang.setOnClickListener(new View.OnClickListener() {

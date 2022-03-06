@@ -127,6 +127,7 @@ public class AccountActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         giohang.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +139,7 @@ public class AccountActivity extends Activity {
                 bundle1.putParcelableArrayList("list", listSearch);
                 intent.putExtras(bundle1);
                 startActivity(intent);
+                finish();
             }
         });
         search.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +151,7 @@ public class AccountActivity extends Activity {
                 bundle1.putParcelableArrayList("list", listSearch);
                 intent.putExtras(bundle1);
                 startActivity(intent);
+                finish();
             }
         });
         tv_phanHoi.setOnClickListener(new View.OnClickListener() {
@@ -160,6 +163,7 @@ public class AccountActivity extends Activity {
                 bundle1.putParcelableArrayList("list", listSearch);
                 intent.putExtras(bundle1);
                 startActivity(intent);
+                finish();
             }
         });
     }

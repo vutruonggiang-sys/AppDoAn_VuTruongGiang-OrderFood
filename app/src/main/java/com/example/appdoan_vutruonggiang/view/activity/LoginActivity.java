@@ -27,6 +27,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,6 +49,7 @@ public class LoginActivity extends Activity implements ILogin {
     SharedPreferences sharedPreferences;
     ProcessConnection process_connection;
     FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +93,7 @@ public class LoginActivity extends Activity implements ILogin {
                                 Toast.makeText(getApplicationContext(), "Successful Login", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
+                                finish();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -106,6 +109,7 @@ public class LoginActivity extends Activity implements ILogin {
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), RegisActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         tv_forgetPass.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +117,7 @@ public class LoginActivity extends Activity implements ILogin {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         tv_help.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +125,7 @@ public class LoginActivity extends Activity implements ILogin {
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), HelpActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -143,21 +149,6 @@ public class LoginActivity extends Activity implements ILogin {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
 
-
-    //    @Override
-//    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//        userList=new ArrayList<>();
-//        Iterable<DataSnapshot> dataSnapshotIterable=snapshot.getChildren();
-//        for(DataSnapshot data:dataSnapshotIterable){
-//            User user=data.getValue(User.class);
-//            userList.add(user);
-//        }
-//    }
-//
-//    @Override
-//    public void onCancelled(@NonNull DatabaseError error) {
-//
-//    }
     public void anhXa() {
         tilEmail = findViewById(R.id.tilEmail);
         tilPass = findViewById(R.id.tilPass);
