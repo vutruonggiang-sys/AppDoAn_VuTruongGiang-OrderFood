@@ -1,44 +1,48 @@
-package com.example.appdoan_vutruonggiang.view.activity;
+package com.example.appdoan_vutruonggiang.view.fragment;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
 
 import com.example.appdoan_vutruonggiang.R;
-import com.example.appdoan_vutruonggiang.modle.User;
-import com.example.appdoan_vutruonggiang.presenter.Food;
+import com.example.appdoan_vutruonggiang.view.activity.HomePageActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import androidx.appcompat.widget.AppCompatButton;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class ChangePassActivity extends Activity {
+public class ChangePassFragment extends Fragment {
+    private View view;
     ImageView but_back_account;
     EditText ed_old_pass,ed_new_pass,ed_confirm_pass;
     AppCompatButton but_confirm;
-    List<Food> foodList;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    HomePageActivity homePageActivity;
+
+    public static Fragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        ChangePassFragment fragment = new ChangePassFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_change__pass_);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view=inflater.inflate(R.layout.change_pass_fragment,container,false);
         anhXa();
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child("user");
 
-        Bundle bundle=this.getIntent().getExtras();
-        foodList=bundle.getParcelableArrayList("list");
         but_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,21 +73,19 @@ public class ChangePassActivity extends Activity {
         but_back_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getBaseContext(), AccountActivity.class);
-                ArrayList<Food> listSearch= (ArrayList<Food>) foodList;
-                Bundle bundle1=new Bundle();
-                bundle1.putParcelableArrayList("list",listSearch);
-                intent.putExtras(bundle1);
-                startActivity(intent);
-                finish();
+                homePageActivity.getFragment(AccountFragment.newInstance());
+                homePageActivity.getBottomNavigationView().setVisibility(View.VISIBLE);
             }
         });
+        return view;
     }
+
     public void anhXa(){
-        but_back_account=findViewById(R.id.but_back_account);
-        ed_old_pass=findViewById(R.id.ed_old_pass);
-        ed_new_pass=findViewById(R.id.ed_new_pass);
-        ed_confirm_pass=findViewById(R.id.ed_confirm_pass);
-        but_confirm=findViewById(R.id.but_confirm);
+        homePageActivity= (HomePageActivity) getActivity();
+        but_back_account=view.findViewById(R.id.but_back_account);
+        ed_old_pass=view.findViewById(R.id.ed_old_pass);
+        ed_new_pass=view.findViewById(R.id.ed_new_pass);
+        ed_confirm_pass=view.findViewById(R.id.ed_confirm_pass);
+        but_confirm=view.findViewById(R.id.but_confirm);
     }
 }

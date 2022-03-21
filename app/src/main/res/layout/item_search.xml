@@ -18,39 +18,19 @@
     <LinearLayout
         android:gravity="center|left"
         android:orientation="vertical"
-        android:layout_marginLeft= "10dp"
+        android:layout_marginLeft="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvNameSearch"
+            android:text="Tên"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_alignParentLeft="true"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="30dp">
-            <TextView
-                android:id="@+id/tvNameSearch"
-                android:text="Tên"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_alignParentLeft="true"/>
-            <RelativeLayout
-                android:layout_marginTop="0dp"
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true">
-                <TextView
-                    android:id="@+id/tvReviewSearch"
-                    android:text="đgg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:layout_alignParentLeft="true"/>
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/stat"
-                    android:layout_toRightOf="@+id/tvReview"
-                    android:layout_alignParentRight="true"/>
-            </RelativeLayout>
-        </RelativeLayout>
             <TextView
                 android:id="@+id/tvPriceSearch"
                 android:text="Giá VND"
@@ -58,6 +38,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"/>
+                <TextView
+                    android:id="@+id/tvReviewSearch"
+                    android:text="đgg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_toLeftOf="@+id/imgStar"
+                    android:layout_marginRight="5dp"/>
+                <ImageView
+                    android:id="@+id/imgStar"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/stat"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"/>
+        </RelativeLayout>
 
     </LinearLayout>
 </LinearLayout>

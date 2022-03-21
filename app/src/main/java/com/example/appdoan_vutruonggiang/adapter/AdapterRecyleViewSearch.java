@@ -21,34 +21,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterRecyleViewSearch extends RecyclerView.Adapter<AdapterRecyleViewSearch.ViewHoder> implements Filterable {
-    List<Food> foodList,foodListSearch;
+    List<Food> foodList, foodListSearch;
     Context context;
     IItemFood iItemFood;
-    public AdapterRecyleViewSearch(List<Food> foodList, Context context, IItemFood iItemFood) {
+    TextView tvNoFindResult;
+    ImageView imgNoFindResult;
+
+    public AdapterRecyleViewSearch(List<Food> foodList, Context context, IItemFood iItemFood, TextView tvNoFindResult, ImageView imgNoFindResult) {
         this.foodList = foodList;
-        this.foodListSearch=foodList;
-        this.context=context;
-        this.iItemFood=iItemFood;
+        this.foodListSearch = foodList;
+        this.context = context;
+        this.iItemFood = iItemFood;
+        this.tvNoFindResult = tvNoFindResult;
+        this.imgNoFindResult = imgNoFindResult;
     }
 
     @NonNull
     @Override
     public AdapterRecyleViewSearch.ViewHoder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater=LayoutInflater.from(parent.getContext());
-        View view=layoutInflater.inflate(R.layout.item_search,parent,false);
-        ViewHoder viewHoder=new ViewHoder(view);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.item_search, parent, false);
+        ViewHoder viewHoder = new ViewHoder(view);
         return viewHoder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull AdapterRecyleViewSearch.ViewHoder holder, int position) {
-        Food food=foodList.get(position);
-        if(food==null){
+        Food food = foodList.get(position);
+        if (food == null) {
             return;
         }
         holder.tvName.setText(food.getName());
-        holder.tvReview.setText(food.getReview()+"");
-        holder.tvPrice.setText(food.getPrice()+"VND");
+        holder.tvReview.setText(food.getReview() + "");
+        holder.tvPrice.setText(food.getPrice() + "VND");
         Glide.with(context).load(food.getUrl()).into(holder.anh);
         holder.anh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,29 +62,30 @@ public class AdapterRecyleViewSearch extends RecyclerView.Adapter<AdapterRecyleV
             }
         });
     }
-    public void release(){
-        context=null;
+
+    public void release() {
+        context = null;
     }
 
     @Override
     public int getItemCount() {
-        if(foodList!=null) {
+        if (foodList != null) {
             return foodList.size();
-        }else{
+        } else {
             return 0;
         }
     }
 
     public class ViewHoder extends RecyclerView.ViewHolder {
         ImageView anh;
-        TextView tvName,tvPrice,tvReview;
+        TextView tvName, tvPrice, tvReview;
 
         public ViewHoder(@NonNull View itemView) {
             super(itemView);
-            anh=itemView.findViewById(R.id.imAnhSearch);
-            tvName=itemView.findViewById(R.id.tvNameSearch);
-            tvPrice=itemView.findViewById(R.id.tvPriceSearch);
-            tvReview=itemView.findViewById(R.id.tvReviewSearch);
+            anh = itemView.findViewById(R.id.imAnhSearch);
+            tvName = itemView.findViewById(R.id.tvNameSearch);
+            tvPrice = itemView.findViewById(R.id.tvPriceSearch);
+            tvReview = itemView.findViewById(R.id.tvReviewSearch);
         }
     }
 
@@ -88,25 +94,31 @@ public class AdapterRecyleViewSearch extends RecyclerView.Adapter<AdapterRecyleV
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
-                String searchStr=constraint.toString();
-                if(searchStr.isEmpty()){
-                    foodList=foodListSearch;
-                }else{
-                    List<Food> listDisplay=new ArrayList<>();
-                    for (Food food: foodListSearch) {
-                        if(food.getName().toUpperCase().contains(searchStr.toUpperCase().trim()))
+                String searchStr = constraint.toString();
+                if (searchStr.isEmpty()) {
+                } else {
+                    List<Food> listDisplay = new ArrayList<>();
+                    for (Food food : foodList) {
+                        if (food.getName().toUpperCase().contains(searchStr.toUpperCase().trim()))
                             listDisplay.add(food);
                     }
-                    foodList=listDisplay;
+                    foodList = listDisplay;
+                    if ((listDisplay.size() == 0)) {
+                        tvNoFindResult.setVisibility(View.VISIBLE);
+                        imgNoFindResult.setVisibility(View.VISIBLE);
+                    } else {
+                        tvNoFindResult.setVisibility(View.GONE);
+                        imgNoFindResult.setVisibility(View.GONE);
+                    }
                 }
-                FilterResults results=new FilterResults();
-                results.values=foodList;
+                FilterResults results = new FilterResults();
+                results.values = foodList;
                 return results;
             }
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                foodList=(List<Food>) results.values;
+                foodList = (List<Food>) results.values;
                 notifyDataSetChanged();
             }
         };

@@ -20,22 +20,11 @@
     <string name="name_password">Mật Khẩu:</string>
     <string name="name_confirm_pass">Xác Nhận:</string>
     ----Detail Item----
-    <string name="name_button_order">Add to Cart</string>
-    ----Register----
-    <string name="name_Code_Conform">Verification: </string>
-    <string name="name_NameRegister">Name:</string>
-    <string name="name_sdt">Number Phone:</string>
-    <string name="name_AddressRegister">Address:</string>
-    <string name="name_EmailRegister">Email:</string>
-    <string name="name_PassRegister">Password:</string>
-    <string name="name_ConformPassRegister">Conform Password:</string>
     <string name="name_Register_title">Đăng ký One Food</string>
     ----logout----
     <string name="name_logout_title">Bạn muốn đăng xuất không?</string>
     ---chat----
     <string name="name_chat_administrator">Chúng tôi rất vui khi nhận được phản hồi của bạn.</string>
-    ----forgetPassword----
-    <string name="quayvetrangchu">Đăng Nhập</string>
     ----help----
     <string name="help_title">Hôm Nay Ăn Gì???</string>
     <string name="help_content">App "Hôm nay ăn gì???" xin được phục vụ quý khách đồ ăn thuận tiện nhất, đặc biệt trong thời điiểm dịch bệnh này, trước hết bạn tạo tài khoản để truy
@@ -45,4 +34,60 @@
     ----nganhang----
     <string name="bank_title">Ngân Hàng Liên Kết: mời bạn chọn các dịch vụ ngân hàng bên dưới</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="noFindResult">Không Tìm Thấy Kết Quả</string>
+    <string name="cancel">Hủy</string>
+    <string name="save">Lưu</string>
+    <string name="response">Phản hồi</string>
+    <string name="change_password">Thay đổi mật khẩu</string>
+    <string name="link_bank">Liên kết ngân hàng</string>
+    <string name="logout">Đăng Xuất</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="ask_change_pass">Bạn muốn thay đổi mật không?</string>
+    <string name="old_pass">Mật khẩu cũ:</string>
+    <string name="new_pass">Mật khẩu mới:</string>
+    <string name="confirm_new_pass">Xác nhận mật khẩu:</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="ok">Đồng ý</string>
+    <string name="input_email">Nhập email</string>
+    <string name="back_login">Quay về đăng nhập</string>
+    <string name="title_bill">Hóa đơn của quý khách sẽ được giao với thông tin dưới đây</string>
+    <string name="NumberPhone">Số điện thoại:</string>
+    <string name="into_money">Thành tiền: </string>
+    <string name="ship">Phí vận chuyển:</string>
+    <string name="discount">Giảm giá:</string>
+    <string name="amount_money">Tổng tiền:</string>
+    <string name="your_email">Email của bạn</string>
+    <string name="your_pass">Password của bạn</string>
+    <string name="save_account">Lưu tài khoản</string>
+    <string name="forget_password">Quên mật khẩu</string>
+    <string name="help">Trợ giúp |</string>
+    <string name="your_discount">Mã giảm giá của bạn :</string>
+    <string name="select_food">Bạn đang chọn món</string>
+    <string name="first_amount_food">Số lượng : X1</string>
+    <string name="add_to_cart">Mua</string>
+    <string name="your_name">Tên của bạn</string>
+    <string name="confirm_info_order">Mời bạn xác nhận thông tin người nhận</string>
+    <string name="city">Thành phố</string>
+    <string name="district">Quận/huyện</string>
+    <string name="input_message">Nhập tin nhắn</string>
+    <string name="SEND">GIỬ</string>
+    <string name="see_detail">Xem Chi Tiết</string>
+    <string name="comment">Bình luận</string>
+    <string name="comment...">Bình Luận ...</string>
+    <string name="see_comment">Xem Bình Luận</string>
+    <string name="cart">Giỏ Hàng</string>
+    <string name="delivered">Đã Giao</string>
+    <string name="chooce">Chọn</string>
+    <string name="order">Đặt hàng</string>
+    <string name="your_order">Đơn Hàng Của Bạn</string>
+    <string name="pay_for_this_order">Thanh toán đơn hàng này</string>
+    <string name="Payment">THANH TOÁN</string>
+    <string name="delete">Xóa</string>
+    <string name="edit">Sửa</string>
+    <string name="more">hơn nữa</string>
+    <string name="discount_code_value">Giá Trị mã giảm giá:</string>
+    <string name="list_new">Danh Sách Mới</string>
+    <string name="list_All">Danh Sách Nổi Bật</string>
+    <string name="camera">Cho phép truy cập vào máy ảnh hoặc thư viện ảnh</string>
 </resources>

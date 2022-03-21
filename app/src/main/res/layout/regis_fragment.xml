@@ -4,10 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.activity.RegisActivity">
+    android:background="@color/white">
     <LinearLayout
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
@@ -37,6 +34,8 @@
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:boxCornerRadiusTopStart="5dp"
         app:boxCornerRadiusTopEnd="5dp"
@@ -44,7 +43,7 @@
         app:boxCornerRadiusBottomEnd="5dp"
         android:textColorHint="#08DEFA"
         app:boxStrokeColor="@color/shaper_register"
-        android:hint="Your Email">
+        android:hint="@string/your_email">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietYourNumber"
             android:textColor="@color/black"
@@ -67,7 +66,9 @@
         app:boxCornerRadiusBottomEnd="5dp"
         android:textColorHint="#08DEFA"
         app:boxStrokeColor="@color/shaper_register"
-        android:hint="Your Name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="@string/your_name"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietYourName"
@@ -91,7 +92,9 @@
         app:boxCornerRadiusBottomEnd="5dp"
         android:textColorHint="#08DEFA"
         app:boxStrokeColor="@color/shaper_register"
-        android:hint="Password"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="@string/your_pass"
         app:errorEnabled="true"
         app:passwordToggleEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
@@ -116,7 +119,9 @@
         app:boxCornerRadiusBottomEnd="5dp"
         android:textColorHint="#08DEFA"
         app:boxStrokeColor="@color/shaper_register"
-        android:hint="Confirm Password"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="@string/confirm"
         app:passwordToggleEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietConfirmPassword"
@@ -135,8 +140,9 @@
         android:layout_height="wrap_content">
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/acbCancel"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/but_send"
             android:alpha="0.5"
             android:layout_width="0dp"
@@ -144,8 +150,9 @@
             android:layout_weight="1"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/acbRegis"
-            android:text="Regis"
+            android:text="@string/name_register"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/but_send"
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -154,9 +161,10 @@
     <TextView
         android:id="@+id/tv_BackLogin"
         android:textColor="@color/black"
-        android:text="Back Login"
+        android:text="@string/back_login"
         android:gravity="right"
         android:textStyle="normal"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="20dp"/>

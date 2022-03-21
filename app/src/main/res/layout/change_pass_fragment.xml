@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -25,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Đổi Mật Khẩu"
+                android:text="@string/change_password"
                 android:textColor="#F30B0B"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -35,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Bạn muốn thay đổi mật không"
+            android:text="@string/ask_change_pass"
             android:textSize="20dp" />
 
         <LinearLayout
@@ -46,7 +44,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mật khẩu cũ:"
+                android:text="@string/old_pass"
                 android:textSize="20dp" />
 
             <EditText
@@ -65,7 +63,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mật khẩu mới:"
+                android:text="@string/new_pass"
                 android:textSize="20dp" />
 
             <EditText
@@ -85,7 +83,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Xác nhận mật khẩu:"
+                android:text="@string/confirm_new_pass"
                 android:textSize="20dp" />
 
             <EditText
@@ -102,11 +100,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@drawable/button_order"
-            android:text="CONFORM" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:background="@drawable/doimatkhau_background" />
+            android:text="@string/confirm" />
     </LinearLayout>
 </ScrollView>

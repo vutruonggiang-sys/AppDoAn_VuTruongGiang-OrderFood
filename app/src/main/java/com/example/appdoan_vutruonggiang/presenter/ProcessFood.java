@@ -80,7 +80,7 @@ public class ProcessFood {
         ImageView imageView=dialog.findViewById(R.id.image_food_datHang);
         Button cancel=dialog.findViewById(R.id.but_Cancel);
         Button order=dialog.findViewById(R.id.but_order);
-        title.setText("Bạn đang chọn món "+food.getName());
+        title.setText(context.getString(R.string.select_food)+food.getName());
         tru.setEnabled(false);
         Glide.with(context).load(food.getUrl()).into(imageView);
         Food_Order food_order=new Food_Order(1,food.id,food.getName(),(long) food.getPrice(),food.getUrl(),food.getIdNhaHang());

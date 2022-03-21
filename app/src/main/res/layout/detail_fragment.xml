@@ -4,9 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.activity.DetailActivity">
+    android:background="@color/white">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideItem01"
@@ -50,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/but_back"
-            android:text="Xem Chi Tiết"
+            android:text="@string/see_detail"
             android:textColor="@color/black"
             android:textSize="30dp" />
         <View
@@ -130,7 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="@drawable/vien_item_food"
-                    android:hint="Bình Luận ... "
+                    android:hint="@string/comment..."
                     android:paddingLeft="20dp" />
 
                 <Button
@@ -146,7 +144,7 @@
             <TextView
                 android:layout_marginTop="10dp"
                 android:id="@+id/xemBinhLuan"
-                android:text="Xem Bình Luận"
+                android:text="@string/see_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <androidx.recyclerview.widget.RecyclerView
@@ -274,7 +272,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/but_login"
-            android:text="@string/name_button_order"
+            android:text="@string/add_to_cart"
             android:textColor="@color/white" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

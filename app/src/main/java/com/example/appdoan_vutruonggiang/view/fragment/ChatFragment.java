@@ -1,24 +1,26 @@
-package com.example.appdoan_vutruonggiang.view.activity;
+package com.example.appdoan_vutruonggiang.view.fragment;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.appdoan_vutruonggiang.adapter.AdapterChat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.appdoan_vutruonggiang.R;
+import com.example.appdoan_vutruonggiang.adapter.AdapterChat;
 import com.example.appdoan_vutruonggiang.modle.Chat;
 import com.example.appdoan_vutruonggiang.presenter.Food;
+import com.example.appdoan_vutruonggiang.view.activity.HomePageActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,7 +36,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class ChatActivity extends Activity{
+public class ChatFragment extends Fragment {
+
+    private View view;
     ImageView back_chat;
     EditText chat_content;
     Button but_send;
@@ -46,42 +50,49 @@ public class ChatActivity extends Activity{
     DatabaseReference databaseReference;
     FirebaseUser user;
     String email="";
+    HomePageActivity homePageActivity;
+    public static Fragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        ChatFragment fragment = new ChatFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_chat);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view=inflater.inflate(R.layout.chat_fragment,container,false);
         anhXa();
         user= FirebaseAuth.getInstance().getCurrentUser();
         String[] arrayEmail=user.getEmail().split("@");
         email=email+arrayEmail[0];
-        Bundle bundle=this.getIntent().getExtras();
-        foodList=bundle.getParcelableArrayList("list");
 
-        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(ChatActivity.this,RecyclerView.VERTICAL,false);
+        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(homePageActivity,RecyclerView.VERTICAL,false);
         dataChat.setLayoutManager(layoutManager);
 
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child("chat").child(email);
         Query query=databaseReference.orderByChild("id");
-            query.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    chatList=new ArrayList<>();
-                    Iterable<DataSnapshot> dataSnapshotIterable = snapshot.getChildren();
-                    for (DataSnapshot data : dataSnapshotIterable) {
-                        Chat chat = data.getValue(Chat.class);
-                        chatList.add(chat);
-                    }
-                    adapterChat = new AdapterChat(chatList);
-                    dataChat.setAdapter(adapterChat);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                chatList=new ArrayList<>();
+                Iterable<DataSnapshot> dataSnapshotIterable = snapshot.getChildren();
+                for (DataSnapshot data : dataSnapshotIterable) {
+                    Chat chat = data.getValue(Chat.class);
+                    chatList.add(chat);
                 }
+                adapterChat = new AdapterChat(chatList);
+                dataChat.setAdapter(adapterChat);
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
+            }
+        });
 
         but_send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,16 +109,13 @@ public class ChatActivity extends Activity{
         back_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getBaseContext(), AccountActivity.class);
-                ArrayList<Food> listSearch= (ArrayList<Food>) foodList;
-                Bundle bundle1=new Bundle();
-                bundle1.putParcelableArrayList("list",listSearch);
-                intent.putExtras(bundle1);
-                startActivity(intent);
-                finish();
+                homePageActivity.getFragment(AccountFragment.newInstance());
+                homePageActivity.getBottomNavigationView().setVisibility(View.VISIBLE);
             }
         });
+        return view;
     }
+
     private void sendData(long d){
         String content=chat_content.getText().toString();
         if(content.isEmpty()) return;
@@ -120,7 +128,7 @@ public class ChatActivity extends Activity{
         chat_content.setText("");
     }
     private void checkKeyboard(){
-        final View root=findViewById(R.id.root);
+        final View root=view.findViewById(R.id.root);
         root.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -136,10 +144,12 @@ public class ChatActivity extends Activity{
             }
         });
     }
+
     public void anhXa(){
-        back_chat=findViewById(R.id.back_chat);
-        chat_content=findViewById(R.id.chat_content);
-        but_send=findViewById(R.id.but_send);
-        dataChat=findViewById(R.id.dataChat);
+        homePageActivity= (HomePageActivity) getActivity();
+        back_chat=view.findViewById(R.id.back_chat);
+        chat_content=view.findViewById(R.id.chat_content);
+        but_send=view.findViewById(R.id.but_send);
+        dataChat=view.findViewById(R.id.dataChat);
     }
 }

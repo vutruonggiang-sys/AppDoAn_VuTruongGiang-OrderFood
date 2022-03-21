@@ -28,13 +28,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="30dp">
+
             <TextView
                 android:id="@+id/tvName"
-                android:text="Tên"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_alignParentLeft="true"/>
+                android:layout_alignParentLeft="true"
+                android:text="Tên"
+                android:textSize="10sp" />
             <RelativeLayout
                 android:layout_marginTop="0dp"
                 android:layout_width="80dp"
@@ -45,11 +46,11 @@
                 android:text="đgg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:layout_alignParentLeft="true"/>
             <ImageView
                 android:layout_width="10dp"
-                android:layout_height="30dp"
+                android:layout_height="25dp"
                 android:src="@drawable/stat"
                 android:layout_toRightOf="@+id/tvReview"
                 android:layout_alignParentRight="true"/>
@@ -82,15 +83,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"/>
-        <TextView
-            android:id="@+id/tvMore"
-            android:layout_marginLeft="5dp"
-            android:text="more"
-            android:textColor="#2B84CA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_toRightOf="@+id/tvDetail" />
+
+            <TextView
+                android:id="@+id/tvMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/tvDetail"
+                android:text="@string/more"
+                android:textColor="#2B84CA"
+                android:textSize="15sp" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

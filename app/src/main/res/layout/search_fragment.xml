@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/edSearch"
+        android:background="@drawable/vien_chat"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:hint="@string/name_search"
+        android:drawableStart="@drawable/search"
+        android:paddingLeft="10dp"
+        android:layout_height="50dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dataSearch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/edSearch"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp" />
+    <ImageView
+        android:id="@+id/imgNoFindResult"
+        android:src="@drawable/search"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/tvNoFindResult"
+        android:textSize="25dp"
+        android:layout_below="@+id/imgNoFindResult"
+        android:gravity="center"
+        android:text="@string/noFindResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+</RelativeLayout>

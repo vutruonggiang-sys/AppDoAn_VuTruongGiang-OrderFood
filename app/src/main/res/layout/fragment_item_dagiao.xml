@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Đơn Hàng Của Bạn"
+            android:text="@string/your_order"
             android:textColor="@color/black"
             android:textSize="30dp"
             android:textStyle="bold" />
@@ -64,8 +64,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ship: "
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:text="@string/ship" />
 
             <TextView
                 android:layout_alignParentRight="true"
@@ -80,10 +80,10 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mã giảm giá: " />
+                android:layout_marginLeft="10dp"
+                android:text="@string/discount" />
 
             <TextView
                 android:id="@+id/tvMaGiamGia"
@@ -98,11 +98,11 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tổng :"
-                android:textColor="@color/black"/>
+                android:layout_marginLeft="10dp"
+                android:text="@string/amount_money"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/tvTotalPayable"
@@ -117,7 +117,7 @@
             android:id="@+id/check_thanhToan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thanh toán đơn hàng này" />
+            android:text="@string/pay_for_this_order" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/but_order_cart"
@@ -128,7 +128,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/but_order_cart"
-            android:text="THANH TOÁN"
+            android:text="@string/Payment"
             android:textSize="20dp"
             android:textStyle="bold" />
     </LinearLayout>

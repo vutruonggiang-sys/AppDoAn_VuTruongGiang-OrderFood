@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.appdoan_vutruonggiang.view.activity.DetailActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -80,23 +79,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,25));
     }
     public void backDetail(){
-        Intent intent=new Intent(MapsActivity.this, DetailActivity.class);
-        Bundle bundle1=new Bundle();
-        bundle1.putString("phoneNumber",sdt);
-        bundle1.putString("hoten",hoTen);
-        bundle1.putString("diachi",diaChi);
-        bundle1.putString("gmail",email);
-        bundle1.putString("pass",pass);
-
-        bundle1.putString("url",url);
-        bundle1.putString("food_name",name);
-        bundle1.putFloat("food_price",price);
-        bundle1.putFloat("food_rating",rating);
-        bundle1.putString("food_detail",detail);
-        bundle1.putString("food_idnhahang",idNhaHang);
-        bundle1.putString("food_id",id);
-        bundle1.putString("food_type",type);
-        intent.putExtras(bundle1);
-        startActivity(intent);
+//        Intent intent=new Intent(MapsActivity.this, DetailActivity.class);
+//        Bundle bundle1=new Bundle();
+//        bundle1.putString("phoneNumber",sdt);
+//        bundle1.putString("hoten",hoTen);
+//        bundle1.putString("diachi",diaChi);
+//        bundle1.putString("gmail",email);
+//        bundle1.putString("pass",pass);
+//
+//        bundle1.putString("url",url);
+//        bundle1.putString("food_name",name);
+//        bundle1.putFloat("food_price",price);
+//        bundle1.putFloat("food_rating",rating);
+//        bundle1.putString("food_detail",detail);
+//        bundle1.putString("food_idnhahang",idNhaHang);
+//        bundle1.putString("food_id",id);
+//        bundle1.putString("food_type",type);
+//        intent.putExtras(bundle1);
+//        startActivity(intent);
     }
 }

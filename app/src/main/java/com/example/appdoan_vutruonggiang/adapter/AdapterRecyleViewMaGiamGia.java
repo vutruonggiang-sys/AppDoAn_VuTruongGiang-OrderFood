@@ -38,7 +38,6 @@ public class AdapterRecyleViewMaGiamGia extends RecyclerView.Adapter<AdapterRecy
     public void onBindViewHolder(@NonNull AdapterRecyleViewMaGiamGia.ViewHoder holder, int position) {
         GiamGia giamGia=giamGiaList.get(position);
         holder.tv_ma.setText("Mã giảm giá là: "+giamGia.getId());
-        holder.tv_ten.setText("Tên mã giảm giá là: "+giamGia.getName());
         holder.tv_giaTri.setText("Giá Trị mã giảm giá là: "+giamGia.getGiamGia());
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference databaseReference=firebaseDatabase.getReference().child("luu_ma_van_chuyen").child(email);
@@ -46,18 +45,6 @@ public class AdapterRecyleViewMaGiamGia extends RecyclerView.Adapter<AdapterRecy
         databaseReference.child("haha").setValue(giamGia1);
         databaseReference.child("haha1").setValue(giamGia1);
         holder.tv_ma.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HashMap<String,Object> valueUpdate=new HashMap<>();
-                valueUpdate.put("giamGia",giamGia.getGiamGia());
-                valueUpdate.put("id",giamGia.getId());
-                valueUpdate.put("name",giamGia.getName());
-                HashMap<String,Object> keyUpdate=new HashMap<>();
-                keyUpdate.put("haha",valueUpdate);
-                databaseReference.updateChildren(keyUpdate);
-            }
-        });
-        holder.tv_ten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 HashMap<String,Object> valueUpdate=new HashMap<>();
@@ -92,11 +79,10 @@ public class AdapterRecyleViewMaGiamGia extends RecyclerView.Adapter<AdapterRecy
     }
 
     public class ViewHoder extends RecyclerView.ViewHolder {
-        TextView tv_ma,tv_ten,tv_giaTri;
+        TextView tv_ma,tv_giaTri;
         public ViewHoder(@NonNull View itemView) {
             super(itemView);
             tv_ma=itemView.findViewById(R.id.tvMa);
-            tv_ten=itemView.findViewById(R.id.tvTen);
             tv_giaTri=itemView.findViewById(R.id.tv_GiaTri);
         }
     }

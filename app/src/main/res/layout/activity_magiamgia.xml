@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
     <TextView
         android:textColor="@color/black"
-        android:text="Mã giảm giá của bạn :"
+        android:text="@string/your_discount"
         android:textStyle="bold"
         android:textSize="30dp"
         android:gravity="center"

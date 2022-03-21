@@ -11,7 +11,7 @@
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bạn đang chọn món Banh My Den"
+        android:text="@string/select_food"
         android:textSize="20sp"
         android:textColor="@color/black"
         android:gravity="center"/>
@@ -29,7 +29,7 @@
         android:textSize="20sp"
         android:gravity="center"
         android:textColor="@color/black"
-        android:text="Số lượng : X1"/>
+        android:text="@string/first_amount_food"/>
     <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
@@ -86,7 +86,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:alpha="0.4"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/but_order"
@@ -95,7 +95,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Add to Cart"
+            android:text="@string/add_to_cart"
             android:textColor="@color/white"
             android:background="@drawable/button_order"/>
     </LinearLayout>

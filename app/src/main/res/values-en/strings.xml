@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VTGone</string>
+    <string name="name_find_out">Food Search</string>
+    <string name="name_do_an_Nhanh">FastFood</string>
+    <string name="name_do_uong">Drinks</string>
+    <string name="name_Cơm">Rice</string>
+    <string name="name_All">All</string>
+    ------Login-----
+    <string name="name_Login">Log in</string>
+    <string name="name_register">Regis</string>
+    <string name="name_help">Hepl ?</string>
+    <string name="name_forget_pass">Forget password</string>
+    ----Search----
+    <string name="name_search">Search...</string>
+    ----account----
+    <string name="name_name">Full name:</string>
+    <string name="name_email">Email:</string>
+    <string name="name_address">Address:</string>
+    <string name="name_Email">Email:</string>
+    <string name="name_password">Password:</string>
+    <string name="name_confirm_pass">Confirm:</string>
+    ----Detail Item----
+    <string name="name_Register_title">Regis One Food</string>
+    ----logout----
+    <string name="name_logout_title">Do you want to log out?</string>
+    ---chat----
+    <string name="name_chat_administrator">We are happy to receive your feedback.</string>
+    ----help----
+    <string name="help_title">Hôm Nay Ăn Gì???</string>
+    <string name="help_content">App "Hôm Nay Ăn Gì???" would like to serve you the most convenient food, especially during this time of epidemic, first of all, you need to create an account to access
+    Access to our app, after entering you will follow the order in the app...
+    For more information, please contact: 0968942633</string>
+    <string name="help_gb">pleased to serve you</string>
+    ----nganhang----
+    <string name="bank_title">Linked Bank: Please choose the banking services below</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="noFindResult">No results were found</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="response">Response with us</string>
+    <string name="change_password">Change the password</string>
+    <string name="link_bank">Bank link</string>
+    <string name="logout">Log Out</string>
+    <string name="language">Language</string>
+    <string name="ask_change_pass">Do you want to change your password?</string>
+    <string name="old_pass">Old password:</string>
+    <string name="new_pass">New password:</string>
+    <string name="confirm_new_pass">Confirm password:</string>
+    <string name="confirm">Confirm</string>
+    <string name="ok">OK</string>
+    <string name="input_email">Enter email</string>
+    <string name="back_login">Back to login</string>
+    <string name="title_bill">Your invoice will be delivered with the information below</string>
+    <string name="NumberPhone">PhoneNumber:</string>
+    <string name="into_money">Money: </string>
+    <string name="ship">Ship:</string>
+    <string name="discount">Disccount:</string>
+    <string name="amount_money">Total money:</string>
+    <string name="your_email">Your Email</string>
+    <string name="your_pass"> YourPassword</string>
+    <string name="save_account">Save account</string>
+    <string name="forget_password">Forget password</string>
+    <string name="help">Help |</string>
+    <string name="your_discount">Your discount code:</string>
+    <string name="select_food">You are choosing food</string>
+    <string name="first_amount_food">Quantity : X1</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="your_name">Your Name</string>
+    <string name="confirm_info_order">Please confirm the recipient information</string>
+    <string name="city">City</string>
+    <string name="district">District</string>
+    <string name="input_message">message...</string>
+    <string name="SEND">SEND</string>
+    <string name="see_detail">See Detail</string>
+    <string name="comment">Comment</string>
+    <string name="comment...">Comment ...</string>
+    <string name="see_comment">See Comment</string>
+    <string name="cart">Cart</string>
+    <string name="delivered">Delivered</string>
+    <string name="chooce">Choose</string>
+    <string name="order">Order</string>
+    <string name="your_order">Your Order</string>
+    <string name="pay_for_this_order">Pay for this order</string>
+    <string name="Payment">Payment</string>
+    <string name="delete">delete</string>
+    <string name="edit">edit</string>
+    <string name="more">more</string>
+    <string name="discount_code_value">Discount Code Value:</string>
+    <string name="list_new">New List</string>
+    <string name="list_All">Featured List</string>
+    <string name="camera">Allow access to camera or photo gallery</string>
+</resources>

@@ -26,11 +26,13 @@ import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.Food_Order;
 import com.example.appdoan_vutruonggiang.modle.NhaHang;
 import com.example.appdoan_vutruonggiang.modle.ThongTinNguoiOrder;
-import com.example.appdoan_vutruonggiang.view.activity.CartActivity;
 import com.example.appdoan_vutruonggiang.presenter.ProcessMaGiamGia;
 import com.example.appdoan_vutruonggiang.sqlite.SqliteHelper;
+import com.example.appdoan_vutruonggiang.view.activity.HomePageActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,9 +48,10 @@ import java.util.Date;
 import java.util.List;
 
 public class FragmentCart extends Fragment {
+
+    private View view;
     RecyclerView recyclerView;
     List<Food_Order> food_orderList;
-    CartActivity cartActivity;
     FirebaseDatabase firebaseDatabase;
     SqliteHelper sqliteHelper;
     List<Food_Order> listTable;
@@ -67,6 +70,10 @@ public class FragmentCart extends Fragment {
     AppCompatButton butOrder;
     LinearLayout layoutAddressOrder;
     SharedPreferences sharedPreferences;
+    HomePageActivity homePageActivity;
+    FirebaseUser user;
+    String email="";
+    TextView tvCart,tvDaGiao;
 
     public static Fragment newInstance() {
         Bundle args = new Bundle();
@@ -79,34 +86,16 @@ public class FragmentCart extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_cart, container, false);
-        cartActivity = (CartActivity) getActivity();
+        view = inflater.inflate(R.layout.fragment_cart, container, false);
         process_maGiamGia = new ProcessMaGiamGia();
-
-        tilPhoneNumber = view.findViewById(R.id.tilPhoneNumber);
-        tilName = view.findViewById(R.id.tilName);
-        tilCity = view.findViewById(R.id.tilCity);
-        tilDistrict = view.findViewById(R.id.tilDistrict);
-        tilAddress = view.findViewById(R.id.tilAddress);
-        tietPhoneNumber = view.findViewById(R.id.tietPhoneNumber);
-        tietName = view.findViewById(R.id.tietName);
-        acCity = view.findViewById(R.id.acCity);
-        acDistrict = view.findViewById(R.id.acDistrict);
-        tietAddress = view.findViewById(R.id.tietAddress);
-        butOrder = view.findViewById(R.id.butOrderCart);
-        recyclerView = view.findViewById(R.id.dataGioHang);
-        tv_Chon = view.findViewById(R.id.tv_chonMaGiamGia);
-        tv_MaGiamGia = view.findViewById(R.id.tv_maGiamGia);
-        layoutAddressOrder = view.findViewById(R.id.layoutAddressOrder);
-        sqliteHelper = new SqliteHelper(cartActivity);
-        sharedPreferences = cartActivity.getSharedPreferences("cities", Context.MODE_PRIVATE);
-
+        init();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        String[] arrayEmail = user.getEmail().split("@");
+        email = email + arrayEmail[0];
         sqliteHelper.onDeleteAllGioHang();
-
-        tietName.setText(cartActivity.getHoTen());
         tietPhoneNumber.setText("");
         List<String> cities = Arrays.asList("Hà Nội", "Ninh Bình", "Hà Nam");
-        AdapterMenuCityDistrict adapterMenuCity = new AdapterMenuCityDistrict(cartActivity, R.layout.item_city_district, cities);
+        AdapterMenuCityDistrict adapterMenuCity = new AdapterMenuCityDistrict(homePageActivity, R.layout.item_city_district, cities);
         acCity.setAdapter(adapterMenuCity);
         List<String> districts1 = Arrays.asList("Bắc Từ Liêm", "Nam Từ Liêm", "Cầu Giấy");
         List<String> districts2 = Arrays.asList("Hoa Lư", "TP Ninh Bình");
@@ -118,16 +107,16 @@ public class FragmentCart extends Fragment {
                 editor.putString("city", acCity.getText().toString().trim());
                 editor.commit();
                 if (sharedPreferences.getString("city", "").equals("City")) {
-                    AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(cartActivity, R.layout.item_city_district, new ArrayList<>());
+                    AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(homePageActivity, R.layout.item_city_district, new ArrayList<>());
                     acDistrict.setAdapter(adapterMenuDistrict);
                 } else if (sharedPreferences.getString("city", "").equals(cities.get(0))) {
-                    AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(cartActivity, R.layout.item_city_district, districts1);
+                    AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(homePageActivity, R.layout.item_city_district, districts1);
                     acDistrict.setAdapter(adapterMenuDistrict);
                 } else if (sharedPreferences.getString("city", "").equals(cities.get(1))) {
-                    AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(cartActivity, R.layout.item_city_district, districts2);
+                    AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(homePageActivity, R.layout.item_city_district, districts2);
                     acDistrict.setAdapter(adapterMenuDistrict);
                 } else if (sharedPreferences.getString("city", "").equals(cities.get(2))) {
-                    AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(cartActivity, R.layout.item_city_district, districts3);
+                    AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(homePageActivity, R.layout.item_city_district, districts3);
                     acDistrict.setAdapter(adapterMenuDistrict);
                 }
             }
@@ -139,7 +128,7 @@ public class FragmentCart extends Fragment {
         RecyclerView.ItemDecoration decoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(decoration);
         firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference().child("food_giohang").child(cartActivity.getEmail());
+        DatabaseReference databaseReference = firebaseDatabase.getReference().child("food_giohang").child(email);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -149,7 +138,7 @@ public class FragmentCart extends Fragment {
                     Food_Order food_order = data.getValue(Food_Order.class);
                     food_orderList.add(food_order);
                 }
-                AdapterRecyleViewGiaoHangCart adapterRecyleViewGiaoHangCart = new AdapterRecyleViewGiaoHangCart(food_orderList, cartActivity);
+                AdapterRecyleViewGiaoHangCart adapterRecyleViewGiaoHangCart = new AdapterRecyleViewGiaoHangCart(food_orderList, homePageActivity);
                 recyclerView.setAdapter(adapterRecyleViewGiaoHangCart);
             }
 
@@ -172,7 +161,7 @@ public class FragmentCart extends Fragment {
                 int position = viewHolder.getAdapterPosition();
                 Food_Order food_order = food_orderList.get(position);
                 food_orderList.remove(position);
-                AdapterRecyleViewGiaoHangCart adapterRecyleViewGiaoHangCart1 = new AdapterRecyleViewGiaoHangCart(food_orderList, cartActivity);
+                AdapterRecyleViewGiaoHangCart adapterRecyleViewGiaoHangCart1 = new AdapterRecyleViewGiaoHangCart(food_orderList, homePageActivity);
                 recyclerView.setAdapter(adapterRecyleViewGiaoHangCart1);
                 databaseReference.child(food_order.getId()).removeValue();
             }
@@ -182,8 +171,8 @@ public class FragmentCart extends Fragment {
         tv_Chon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                process_maGiamGia.getMaGiamGia(cartActivity, cartActivity.getEmail());
-                DatabaseReference databaseReference1 = firebaseDatabase.getReference().child("luu_ma_van_chuyen").child(cartActivity.getEmail());
+                process_maGiamGia.getMaGiamGia(homePageActivity, email);
+                DatabaseReference databaseReference1 = firebaseDatabase.getReference().child("luu_ma_van_chuyen").child(email);
                 databaseReference1.child("haha").child("giamGia").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -206,12 +195,12 @@ public class FragmentCart extends Fragment {
                 listTable = sqliteHelper.getAllGioHang();
                 for (int i = 1; i < listTable.size(); i++) {
                     if (!listTable.get(i).getIdNhaHang().equals(listTable.get(0).getIdNhaHang())) {
-                        Toast.makeText(cartActivity, "Bạn cần chọn các món ăn từ một nhà hàng để đưa vào đơn hàng! Vui Lòng Quý Khách Chọn Lại", Toast.LENGTH_LONG).show();
+                        Toast.makeText(homePageActivity, "Bạn cần chọn các món ăn từ một nhà hàng để đưa vào đơn hàng! Vui Lòng Quý Khách Chọn Lại", Toast.LENGTH_LONG).show();
                         sqliteHelper.onDeleteAllGioHang();
                         return;
                     }
                 }
-                AdapterRecyleViewGiaoHangCart adapterRecyleViewGiaoHangCart = new AdapterRecyleViewGiaoHangCart(food_orderList, cartActivity);
+                AdapterRecyleViewGiaoHangCart adapterRecyleViewGiaoHangCart = new AdapterRecyleViewGiaoHangCart(food_orderList, homePageActivity);
                 recyclerView.setAdapter(adapterRecyleViewGiaoHangCart);
                 if (listTable.size() != 0) {
                     DatabaseReference databaseReference1 = firebaseDatabase.getReference().child("nhaHang");
@@ -235,37 +224,36 @@ public class FragmentCart extends Fragment {
                                                     || !tietAddress.getText().toString().trim().equals("") || !acCity.getText().toString().trim().equals("") ||
                                                     !acDistrict.getText().toString().trim().equals("")) {
                                                 if (!acCity.getText().toString().trim().equals("City") && !acDistrict.getText().toString().trim().equals("District")) {
-                                                    cartActivity.setTien_giam_gia(Long.parseLong(tv_MaGiamGia.getText().toString()));
                                                     DatabaseReference databaseReference2;
                                                     Calendar calendar1 = Calendar.getInstance();
                                                     DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                                                     String time = dateFormat.format(calendar1.getTime());
                                                     //luu thong tin mon an trong hoa don
-                                                    databaseReference2 = firebaseDatabase.getReference().child("da_giao").child(cartActivity.getEmail()).child(time);
+                                                    databaseReference2 = firebaseDatabase.getReference().child("da_giao").child(email).child(time);
                                                     for (int i = 0; i < listTable.size(); i++) {
                                                         databaseReference2.child(listTable.get(i).getId()).setValue(listTable.get(i));
                                                     }
                                                     String address = tietAddress.getText().toString().trim() + ", " + acDistrict.getText().toString().trim() + ", " + acCity.getText().toString().trim();
                                                     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                                                    DatabaseReference databaseReference = firebaseDatabase.getReference().child("thong_tin_nguoi_nhan_hang").child(cartActivity.getEmail());
+                                                    DatabaseReference databaseReference = firebaseDatabase.getReference().child("thong_tin_nguoi_nhan_hang").child(email);
                                                     ThongTinNguoiOrder thongTinNguoiOrder = new ThongTinNguoiOrder(time, Long.parseLong(tv_MaGiamGia.getText().toString()), tietName.getText().toString()
                                                             , tietPhoneNumber.getText().toString(), address);
                                                     databaseReference.child(time).setValue(thongTinNguoiOrder);
-                                                    DatabaseReference databaseReference3=firebaseDatabase.getReference().child("food_giohang").child(cartActivity.getEmail());
+                                                    DatabaseReference databaseReference3=firebaseDatabase.getReference().child("food_giohang").child(email);
                                                     for (int i = 0; i < listTable.size(); i++) {
                                                         databaseReference3.child(listTable.get(i).getId()).removeValue();
                                                         food_orderList.remove(listTable.get(i));
                                                     }
-                                                    AdapterRecyleViewGiaoHangCart adapterRecyleViewGiaoHangCart2 = new AdapterRecyleViewGiaoHangCart(food_orderList, cartActivity);
+                                                    AdapterRecyleViewGiaoHangCart adapterRecyleViewGiaoHangCart2 = new AdapterRecyleViewGiaoHangCart(food_orderList, homePageActivity);
                                                     recyclerView.setAdapter(adapterRecyleViewGiaoHangCart2);
                                                     sqliteHelper.onDeleteAllGioHang();
-                                                    Toast.makeText(cartActivity, "Hàng đã bắt giao", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(homePageActivity, "Hàng đã bắt giao", Toast.LENGTH_SHORT).show();
                                                 }
                                             }else{
-                                                Toast.makeText(cartActivity, "Bạn cần điền đủ thông tin người nhận", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(homePageActivity, "Bạn cần điền đủ thông tin người nhận", Toast.LENGTH_SHORT).show();
                                             }
                                         } else {
-                                            openAndClose(mo, dong, hienTai, cartActivity);
+                                            openAndClose(mo, dong, hienTai, homePageActivity);
                                             sqliteHelper.onDeleteAllGioHang();
                                         }
                                     } catch (Exception e) {
@@ -281,11 +269,18 @@ public class FragmentCart extends Fragment {
                         }
                     });
                 } else {
-                    chuaChon(cartActivity);
+                    chuaChon(homePageActivity);
                 }
 
             }
         });
+        tvDaGiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePageActivity.getFragment(FragmentDaGiao.newInstance());
+            }
+        });
+
         return view;
     }
 
@@ -299,5 +294,28 @@ public class FragmentCart extends Fragment {
     public static void chuaChon(Context context) {
         Toast.makeText(context, "Bạn chưa chọn, Vui lòng bạn chọn để chúng tôi giao hàng nhanh nhất!!!", Toast.LENGTH_LONG).show();
 
+    }
+
+    public void init(){
+        homePageActivity= (HomePageActivity) getActivity();
+        tilPhoneNumber = view.findViewById(R.id.tilPhoneNumber);
+        tilName = view.findViewById(R.id.tilName);
+        tilCity = view.findViewById(R.id.tilCity);
+        tilDistrict = view.findViewById(R.id.tilDistrict);
+        tilAddress = view.findViewById(R.id.tilAddress);
+        tietPhoneNumber = view.findViewById(R.id.tietPhoneNumber);
+        tietName = view.findViewById(R.id.tietName);
+        acCity = view.findViewById(R.id.acCity);
+        acDistrict = view.findViewById(R.id.acDistrict);
+        tietAddress = view.findViewById(R.id.tietAddress);
+        butOrder = view.findViewById(R.id.butOrderCart);
+        recyclerView = view.findViewById(R.id.dataGioHang);
+        tv_Chon = view.findViewById(R.id.tv_chonMaGiamGia);
+        tv_MaGiamGia = view.findViewById(R.id.tv_maGiamGia);
+        layoutAddressOrder = view.findViewById(R.id.layoutAddressOrder);
+        sqliteHelper = new SqliteHelper(homePageActivity);
+        sharedPreferences = homePageActivity.getSharedPreferences("cities", Context.MODE_PRIVATE);
+        tvCart=view.findViewById(R.id.tvCart);
+        tvDaGiao=view.findViewById(R.id.tvDaGiao);
     }
 }

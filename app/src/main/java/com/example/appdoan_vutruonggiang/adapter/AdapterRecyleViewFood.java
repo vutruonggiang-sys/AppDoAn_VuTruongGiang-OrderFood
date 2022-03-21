@@ -36,7 +36,7 @@ public class AdapterRecyleViewFood extends RecyclerView.Adapter<AdapterRecyleVie
     @Override
     public AdapterRecyleViewFood.ViewHoder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater=LayoutInflater.from(parent.getContext());
-        View view=layoutInflater.inflate(R.layout.activity_item_food,parent,false);
+        View view=layoutInflater.inflate(R.layout.item_food,parent,false);
         ViewHoder viewHoder=new ViewHoder(view);
         return viewHoder;
     }
@@ -47,7 +47,7 @@ public class AdapterRecyleViewFood extends RecyclerView.Adapter<AdapterRecyleVie
         Glide.with(context).load(food.getUrl()).into(holder.image);
         holder.tvName.setText(food.getName());
         holder.tvPrice.setText(food.getPrice()+" VND");
-        holder.tvDetail.setText(food.getDetail().substring(0,30)+"...");
+        holder.tvDetail.setText(food.getDetail().substring(0,20)+"...");
         holder.tvReview.setText(food.getReview()+" ");
         holder.order_image.setOnClickListener(new View.OnClickListener() {
             @Override

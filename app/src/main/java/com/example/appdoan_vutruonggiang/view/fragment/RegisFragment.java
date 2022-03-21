@@ -1,23 +1,23 @@
-package com.example.appdoan_vutruonggiang.view.activity;
+package com.example.appdoan_vutruonggiang.view.fragment;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
 
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.GiamGia;
 import com.example.appdoan_vutruonggiang.modle.User;
 import com.example.appdoan_vutruonggiang.presenter.ProcessingDangKy;
+import com.example.appdoan_vutruonggiang.view.activity.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -30,33 +30,40 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class RegisActivity extends Activity {
+public class RegisFragment extends Fragment {
+
+    private View view;
     TextInputLayout tilYourEmail, tilYourName, tilPass, tilConfirmPass;
     TextInputEditText tietYourEmail, tietYourName, tietPass, tietConfirmPass;
     TextView tvBackLogin;
     ImageView imgBackArrow;
     AppCompatButton butCancel, butRegis;
     ProcessingDangKy processingDangKy;
+    LoginActivity activity;
+    public static Fragment newInstance() {
 
+        Bundle args = new Bundle();
+
+        RegisFragment fragment = new RegisFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_regis);
-        anhXa();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view=inflater.inflate(R.layout.regis_fragment,container,false);
+        init();
         tvBackLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-                startActivity(intent);
+                activity.getFragment(LoginFragment.newInstance());
             }
         });
         imgBackArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-                startActivity(intent);
-                finish();
+                activity.getFragment(LoginFragment.newInstance());
             }
         });
         butRegis.setOnClickListener(new View.OnClickListener() {
@@ -64,25 +71,25 @@ public class RegisActivity extends Activity {
             public void onClick(View v) {
                 if (tietConfirmPass.getText().toString().trim().equals("") || tietPass.getText().toString().trim().equals("") ||
                         tietYourName.getText().toString().trim().equals("") || tietYourEmail.getText().toString().trim().equals("")) {
-                    Toast.makeText(RegisActivity.this, "Không được để trống", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Không được để trống", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (!tietConfirmPass.getText().toString().equals(tietPass.getText().toString())) {
-                    Toast.makeText(RegisActivity.this, "Mât khẩu không đúng", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Mât khẩu không đúng", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = firebaseDatabase.getReference().child("user");
                 FirebaseAuth auth = FirebaseAuth.getInstance();
                 auth.createUserWithEmailAndPassword(tietYourEmail.getText().toString().trim(), tietPass.getText().toString().trim())
-                        .addOnCompleteListener(RegisActivity.this, new OnCompleteListener<AuthResult>() {
+                        .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()) {
                                     String[] email = tietYourEmail.getText().toString().split("@");
                                     User user = new User(tietYourName.getText().toString(), tietPass.getText().toString(), tietYourEmail.getText().toString());
                                     databaseReference.child(email[0]).setValue(user);
-                                    Toast.makeText(RegisActivity.this, "Bạn đã đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(activity, "Bạn đã đăng ký thành công", Toast.LENGTH_SHORT).show();
                                     DatabaseReference databaseReference1 = firebaseDatabase.getReference().child("bank");
                                     databaseReference1.child(email[0]).setValue("Bạn chưa chọn dịch vụ");
                                     DatabaseReference databaseReference2 = firebaseDatabase.getReference().child("ma_giam_gia");
@@ -103,27 +110,28 @@ public class RegisActivity extends Activity {
                                         }
                                     });
                                 }else{
-                                    Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(activity,"Error",Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
             }
         });
+        return view;
     }
-
-    public void anhXa() {
-        tilYourEmail = findViewById(R.id.tilYourNumber);
-        tietYourEmail = findViewById(R.id.tietYourNumber);
-        tietYourName = findViewById(R.id.tietYourName);
-        tilYourName = findViewById(R.id.tilYourName);
-        tilPass = findViewById(R.id.tilPassword);
-        tietPass = findViewById(R.id.tietPassword);
-        tilConfirmPass = findViewById(R.id.tilConfirmPassword);
-        tietConfirmPass = findViewById(R.id.tietConfirmPassword);
-        butCancel = findViewById(R.id.acbCancel);
-        butRegis = findViewById(R.id.acbRegis);
-        tvBackLogin = findViewById(R.id.tv_BackLogin);
-        imgBackArrow = findViewById(R.id.imgBackArrow);
+    public void init() {
+        activity= (LoginActivity) getActivity();
+        tilYourEmail = view.findViewById(R.id.tilYourNumber);
+        tietYourEmail = view.findViewById(R.id.tietYourNumber);
+        tietYourName = view.findViewById(R.id.tietYourName);
+        tilYourName = view.findViewById(R.id.tilYourName);
+        tilPass = view.findViewById(R.id.tilPassword);
+        tietPass = view.findViewById(R.id.tietPassword);
+        tilConfirmPass = view.findViewById(R.id.tilConfirmPassword);
+        tietConfirmPass = view.findViewById(R.id.tietConfirmPassword);
+        butCancel = view.findViewById(R.id.acbCancel);
+        butRegis = view.findViewById(R.id.acbRegis);
+        tvBackLogin = view.findViewById(R.id.tv_BackLogin);
+        imgBackArrow = view.findViewById(R.id.imgBackArrow);
         processingDangKy = new ProcessingDangKy();
     }
 }

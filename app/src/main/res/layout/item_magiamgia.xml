@@ -21,23 +21,16 @@
         android:id="@+id/tvMa"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:text="Mã giảm giá là: vtg"
+        android:text="@string/discount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <TextView
-        android:layout_marginLeft="10dp"
-        android:id="@+id/tvTen"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:text="Tên mã giảm giá là: vtg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+
     <TextView
         android:layout_marginLeft="10dp"
         android:id="@+id/tv_GiaTri"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:text="Giá Trị mã giảm giá là: vtg"
+        android:text="Giá Trị mã giảm giá: vtg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     </LinearLayout>

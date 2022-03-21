@@ -34,7 +34,7 @@ public class AdapterRecyleViewFood1 extends RecyclerView.Adapter<AdapterRecyleVi
     @Override
     public AdapterRecyleViewFood1.ViewHoder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater=LayoutInflater.from(parent.getContext());
-        View view=layoutInflater.inflate(R.layout.activity_item_food2,parent,false);
+        View view=layoutInflater.inflate(R.layout.item_food2,parent,false);
         ViewHoder viewHoder=new ViewHoder(view);
         return viewHoder;
     }
@@ -45,19 +45,12 @@ public class AdapterRecyleViewFood1 extends RecyclerView.Adapter<AdapterRecyleVi
         Glide.with(context).load(food.getUrl()).into(holder.image);
         holder.tvName.setText(food.getName());
         holder.tvPrice.setText(food.getPrice()+" VND");
-        holder.tvDetail.setText(food.getDetail().substring(0,15)+"...");
         holder.tvReview.setText(food.getReview()+" ");
         holder.order_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 processFood=new ProcessFood();
                 processFood.getChoose(context,food,sdt);
-            }
-        });
-        holder.tvMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iItemFood.onClickItemFood(food);
             }
         });
         holder.image.setOnClickListener(new View.OnClickListener() {
@@ -78,16 +71,14 @@ public class AdapterRecyleViewFood1 extends RecyclerView.Adapter<AdapterRecyleVi
 
     public class ViewHoder extends RecyclerView.ViewHolder {
         ImageView image,order_image;
-        TextView tvName,tvPrice,tvDetail,tvReview,tvMore;
+        TextView tvName,tvPrice,tvReview;
         public ViewHoder(@NonNull View itemView) {
             super(itemView);
             image=itemView.findViewById(R.id.imAnh);
             tvName=itemView.findViewById(R.id.tvName);
             tvPrice=itemView.findViewById(R.id.tvPrice);
-            tvDetail=itemView.findViewById(R.id.tvDetail);
             tvReview=itemView.findViewById(R.id.tvReview);
             order_image=itemView.findViewById(R.id.but_add_order);
-            tvMore=itemView.findViewById(R.id.tvMore);
         }
     }
 }
