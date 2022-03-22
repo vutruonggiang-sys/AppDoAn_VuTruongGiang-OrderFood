@@ -24,6 +24,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -87,7 +89,19 @@ public class RegisFragment extends Fragment {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()) {
                                     String[] email = tietYourEmail.getText().toString().split("@");
-                                    User user = new User(tietYourName.getText().toString(), tietPass.getText().toString(), tietYourEmail.getText().toString());
+                                    UserProfileChangeRequest userProfileChangeRequest=new UserProfileChangeRequest.Builder()
+                                            .setDisplayName(tietYourName.getText().toString().trim())
+                                            .build();
+                                    FirebaseUser firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+                                    firebaseUser.updateProfile(userProfileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+
+                                            }
+                                        }
+                                    });
+                                    User user = new User(tietYourName.getText().toString(), tietPass.getText().toString(), tietYourEmail.getText().toString()," ");
                                     databaseReference.child(email[0]).setValue(user);
                                     Toast.makeText(activity, "Bạn đã đăng ký thành công", Toast.LENGTH_SHORT).show();
                                     DatabaseReference databaseReference1 = firebaseDatabase.getReference().child("bank");

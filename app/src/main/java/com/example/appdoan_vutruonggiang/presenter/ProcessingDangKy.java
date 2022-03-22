@@ -49,7 +49,7 @@ public class ProcessingDangKy {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         String[] email = tietYourEmail.getText().toString().split("@");
-                        User user = new User(tietYourName.getText().toString(), tietPass.getText().toString(), tietYourEmail.getText().toString());
+                        User user = new User(tietYourName.getText().toString(), tietPass.getText().toString(), tietYourEmail.getText().toString()," ");
                         databaseReference.child(email[0]).setValue(user);
                         Toast.makeText(context, "Bạn đã đăng ký thành công", Toast.LENGTH_SHORT).show();
                         DatabaseReference databaseReference1 = firebaseDatabase.getReference().child("bank");

@@ -1,14 +1,22 @@
 package com.example.appdoan_vutruonggiang.modle;
 
 public class User {
-    String name,pass,email;
+    String name,pass,email,url;
 
     public User() {}
 
-    public User(String name, String pass, String email) {
+    public User(String name, String pass, String email,String url) {
         this.name = name;
         this.pass = pass;
         this.email = email;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getName() {

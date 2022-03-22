@@ -90,4 +90,7 @@
     <string name="list_new">Danh Sách Mới</string>
     <string name="list_All">Danh Sách Nổi Bật</string>
     <string name="camera">Cho phép truy cập vào máy ảnh hoặc thư viện ảnh</string>
+    <string name="successfull">Thành công</string>
+    <string name="updateProfile">Cập nhập thành công</string>
+    <string name="error">Lỗi</string>
 </resources>

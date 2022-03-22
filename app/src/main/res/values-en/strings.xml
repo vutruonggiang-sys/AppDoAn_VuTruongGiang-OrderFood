@@ -91,4 +91,7 @@
     <string name="list_new">New List</string>
     <string name="list_All">Featured List</string>
     <string name="camera">Allow access to camera or photo gallery</string>
+    <string name="successfull">Successful</string>
+    <string name="updateProfile">Update Successful</string>
+    <string name="error">Error</string>
 </resources>

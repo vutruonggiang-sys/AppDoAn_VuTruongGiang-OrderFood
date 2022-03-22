@@ -231,11 +231,10 @@ public class DetailFragment extends Fragment {
         imAnhDetailItem = view.findViewById(R.id.imAnhDetailItem);
         imAnhNhaHang = view.findViewById(R.id.imAnhNhaHang);
         ReviewItem = view.findViewById(R.id.ReviewItem);
-        ratingNhaHang = view.findViewById(R.id.ratingNhaHang);
         dataBinhLuan = view.findViewById(R.id.dataBinhLuan);
         input_comment = view.findViewById(R.id.input_comment);
         webView = view.findViewById(R.id.Webview);
-        but_map = view.findViewById(R.id.but_map);
+        but_map = view.findViewById(R.id.butMap);
         processFood = new ProcessFood();
     }
 }

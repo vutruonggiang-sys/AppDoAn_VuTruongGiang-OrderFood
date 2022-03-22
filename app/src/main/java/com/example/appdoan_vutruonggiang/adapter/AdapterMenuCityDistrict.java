@@ -18,7 +18,6 @@ import java.util.List;
 public class AdapterMenuCityDistrict extends ArrayAdapter<String> {
 
     List<String> stringList;
-    IAdapterListener iAdapterListener;
     int itemLayout;
 
     public AdapterMenuCityDistrict(@NonNull Context context, int resource, @NonNull List<String> objects) {
@@ -45,11 +44,8 @@ public class AdapterMenuCityDistrict extends ArrayAdapter<String> {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(itemLayout, parent, false);
         }
-        TextView strName = (TextView) view.findViewById(R.id.tvItemCityDistrict);
+        TextView strName = view.findViewById(R.id.tvItemCityDistrict);
         strName.setText(getItem(position));
-        if (iAdapterListener != null) {
-            view.setOnClickListener(v -> iAdapterListener.onClickListerAdapter(position,v));
-        }
         return view;
     }
 }

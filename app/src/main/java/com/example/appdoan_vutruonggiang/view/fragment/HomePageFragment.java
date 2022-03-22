@@ -40,7 +40,7 @@ public class HomePageFragment extends Fragment {
     ViewFlipper vf_Khuyen_mai;
     LinearLayout DoAnNhanh, DoUong, Com, All;
     RecyclerView dataRecyleView1, dataRecyleView;
-    ImageView home, search, giohang, account;
+    ImageView home;
     List<Food> foodList = new ArrayList<>();
     AdapterRecyleViewFood adapterRecyleViewFood;
     AdapterRecyleViewFood1 adapterRecyleViewFood1;
@@ -216,9 +216,6 @@ public class HomePageFragment extends Fragment {
         dataRecyleView1 = view.findViewById(R.id.dataRecyleView1);
         dataRecyleView = view.findViewById(R.id.dataRecyleView);
         home = view.findViewById(R.id.home);
-        search = view.findViewById(R.id.search);
-        giohang = view.findViewById(R.id.giohang);
-        account = view.findViewById(R.id.account);
         process_food = new ProcessFood();
     }
 }

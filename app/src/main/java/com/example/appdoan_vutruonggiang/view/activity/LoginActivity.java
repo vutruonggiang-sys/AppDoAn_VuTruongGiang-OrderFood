@@ -4,12 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import com.example.appdoan_vutruonggiang.R;
+import com.example.appdoan_vutruonggiang.presenter.NetworkChangeListener;
 import com.example.appdoan_vutruonggiang.view.fragment.LoginFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,19 +25,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Locale;
 
 public class LoginActivity extends AppCompatActivity {
-    public SharedPreferences sharedPreferences;
-    public SharedPreferences.Editor editor;
     FirebaseUser user;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     String email="";
     String language="";
+    NetworkChangeListener networkChangeListener=new NetworkChangeListener();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        sharedPreferences=getSharedPreferences("language",MODE_PRIVATE);
-        editor=sharedPreferences.edit();
         user = FirebaseAuth.getInstance().getCurrentUser();
         String[] arrayEmail = user.getEmail().split("@");
         email = email + arrayEmail[0];
@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     language = language + snapshot.getValue();
                     if(language.length()==0){
-                        changeLanguage(sharedPreferences.getString("lang","en"));
+                        changeLanguage("en");
                     }else{
                         changeLanguage(language);
                     }
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }catch (Exception exception){
-            changeLanguage(sharedPreferences.getString("lang","en"));
+            changeLanguage("en");
         }
         getFragment(LoginFragment.newInstance());
     }
@@ -73,5 +73,18 @@ public class LoginActivity extends AppCompatActivity {
         configuration.setLocale(locale);
         createConfigurationContext(configuration);
         resources.updateConfiguration(configuration,resources.getDisplayMetrics());
+    }
+
+    @Override
+    protected void onStart() {
+        IntentFilter intentFilter=new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener,intentFilter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
     }
 }

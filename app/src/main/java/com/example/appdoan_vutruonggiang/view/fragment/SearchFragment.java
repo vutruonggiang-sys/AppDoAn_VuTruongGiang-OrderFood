@@ -36,7 +36,7 @@ public class SearchFragment extends Fragment {
     private View view;
     AdapterRecyleViewSearch adpterRecyleViewSearch;
     RecyclerView dataSearch;
-    ImageView home, search, giohang, account;
+    ImageView home;
     List<Food> foodList;
     FirebaseUser user;
     HomePageActivity homePageActivity;
@@ -105,14 +105,19 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                adpterRecyleViewSearch = new AdapterRecyleViewSearch(foodList, homePageActivity, new IItemFood() {
-                    @Override
-                    public void onClickItemFood(Food food) {
-                        goToDetail(food);
-                    }
-                }, tvNoFindResult, imgNoFindResult);
-                dataSearch.setAdapter(adpterRecyleViewSearch);
-                adpterRecyleViewSearch.getFilter().filter(edSearch.getText().toString());
+                if(edSearch.getText().toString().trim().equals("")){
+                    tvNoFindResult.setVisibility(View.GONE);
+                    imgNoFindResult.setVisibility(View.GONE);
+                }else {
+                    adpterRecyleViewSearch = new AdapterRecyleViewSearch(foodList, homePageActivity, new IItemFood() {
+                        @Override
+                        public void onClickItemFood(Food food) {
+                            goToDetail(food);
+                        }
+                    }, tvNoFindResult, imgNoFindResult);
+                    dataSearch.setAdapter(adpterRecyleViewSearch);
+                    adpterRecyleViewSearch.getFilter().filter(edSearch.getText().toString());
+                }
             }
         });
         return view;
@@ -138,9 +143,6 @@ public class SearchFragment extends Fragment {
         homePageActivity = (HomePageActivity) getActivity();
         dataSearch = view.findViewById(R.id.dataSearch);
         home = view.findViewById(R.id.home);
-        search = view.findViewById(R.id.search);
-        giohang = view.findViewById(R.id.giohang);
-        account = view.findViewById(R.id.account);
         edSearch = view.findViewById(R.id.edSearch);
         tvNoFindResult = view.findViewById(R.id.tvNoFindResult);
         imgNoFindResult = view.findViewById(R.id.imgNoFindResult);

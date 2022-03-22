@@ -34,13 +34,21 @@ import com.example.appdoan_vutruonggiang.presenter.ProcessBank;
 import com.example.appdoan_vutruonggiang.presenter.ProcessingDangXuat;
 import com.example.appdoan_vutruonggiang.view.activity.LoginActivity;
 import com.example.appdoan_vutruonggiang.view.activity.HomePageActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.Locale;
 
@@ -51,24 +59,22 @@ public class AccountFragment extends Fragment {
     private View view;
     TextView tien, passAccount;
     CircleImageView imageUser;
-    ImageView eye_open, home, search, giohang, account;
+    ImageView eye_open, home;
     EditText nameAccount, emailAccount;
     AppCompatButton but_save_account, but_cancel_account;
     LinearLayout tv_phanHoi, tv_change_pass, tv_chonThe, tv_DangXuat, tvLanguage;
-    String hoTen = "";
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference;
     ProcessBank process_bank;
     private Uri imageUri;
     private final int REQUEST_CODE_GALLERY = 123;
     private final int REQUEST_CODE_CAMERA = 125;
-    DatabaseReference databaseReferenceAvt;
     FirebaseUser user;
     String email = "";
     HomePageActivity homePageActivity;
     private static final String ENGLISH_CODE = "en";
     private static final String VN_CODE = "vi";
     AlertDialog alertDialog;
+    DatabaseReference databaseReference;
 
     public static Fragment newInstance() {
 
@@ -84,32 +90,42 @@ public class AccountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.account_fragment, container, false);
         anhXa();
+        databaseReference=firebaseDatabase.getReference().child("user");
         user = FirebaseAuth.getInstance().getCurrentUser();
         String[] arrayEmail = user.getEmail().split("@");
         email = email + arrayEmail[0];
-        databaseReferenceAvt = firebaseDatabase.getReference().child("avatar").child(email);
-        databaseReference = firebaseDatabase.getReference().child("user");
 
-        nameAccount.setText(hoTen);
-        emailAccount.setText("email");
+        if(user.getDisplayName()!=null){
+            nameAccount.setText(user.getDisplayName());
+        }
+        databaseReference.child(email).child("url").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(!snapshot.getValue().toString().trim().equals("")){
+                    imageUser.setImageURI(user.getPhotoUrl());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        emailAccount.setText(user.getEmail());
         emailAccount.setEnabled(false);
         passAccount.setText("*******");
+        but_save_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateProfile(imageUri);
+            }
+        });
         //loadAvt();
         imageUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openGallery();
-            }
-        });
-        but_cancel_account.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
-        but_save_account.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(homePageActivity, "Bạn đã lưu thành công", Toast.LENGTH_SHORT).show();
             }
         });
         tv_change_pass.setOnClickListener(new View.OnClickListener() {
@@ -192,9 +208,10 @@ public class AccountFragment extends Fragment {
             Bundle bundle = data.getExtras();
             Bitmap bitmap = (Bitmap) bundle.get("data");
             imageUser.setImageBitmap(bitmap);
+            imageUri= Uri.parse(imageUser.getResources().toString());
         }
         if (requestCode == REQUEST_CODE_CAMERA && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri imageUri = data.getData();
+            imageUri = data.getData();
             imageUser.setImageURI(imageUri);
         }
     }
@@ -277,14 +294,46 @@ public class AccountFragment extends Fragment {
         startActivity(intent);
     }
 
+    public void updateProfile(Uri uri){
+        UserProfileChangeRequest userProfileChangeRequest=new UserProfileChangeRequest.Builder()
+                .setDisplayName(nameAccount.getText().toString().trim())
+                .setPhotoUri(uri)
+                .build();
+        user.updateProfile(userProfileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if ((task.isSuccessful())){
+                    databaseReference.child(email).child("url").setValue(user.getPhotoUrl().toString());
+                    Toast.makeText(homePageActivity,getString(R.string.updateProfile),Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(homePageActivity,getString(R.string.error),Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public void updateAvt() {
+        FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
+        StorageReference storageReference=firebaseStorage.getReference();
+        StorageReference riversRef = storageReference.child("imagesAvt/" + email + ".jpg");
+        riversRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Uri linkDownloadUrl=taskSnapshot.getUploadSessionUri();
+                databaseReference.child(email).child("url").setValue(linkDownloadUrl);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+            }
+        });
+    }
+
     public void anhXa() {
         homePageActivity = (HomePageActivity) getActivity();
         tien = view.findViewById(R.id.tien);
         eye_open = view.findViewById(R.id.eye_open);
         home = view.findViewById(R.id.home);
-        search = view.findViewById(R.id.search);
-        giohang = view.findViewById(R.id.giohang);
-        account = view.findViewById(R.id.account);
         nameAccount = view.findViewById(R.id.nameAccount);
         emailAccount = view.findViewById(R.id.emailAccount);
         passAccount = view.findViewById(R.id.passAccount);

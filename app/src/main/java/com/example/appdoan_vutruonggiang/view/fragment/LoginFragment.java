@@ -95,10 +95,15 @@ public class LoginFragment extends Fragment implements ILogin {
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(activity, "Successful Login", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(activity, HomePageActivity.class);
-                                startActivity(intent);
-                                activity.finish();
+                                if(task.isSuccessful()) {
+                                    Toast.makeText(activity, "Successful Login", Toast.LENGTH_LONG).show();
+                                    String[] arrayEmail = email.split("@");
+                                    databaseReference = firebaseDatabase.getReference().child("user");
+                                    databaseReference.child(arrayEmail[0]).child("pass").setValue(pass);
+                                    Intent intent = new Intent(activity, HomePageActivity.class);
+                                    startActivity(intent);
+                                    activity.finish();
+                                }
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
