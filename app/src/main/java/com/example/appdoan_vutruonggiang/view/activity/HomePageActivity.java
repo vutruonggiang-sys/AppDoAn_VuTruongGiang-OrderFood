@@ -52,6 +52,8 @@ public class HomePageActivity extends AppCompatActivity{
                 }
             }
         });
+        CoordinatorLayout.LayoutParams layoutParams= (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
+        layoutParams.setBehavior(new BottomNavigationBehavior());
     }
 
     public void getFragment(Fragment fragment){

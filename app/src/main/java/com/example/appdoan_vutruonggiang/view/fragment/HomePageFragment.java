@@ -2,6 +2,7 @@ package com.example.appdoan_vutruonggiang.view.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewFood;
 import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewFood1;
+import com.example.appdoan_vutruonggiang.adapter.AdapterRetaurant;
 import com.example.appdoan_vutruonggiang.inteface.IItemFood;
+import com.example.appdoan_vutruonggiang.modle.NhaHang;
 import com.example.appdoan_vutruonggiang.presenter.Food;
 import com.example.appdoan_vutruonggiang.presenter.ProcessFood;
 import com.example.appdoan_vutruonggiang.view.activity.HomePageActivity;
@@ -39,7 +42,7 @@ public class HomePageFragment extends Fragment {
     private View view;
     ViewFlipper vf_Khuyen_mai;
     LinearLayout DoAnNhanh, DoUong, Com, All;
-    RecyclerView dataRecyleView1, dataRecyleView;
+    RecyclerView dataRecyleView1, dataRecyleView, dataRestaurant;
     ImageView home;
     List<Food> foodList = new ArrayList<>();
     AdapterRecyleViewFood adapterRecyleViewFood;
@@ -50,6 +53,7 @@ public class HomePageFragment extends Fragment {
     FirebaseUser user;
     String email = "";
     HomePageActivity homePageActivity;
+    List<NhaHang> nhaHangList;
     public static Fragment newInstance() {
 
         Bundle args = new Bundle();
@@ -75,8 +79,8 @@ public class HomePageFragment extends Fragment {
         dataRecyleView1.setLayoutManager(layoutManager1);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference().child("food");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference = firebaseDatabase.getReference();
+        databaseReference.child("food").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Iterable<DataSnapshot> dataSnapshotIterable = snapshot.getChildren();
@@ -187,7 +191,35 @@ public class HomePageFragment extends Fragment {
                 dataRecyleView1.setAdapter(adapterRecyleViewFood1);
             }
         });
+        Handler handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getRestaurant();
+            }
+        },2000);
         return view;
+    }
+
+    public void getRestaurant(){
+        nhaHangList=new ArrayList<>();
+        databaseReference.child("nhaHang").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Iterable<DataSnapshot> dataSnapshotIterable=snapshot.getChildren();
+                for(DataSnapshot data:dataSnapshotIterable){
+                    NhaHang nhaHang=data.getValue(NhaHang.class);
+                    nhaHangList.add(nhaHang);
+                }
+                AdapterRetaurant adapterRetaurant=new AdapterRetaurant(nhaHangList,homePageActivity);
+                dataRestaurant.setAdapter(adapterRetaurant);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void goToDetail(Food food){
@@ -215,6 +247,7 @@ public class HomePageFragment extends Fragment {
         All = view.findViewById(R.id.All);
         dataRecyleView1 = view.findViewById(R.id.dataRecyleView1);
         dataRecyleView = view.findViewById(R.id.dataRecyleView);
+        dataRestaurant=view.findViewById(R.id.dataRestau);
         home = view.findViewById(R.id.home);
         process_food = new ProcessFood();
     }

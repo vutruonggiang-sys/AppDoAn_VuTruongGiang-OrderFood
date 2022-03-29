@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -10,7 +10,8 @@
             android:layout_alignParentTop="true"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#EFD706">
+            android:background="#EFD706"
+            app:layout_constraintTop_toTopOf="parent">
             <ImageView
                 android:id="@+id/back_chat"
                 android:src="@drawable/arrow_back"
@@ -30,30 +31,43 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dataChat"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/relaTitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_above="@+id/relaEditChat"
-        android:background="#E6EF91" />
+        android:layout_below="@+id/relaTitle"
+        android:background="#E6EF91"
+        app:layout_constraintTop_toBottomOf="@+id/relaTitle"
+        app:layout_constraintBottom_toTopOf="@+id/relaEditChat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
         <RelativeLayout
             android:id="@+id/relaEditChat"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="#EFD913"
-            android:layout_alignParentBottom="true">
+            app:layout_constraintBottom_toTopOf="@+id/rcvDataImage">
+
+            <ImageView
+                android:id="@+id/imgSelectImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/image" />
 
             <EditText
                 android:id="@+id/chat_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="15dp"
                 android:layout_toLeftOf="@+id/but_send"
+                android:layout_toRightOf="@+id/imgSelectImage"
                 android:background="@drawable/vien_chat"
-                android:hint="@string/input_message"
-                android:paddingLeft="20dp" />
+                android:hint="@string/input_message" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/but_send"
@@ -67,5 +81,10 @@
                 android:background="@drawable/but_send"
                 android:text="@string/SEND" />
         </RelativeLayout>
-
-</RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvDataImage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

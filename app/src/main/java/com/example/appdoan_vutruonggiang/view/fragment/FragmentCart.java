@@ -3,6 +3,8 @@ package com.example.appdoan_vutruonggiang.view.fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +71,6 @@ public class FragmentCart extends Fragment {
     TextInputEditText tietAddress;
     AppCompatButton butOrder;
     LinearLayout layoutAddressOrder;
-    SharedPreferences sharedPreferences;
     HomePageActivity homePageActivity;
     FirebaseUser user;
     String email="";
@@ -100,22 +101,47 @@ public class FragmentCart extends Fragment {
         List<String> districts1 = Arrays.asList("Bắc Từ Liêm", "Nam Từ Liêm", "Cầu Giấy");
         List<String> districts2 = Arrays.asList("Hoa Lư", "TP Ninh Bình");
         List<String> districts3 = Arrays.asList("TP Phủ Lý", "Duy Tiên");
-        acDistrict.setOnClickListener(new View.OnClickListener() {
+        acDistrict.setEnabled(false);
+
+        acCity.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("city", acCity.getText().toString().trim());
-                editor.commit();
-                if (sharedPreferences.getString("city", "").equals("City")) {
-                    AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(homePageActivity, R.layout.item_city_district, new ArrayList<>());
-                    acDistrict.setAdapter(adapterMenuDistrict);
-                } else if (sharedPreferences.getString("city", "").equals(cities.get(0))) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (acCity.getText().toString().trim().equals("City")||acCity.getText().toString().trim().equals("")) {
+                    acDistrict.setEnabled(false);
+                } else if (acCity.getText().toString().equals(cities.get(0))) {
+                    acDistrict.setEnabled(true);
                     AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(homePageActivity, R.layout.item_city_district, districts1);
                     acDistrict.setAdapter(adapterMenuDistrict);
-                } else if (sharedPreferences.getString("city", "").equals(cities.get(1))) {
+                } else if (acCity.getText().toString().equals(cities.get(1))) {
+                    acDistrict.setEnabled(true);
                     AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(homePageActivity, R.layout.item_city_district, districts2);
                     acDistrict.setAdapter(adapterMenuDistrict);
-                } else if (sharedPreferences.getString("city", "").equals(cities.get(2))) {
+                } else if (acCity.getText().toString().equals(cities.get(2))) {
+                    acDistrict.setEnabled(true);
+                    AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(homePageActivity, R.layout.item_city_district, districts3);
+                    acDistrict.setAdapter(adapterMenuDistrict);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (acCity.getText().toString().trim().equals("City")||acCity.getText().toString().trim().equals("")) {
+                    acDistrict.setEnabled(false);
+                } else if (acCity.getText().toString().equals(cities.get(0))) {
+                    acDistrict.setEnabled(true);
+                    AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(homePageActivity, R.layout.item_city_district, districts1);
+                    acDistrict.setAdapter(adapterMenuDistrict);
+                } else if (acCity.getText().toString().equals(cities.get(1))) {
+                    acDistrict.setEnabled(true);
+                    AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(homePageActivity, R.layout.item_city_district, districts2);
+                    acDistrict.setAdapter(adapterMenuDistrict);
+                } else if (acCity.getText().toString().equals(cities.get(2))) {
+                    acDistrict.setEnabled(true);
                     AdapterMenuCityDistrict adapterMenuDistrict = new AdapterMenuCityDistrict(homePageActivity, R.layout.item_city_district, districts3);
                     acDistrict.setAdapter(adapterMenuDistrict);
                 }
@@ -314,7 +340,6 @@ public class FragmentCart extends Fragment {
         tv_MaGiamGia = view.findViewById(R.id.tv_maGiamGia);
         layoutAddressOrder = view.findViewById(R.id.layoutAddressOrder);
         sqliteHelper = new SqliteHelper(homePageActivity);
-        sharedPreferences = homePageActivity.getSharedPreferences("cities", Context.MODE_PRIVATE);
         tvCart=view.findViewById(R.id.tvCart);
         tvDaGiao=view.findViewById(R.id.tvDaGiao);
     }

@@ -17,6 +17,7 @@ import com.example.appdoan_vutruonggiang.presenter.Food;
 import com.example.appdoan_vutruonggiang.inteface.IItemFood;
 import com.example.appdoan_vutruonggiang.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class AdapterRecyleViewSearch extends RecyclerView.Adapter<AdapterRecyleV
         }
         holder.tvName.setText(food.getName());
         holder.tvReview.setText(food.getReview() + "");
-        holder.tvPrice.setText(food.getPrice() + "VND");
+        holder.tvPrice.setText(customFormat("###,###",food.getPrice()));
         Glide.with(context).load(food.getUrl()).into(holder.anh);
         holder.anh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,5 +123,11 @@ public class AdapterRecyleViewSearch extends RecyclerView.Adapter<AdapterRecyleV
                 notifyDataSetChanged();
             }
         };
+    }
+
+    public String customFormat(String pattern, float value ) {
+        DecimalFormat myFormatter = new DecimalFormat(pattern);
+        String output = myFormatter.format(value);
+        return  output;
     }
 }

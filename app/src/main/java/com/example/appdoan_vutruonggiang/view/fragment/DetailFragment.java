@@ -35,19 +35,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class DetailFragment extends Fragment {
     private View view;
-    TextView tvNameItem, tvPriceItem, tvDetailItem, xemBinhLuan, tvnameNhaHang, Webview_NhaHang,
+    TextView tvNameItem, tvPriceItem, tvDetailItem, tvnameNhaHang, Webview_NhaHang,
             tvAddressNhaHang, tv_Detail_OC, tv_Detail_mo_dong;
     Button but_Dang_binhluan, but_order_item;
-    ImageView but_back, imAnhDetailItem, imAnhNhaHang, but_map;
-    RatingBar ReviewItem, ratingNhaHang;
+    ImageView but_back, imAnhNhaHang, but_map, imgDetailFullWindow, imgExit;
+    CircleImageView imAnhDetailItem;
+    RatingBar ReviewItem;
     RecyclerView dataBinhLuan;
     EditText input_comment;
     WebView webView;
@@ -83,7 +87,7 @@ public class DetailFragment extends Fragment {
         email = email + arrayEmail[0];
         Glide.with(homePageActivity).load(url).into(imAnhDetailItem);
         tvNameItem.setText(name);
-        tvPriceItem.setText(price + " VND");
+        tvPriceItem.setText(customFormat("###,###",price) + " VND");
         tvDetailItem.setText(detail);
         ReviewItem.setRating(rating);
 
@@ -141,7 +145,6 @@ public class DetailFragment extends Fragment {
                         Glide.with(homePageActivity).load(nhaHang.getUrl()).into(imAnhNhaHang);
                         tvnameNhaHang.setText(nhaHang.getName());
                         tvAddressNhaHang.setText(nhaHang.getAddress());
-                        ratingNhaHang.setRating(Float.parseFloat(String.valueOf(nhaHang.getRating())));
                         tv_Detail_OC.setText(nhaHang.getOpen() + "-" + nhaHang.getClose());
                         Calendar calendar = Calendar.getInstance();
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
@@ -183,6 +186,23 @@ public class DetailFragment extends Fragment {
             }
         });
 
+        imAnhDetailItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imgDetailFullWindow.setVisibility(View.VISIBLE);
+                Glide.with(homePageActivity).load(url).into(imgDetailFullWindow);
+                imgExit.setVisibility(View.VISIBLE);
+            }
+        });
+
+        imgExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imgDetailFullWindow.setVisibility(View.GONE);
+                imgExit.setVisibility(View.GONE);
+            }
+        });
+
         but_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,12 +234,17 @@ public class DetailFragment extends Fragment {
         }
     }
 
+    public String customFormat(String pattern, float value ) {
+        DecimalFormat myFormatter = new DecimalFormat(pattern);
+        String output = myFormatter.format(value);
+        return  output;
+    }
+
     public void init() {
         homePageActivity= (HomePageActivity) getActivity();
         tvNameItem = view.findViewById(R.id.tvNameItem);
         tvPriceItem = view.findViewById(R.id.tvPriceItem);
         tvDetailItem = view.findViewById(R.id.tvDetailItem);
-        xemBinhLuan = view.findViewById(R.id.xemBinhLuan);
         tvnameNhaHang = view.findViewById(R.id.tvnameNhaHang);
         Webview_NhaHang = view.findViewById(R.id.Webview_NhaHang);
         tvAddressNhaHang = view.findViewById(R.id.tvAddressNhaHang);
@@ -235,6 +260,8 @@ public class DetailFragment extends Fragment {
         input_comment = view.findViewById(R.id.input_comment);
         webView = view.findViewById(R.id.Webview);
         but_map = view.findViewById(R.id.butMap);
+        imgDetailFullWindow=view.findViewById(R.id.imgDetailFullWindow);
+        imgExit=view.findViewById(R.id.imgExitNext);
         processFood = new ProcessFood();
     }
 }

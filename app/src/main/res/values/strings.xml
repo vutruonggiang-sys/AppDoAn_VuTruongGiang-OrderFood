@@ -63,7 +63,7 @@
     <string name="forget_password">Quên mật khẩu</string>
     <string name="help">Trợ giúp |</string>
     <string name="your_discount">Mã giảm giá của bạn :</string>
-    <string name="select_food">Bạn đang chọn món</string>
+    <string name="select_food">Bạn đang chọn</string>
     <string name="first_amount_food">Số lượng : X1</string>
     <string name="add_to_cart">Mua</string>
     <string name="your_name">Tên của bạn</string>
@@ -93,4 +93,8 @@
     <string name="successfull">Thành công</string>
     <string name="updateProfile">Cập nhập thành công</string>
     <string name="error">Lỗi</string>
+    <string name="add">Thêm Giỏ Hàng</string>
+    <string name="wishes">Mong quý khách sớm nhận được hàng, rất hân hạnh được phục vụ quý khách. Bạn đợi người giao hàng!</string>
+    <string name="remind_Number">Vui lòng nhập đúng định dạng số</string>
+    <string name="top_Restaurant">Top Nhà Hàng</string>
 </resources>

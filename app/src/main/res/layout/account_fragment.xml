@@ -12,178 +12,76 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.15" />
 
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#E49622"
-        app:layout_constraintBottom_toBottomOf="@id/guideAccount01"
-        app:layout_constraintEnd_toEndOf="parent"
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageUser"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/avatar"
+        app:civ_border_color="@color/black"
+        app:civ_circle_background_color="#E1E89B"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageUser"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/avatar"
-            app:civ_border_color="@color/black"
-            app:civ_circle_background_color="#E1E89B" />
+    <ImageView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/imgEdit"
+        android:src="@drawable/edit"
+        android:layout_width="30dp"
+        android:layout_height="30dp"/>
 
-        <TextView
-            android:id="@+id/tien"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:text="500000 VND"
-            android:textSize="25dp" />
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/imageUser" />
 
-        <ImageView
-            android:id="@+id/eye_open"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@id/tien"
-            android:src="@drawable/eye_open" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="VIP0"
-            android:textSize="15dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/black" />
-    </RelativeLayout>
+    <EditText
+        android:id="@+id/nameAccount"
+        app:layout_constraintStart_toEndOf="@+id/imageUser"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_name"
+        android:layout_marginLeft="10dp"
+        android:background="@color/white"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/tvEmail"
+        app:layout_constraintTop_toBottomOf="@id/nameAccount"
+        app:layout_constraintStart_toEndOf="@id/imageUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/name_Email"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <ScrollView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="#E8E3E3"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideAccount01">
+        app:layout_constraintTop_toBottomOf="@+id/view">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name_name"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/nameAccount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:background="@color/white"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name_Email"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/emailAccount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:background="@color/white"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name_password"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/passAccount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/but_cancel_account"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:alpha="0.4"
-                    android:text="@string/cancel" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/but_save_account"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="#F10909"
-                    android:text="@string/save"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="10dp"
-                android:background="#F10909" />
-
             <LinearLayout
                 android:id="@+id/tv_phanHoi"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -207,9 +105,19 @@
                     android:textSize="20dp"
                     android:textStyle="bold" />
             </LinearLayout>
+            <View
+                android:id="@+id/view1"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/tv_phanHoi"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
 
             <LinearLayout
                 android:id="@+id/tv_change_pass"
+                app:layout_constraintTop_toBottomOf="@id/view1"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -234,8 +142,19 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            <View
+                android:id="@+id/view2"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/tv_change_pass"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
             <LinearLayout
                 android:id="@+id/tv_chonThe"
+                app:layout_constraintTop_toBottomOf="@id/view2"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -260,8 +179,19 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            <View
+                android:id="@+id/view3"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/tv_chonThe"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
             <LinearLayout
                 android:id="@+id/tvLanguage"
+                app:layout_constraintTop_toBottomOf="@+id/view3"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -286,8 +216,19 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            <View
+                android:id="@+id/view4"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/tvLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
             <LinearLayout
                 android:id="@+id/tv_DangXuat"
+                app:layout_constraintTop_toBottomOf="@id/view4"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -311,6 +252,6 @@
                     android:textSize="20dp"
                     android:textStyle="bold" />
             </LinearLayout>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

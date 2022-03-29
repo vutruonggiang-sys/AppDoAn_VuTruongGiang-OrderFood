@@ -2,7 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#E4DFDF">
     <EditText
         android:id="@+id/edSearch"
         android:background="@drawable/vien_chat"

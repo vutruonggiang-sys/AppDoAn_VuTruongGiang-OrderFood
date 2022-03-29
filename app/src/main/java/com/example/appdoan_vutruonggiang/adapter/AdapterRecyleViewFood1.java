@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -16,6 +17,7 @@ import com.example.appdoan_vutruonggiang.inteface.IItemFood;
 import com.example.appdoan_vutruonggiang.presenter.ProcessFood;
 import com.example.appdoan_vutruonggiang.R;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class AdapterRecyleViewFood1 extends RecyclerView.Adapter<AdapterRecyleViewFood1.ViewHoder> {
@@ -44,8 +46,7 @@ public class AdapterRecyleViewFood1 extends RecyclerView.Adapter<AdapterRecyleVi
         Food food=foodList.get(position);
         Glide.with(context).load(food.getUrl()).into(holder.image);
         holder.tvName.setText(food.getName());
-        holder.tvPrice.setText(food.getPrice()+" VND");
-        holder.tvReview.setText(food.getReview()+" ");
+        holder.tvPrice.setText(customFormat("###,###",food.getPrice())+" VND");
         holder.order_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,15 +71,21 @@ public class AdapterRecyleViewFood1 extends RecyclerView.Adapter<AdapterRecyleVi
     }
 
     public class ViewHoder extends RecyclerView.ViewHolder {
-        ImageView image,order_image;
-        TextView tvName,tvPrice,tvReview;
+        ImageView image;
+        AppCompatButton order_image;
+        TextView tvName,tvPrice;
         public ViewHoder(@NonNull View itemView) {
             super(itemView);
             image=itemView.findViewById(R.id.imAnh);
             tvName=itemView.findViewById(R.id.tvName);
             tvPrice=itemView.findViewById(R.id.tvPrice);
-            tvReview=itemView.findViewById(R.id.tvReview);
             order_image=itemView.findViewById(R.id.but_add_order);
         }
+    }
+
+    public String customFormat(String pattern, float value ) {
+        DecimalFormat myFormatter = new DecimalFormat(pattern);
+        String output = myFormatter.format(value);
+        return  output;
     }
 }

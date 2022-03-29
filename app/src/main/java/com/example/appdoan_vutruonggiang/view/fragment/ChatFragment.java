@@ -122,7 +122,7 @@ public class ChatFragment extends Fragment {
         Calendar calendar=Calendar.getInstance();
         DateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String time=dateFormat.format(calendar.getTime());
-        Chat chat=new Chat(d,content,time);
+        Chat chat=new Chat(d,content,time,"");
         chatList.add(chat);
         databaseReference.child(d+"").setValue(chat);
         chat_content.setText("");

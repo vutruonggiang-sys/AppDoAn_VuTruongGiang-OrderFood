@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="@string/name_name"
-            android:textSize="25dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <ImageView
@@ -53,7 +53,7 @@
         android:id="@+id/tv_noidung_binhluan"
         android:layout_marginLeft="15dp"
         android:text="ahihihi"
-        android:textSize="25dp"
+        android:textSize="17dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <RelativeLayout
@@ -74,7 +74,7 @@
             android:paddingLeft="10dp"
             android:paddingTop="0dp"
             android:text="xxx"
-            android:textSize="25dp" />
+            android:textSize="17dp" />
         <Button
             android:id="@+id/but_Edit_Comment"
             android:layout_width="30dp"

@@ -31,8 +31,9 @@
             android:layout_height="0dp"
             android:layout_weight="1"/>
     </LinearLayout>
-    <TextView
+    <EditText
         android:id="@+id/tv_number_giohang_chuagiao"
+        android:background="@color/white"
         android:text="Com"
         android:gravity="center"
         android:layout_width="50dp"

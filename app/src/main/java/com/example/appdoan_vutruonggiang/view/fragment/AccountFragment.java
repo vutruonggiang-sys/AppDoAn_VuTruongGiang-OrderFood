@@ -4,16 +4,20 @@ import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +33,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.presenter.ProcessBank;
 import com.example.appdoan_vutruonggiang.presenter.ProcessingDangXuat;
@@ -46,10 +51,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -57,11 +69,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AccountFragment extends Fragment {
 
     private View view;
-    TextView tien, passAccount;
+    TextView tvEmail;
     CircleImageView imageUser;
-    ImageView eye_open, home;
-    EditText nameAccount, emailAccount;
-    AppCompatButton but_save_account, but_cancel_account;
+    ImageView imgEdit;
+    EditText edNameAccount;
     LinearLayout tv_phanHoi, tv_change_pass, tv_chonThe, tv_DangXuat, tvLanguage;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     ProcessBank process_bank;
@@ -75,6 +86,9 @@ public class AccountFragment extends Fragment {
     private static final String VN_CODE = "vi";
     AlertDialog alertDialog;
     DatabaseReference databaseReference;
+    FirebaseStorage firebaseStorage;
+    StorageReference storageReference;
+    StorageReference riversRef;
 
     public static Fragment newInstance() {
 
@@ -90,19 +104,30 @@ public class AccountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.account_fragment, container, false);
         anhXa();
-        databaseReference=firebaseDatabase.getReference().child("user");
+        databaseReference = firebaseDatabase.getReference().child("user");
+        firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReference();
         user = FirebaseAuth.getInstance().getCurrentUser();
         String[] arrayEmail = user.getEmail().split("@");
         email = email + arrayEmail[0];
-
-        if(user.getDisplayName()!=null){
-            nameAccount.setText(user.getDisplayName());
-        }
+        riversRef = storageReference.child("imagesAvt/").child(email + ".jpg");
+//        try {
+//            File file = File.createTempFile(email, ".jpg");
+//            riversRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//                @Override
+//                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+//                    imageUser.setImageBitmap(bitmap);
+//                }
+//            });
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         databaseReference.child(email).child("url").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(!snapshot.getValue().toString().trim().equals("")){
-                    imageUser.setImageURI(user.getPhotoUrl());
+                if(!snapshot.getValue().toString().equals("default")){
+                    Glide.with(homePageActivity).load(snapshot.getValue()).into(imageUser);
                 }
             }
 
@@ -111,17 +136,18 @@ public class AccountFragment extends Fragment {
 
             }
         });
-
-        emailAccount.setText(user.getEmail());
-        emailAccount.setEnabled(false);
-        passAccount.setText("*******");
-        but_save_account.setOnClickListener(new View.OnClickListener() {
+        edNameAccount.setEnabled(false);
+        if (user.getDisplayName() != null) {
+            edNameAccount.setText(user.getDisplayName());
+        }
+        imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateProfile(imageUri);
+                edNameAccount.setEnabled(true);
             }
         });
-        //loadAvt();
+
+        tvEmail.setText(user.getEmail());
         imageUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -208,12 +234,13 @@ public class AccountFragment extends Fragment {
             Bundle bundle = data.getExtras();
             Bitmap bitmap = (Bitmap) bundle.get("data");
             imageUser.setImageBitmap(bitmap);
-            imageUri= Uri.parse(imageUser.getResources().toString());
+            imageUri=saveImageCamera(bitmap);
         }
         if (requestCode == REQUEST_CODE_CAMERA && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
             imageUser.setImageURI(imageUri);
         }
+        updateProfile(imageUri);
     }
 
     @Override
@@ -287,64 +314,75 @@ public class AccountFragment extends Fragment {
         configuration.setLocale(locale);
         homePageActivity.createConfigurationContext(configuration);
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-        DatabaseReference databaseReference=firebaseDatabase.getReference().child("language");
+        DatabaseReference databaseReference = firebaseDatabase.getReference().child("language");
         databaseReference.child(email).setValue(language);
         Intent intent = homePageActivity.getIntent();
         homePageActivity.finish();
         startActivity(intent);
     }
 
-    public void updateProfile(Uri uri){
-        UserProfileChangeRequest userProfileChangeRequest=new UserProfileChangeRequest.Builder()
-                .setDisplayName(nameAccount.getText().toString().trim())
-                .setPhotoUri(uri)
+    public void updateProfile(Uri uri) {
+        if(uri==null){
+            return;
+        }
+        UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                .setDisplayName(edNameAccount.getText().toString().trim())
                 .build();
         user.updateProfile(userProfileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if ((task.isSuccessful())){
-                    databaseReference.child(email).child("url").setValue(user.getPhotoUrl().toString());
-                    Toast.makeText(homePageActivity,getString(R.string.updateProfile),Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(homePageActivity,getString(R.string.error),Toast.LENGTH_SHORT).show();
+                if ((task.isSuccessful())) {
+                    updateAvt(uri);
+                } else {
+                    Toast.makeText(homePageActivity, getString(R.string.error), Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    public void updateAvt() {
-        FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
-        StorageReference storageReference=firebaseStorage.getReference();
-        StorageReference riversRef = storageReference.child("imagesAvt/" + email + ".jpg");
-        riversRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+    public void updateAvt(Uri uri) {
+        riversRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Uri linkDownloadUrl=taskSnapshot.getUploadSessionUri();
-                databaseReference.child(email).child("url").setValue(linkDownloadUrl);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
+                riversRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        databaseReference.child(email).child("url").setValue(uri.toString());
+                        Toast.makeText(homePageActivity, getString(R.string.updateProfile), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
 
+    public Uri saveImageCamera(Bitmap bitmap){
+        ContextWrapper contextWrapper=new ContextWrapper(homePageActivity.getApplicationContext());
+        File fileCamera=contextWrapper.getDir("pathCamera", Context.MODE_PRIVATE);
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy/hh/mm/ss");
+        Calendar calendar = Calendar.getInstance();
+        File path=new File(fileCamera,email+simpleDateFormat.format(calendar.getTime()));
+        try {
+            FileOutputStream fileOS= new FileOutputStream(path);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOS);
+            fileOS.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Uri.fromFile(path);
+    }
+
     public void anhXa() {
         homePageActivity = (HomePageActivity) getActivity();
-        tien = view.findViewById(R.id.tien);
-        eye_open = view.findViewById(R.id.eye_open);
-        home = view.findViewById(R.id.home);
-        nameAccount = view.findViewById(R.id.nameAccount);
-        emailAccount = view.findViewById(R.id.emailAccount);
-        passAccount = view.findViewById(R.id.passAccount);
-        but_cancel_account = view.findViewById(R.id.but_cancel_account);
-        but_save_account = view.findViewById(R.id.but_save_account);
+        imgEdit = view.findViewById(R.id.imgEdit);
+        edNameAccount = view.findViewById(R.id.nameAccount);
         tv_phanHoi = view.findViewById(R.id.tv_phanHoi);
         tv_change_pass = view.findViewById(R.id.tv_change_pass);
         tv_chonThe = view.findViewById(R.id.tv_chonThe);
         tv_DangXuat = view.findViewById(R.id.tv_DangXuat);
         imageUser = view.findViewById(R.id.imageUser);
         tvLanguage = view.findViewById(R.id.tvLanguage);
+        tvEmail = view.findViewById(R.id.tvEmail);
         process_bank = new ProcessBank();
     }
 }

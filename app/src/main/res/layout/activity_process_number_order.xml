@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/actyvity_process_number"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ECD405">
+    android:background="@drawable/border_yellow_bg_gray">
     <TextView
         android:id="@+id/tv_name_item_order"
         android:textStyle="bold"
@@ -18,6 +18,7 @@
     <ImageView
         android:id="@+id/image_food_datHang"
         android:src="@drawable/icon_khuyenmai"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
     <TextView
@@ -86,6 +87,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@drawable/vien_tron"
         android:text="@string/cancel"
         android:alpha="0.4"/>
         <androidx.appcompat.widget.AppCompatButton

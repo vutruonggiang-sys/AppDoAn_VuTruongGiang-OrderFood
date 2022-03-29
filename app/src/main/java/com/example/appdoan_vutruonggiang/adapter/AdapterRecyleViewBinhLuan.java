@@ -36,7 +36,7 @@ public class AdapterRecyleViewBinhLuan extends RecyclerView.Adapter<AdapterRecyl
     @Override
     public AdapterRecyleViewBinhLuan.ViewHoder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater=LayoutInflater.from(parent.getContext());
-        View view=layoutInflater.inflate(R.layout.item_binhluan,parent,false);
+        View view=layoutInflater.inflate(R.layout.item_comment,parent,false);
         ViewHoder viewHoder=new ViewHoder(view);
         return viewHoder;
     }

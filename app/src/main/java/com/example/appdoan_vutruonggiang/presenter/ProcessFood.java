@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -72,6 +73,12 @@ public class ProcessFood {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.activity_process_number_order);
         dialog.setCancelable(true);
+        Window window= dialog.getWindow();
+        if (window==null){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+
         TextView title=dialog.findViewById(R.id.tv_name_item_order);
         TextView cong=dialog.findViewById(R.id.but_tang);
         TextView tru=dialog.findViewById(R.id.but_giam);
@@ -80,7 +87,7 @@ public class ProcessFood {
         ImageView imageView=dialog.findViewById(R.id.image_food_datHang);
         Button cancel=dialog.findViewById(R.id.but_Cancel);
         Button order=dialog.findViewById(R.id.but_order);
-        title.setText(context.getString(R.string.select_food)+food.getName());
+        title.setText(context.getString(R.string.select_food)+" "+food.getName());
         tru.setEnabled(false);
         Glide.with(context).load(food.getUrl()).into(imageView);
         Food_Order food_order=new Food_Order(1,food.id,food.getName(),(long) food.getPrice(),food.getUrl(),food.getIdNhaHang());
