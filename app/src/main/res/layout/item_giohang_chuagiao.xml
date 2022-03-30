@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:layout_marginBottom="10dp">
     <ImageView
         android:id="@+id/image_giohang_chuagiao"
         android:src="@drawable/cart_background"
@@ -31,13 +32,14 @@
             android:layout_height="0dp"
             android:layout_weight="1"/>
     </LinearLayout>
-    <EditText
+
+    <TextView
         android:id="@+id/tv_number_giohang_chuagiao"
-        android:background="@color/white"
-        android:text="Com"
-        android:gravity="center"
         android:layout_width="50dp"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="Com" />
 
     <TextView
         android:id="@+id/tv_price_giohang_chuagiao"

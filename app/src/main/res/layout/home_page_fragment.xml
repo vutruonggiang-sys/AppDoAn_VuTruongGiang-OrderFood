@@ -137,19 +137,21 @@
                 tools:itemCount="4"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:text="@string/Partner_with_us"
                 android:layout_marginLeft="10dp"
-                android:text="@string/list_All"
-                android:textSize="10dp"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/dataRecyleView"
+                android:id="@+id/dataLogoPartner"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:text="@string/top_Restaurant"
@@ -166,8 +168,24 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginLeft="10dp"
+                android:text="@string/list_All"
+                android:textSize="10dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/dataRecyleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp" />
+
         </LinearLayout>
     </ScrollView>
 

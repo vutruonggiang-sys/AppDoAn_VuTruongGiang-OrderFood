@@ -48,7 +48,7 @@ public class AdapterRecyleViewGiaoHangCart extends RecyclerView.Adapter<AdapterR
         Food_Order food_order = food_orderList.get(position);
         Glide.with(context).load(food_order.getUrl()).into(holder.image);
         holder.tvPrice.setText(food_order.getPrice() + "");
-        holder.edNumber.setText(food_order.getAmount() + "");
+        holder.tvNumber.setText(food_order.getAmount() + "");
         holder.tvId_nh.setText(food_order.getIdNhaHang());
         holder.tvFoodName.setText(food_order.getName());
         holder.checkButton.setChecked(false);
@@ -65,27 +65,6 @@ public class AdapterRecyleViewGiaoHangCart extends RecyclerView.Adapter<AdapterR
                 }
             }
         });
-        holder.edNumber.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (TextUtils.isDigitsOnly(holder.edNumber.getText().toString()))
-                    sqliteHelper.updateItem(food_order.getId(), Long.parseLong(holder.edNumber.getText().toString()));
-                else {
-                    holder.edNumber.setText(food_order.getAmount() + "");
-                    Toast.makeText(context, context.getString(R.string.remind_Number), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     @Override
@@ -98,7 +77,7 @@ public class AdapterRecyleViewGiaoHangCart extends RecyclerView.Adapter<AdapterR
 
     public class ViewHoder extends RecyclerView.ViewHolder {
         ImageView image;
-        EditText edNumber;
+        TextView tvNumber;
         TextView tvFoodName, tvId_nh, tvPrice;
         CheckBox checkButton;
 
@@ -107,14 +86,9 @@ public class AdapterRecyleViewGiaoHangCart extends RecyclerView.Adapter<AdapterR
             image = itemView.findViewById(R.id.image_giohang_chuagiao);
             tvFoodName = itemView.findViewById(R.id.tv_name_giohang_chuagiao);
             tvId_nh = itemView.findViewById(R.id.tv_name_nhaHang);
-            edNumber = itemView.findViewById(R.id.tv_number_giohang_chuagiao);
+            tvNumber = itemView.findViewById(R.id.tv_number_giohang_chuagiao);
             tvPrice = itemView.findViewById(R.id.tv_price_giohang_chuagiao);
             checkButton = itemView.findViewById(R.id.butRadio_chon);
         }
     }
-
-    public boolean isNumeric(String str) {
-        return str.matches("-?\\d+(\\.\\d+)?");
-    }
-
 }

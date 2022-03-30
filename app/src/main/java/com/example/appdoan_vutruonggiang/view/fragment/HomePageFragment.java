@@ -19,10 +19,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdoan_vutruonggiang.R;
+import com.example.appdoan_vutruonggiang.adapter.AdapterLogoPartner;
 import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewFood;
 import com.example.appdoan_vutruonggiang.adapter.AdapterRecyleViewFood1;
 import com.example.appdoan_vutruonggiang.adapter.AdapterRetaurant;
 import com.example.appdoan_vutruonggiang.inteface.IItemFood;
+import com.example.appdoan_vutruonggiang.modle.LogoPartner;
 import com.example.appdoan_vutruonggiang.modle.NhaHang;
 import com.example.appdoan_vutruonggiang.presenter.Food;
 import com.example.appdoan_vutruonggiang.presenter.ProcessFood;
@@ -42,7 +44,7 @@ public class HomePageFragment extends Fragment {
     private View view;
     ViewFlipper vf_Khuyen_mai;
     LinearLayout DoAnNhanh, DoUong, Com, All;
-    RecyclerView dataRecyleView1, dataRecyleView, dataRestaurant;
+    RecyclerView dataRecyleView1, dataRecyleView, dataRestaurant, dataLogoPartner;
     ImageView home;
     List<Food> foodList = new ArrayList<>();
     AdapterRecyleViewFood adapterRecyleViewFood;
@@ -54,6 +56,7 @@ public class HomePageFragment extends Fragment {
     String email = "";
     HomePageActivity homePageActivity;
     List<NhaHang> nhaHangList;
+    List<LogoPartner> logoPartnerList;
     public static Fragment newInstance() {
 
         Bundle args = new Bundle();
@@ -197,7 +200,8 @@ public class HomePageFragment extends Fragment {
             public void run() {
                 getRestaurant();
             }
-        },2000);
+        },1000);
+        getLogoPartner();
         return view;
     }
 
@@ -220,6 +224,18 @@ public class HomePageFragment extends Fragment {
 
             }
         });
+    }
+
+    public void getLogoPartner(){
+        logoPartnerList=new ArrayList<>();
+        LogoPartner logoPartner=new LogoPartner("To Co To Co",R.drawable.logotocotoco);
+        LogoPartner logoPartner1=new LogoPartner("Bánh Mỳ Sốt",R.drawable.logobanhmysot);
+        LogoPartner logoPartner2=new LogoPartner("Phúc Long",R.drawable.logophuclong);
+        logoPartnerList.add(logoPartner);
+        logoPartnerList.add(logoPartner1);
+        logoPartnerList.add(logoPartner2);
+        AdapterLogoPartner adapterLogoPartner=new AdapterLogoPartner(logoPartnerList);
+        dataLogoPartner.setAdapter(adapterLogoPartner);
     }
 
     public void goToDetail(Food food){
@@ -249,6 +265,7 @@ public class HomePageFragment extends Fragment {
         dataRecyleView = view.findViewById(R.id.dataRecyleView);
         dataRestaurant=view.findViewById(R.id.dataRestau);
         home = view.findViewById(R.id.home);
+        dataLogoPartner=view.findViewById(R.id.dataLogoPartner);
         process_food = new ProcessFood();
     }
 }

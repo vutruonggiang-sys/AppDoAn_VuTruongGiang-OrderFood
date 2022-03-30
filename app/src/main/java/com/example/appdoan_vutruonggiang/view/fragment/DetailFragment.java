@@ -192,6 +192,7 @@ public class DetailFragment extends Fragment {
                 imgDetailFullWindow.setVisibility(View.VISIBLE);
                 Glide.with(homePageActivity).load(url).into(imgDetailFullWindow);
                 imgExit.setVisibility(View.VISIBLE);
+                but_order_item.setVisibility(View.GONE);
             }
         });
 
@@ -200,6 +201,7 @@ public class DetailFragment extends Fragment {
             public void onClick(View v) {
                 imgDetailFullWindow.setVisibility(View.GONE);
                 imgExit.setVisibility(View.GONE);
+                but_order_item.setVisibility(View.VISIBLE);
             }
         });
 
