@@ -111,18 +111,6 @@ public class AccountFragment extends Fragment {
         String[] arrayEmail = user.getEmail().split("@");
         email = email + arrayEmail[0];
         riversRef = storageReference.child("imagesAvt/").child(email + ".jpg");
-//        try {
-//            File file = File.createTempFile(email, ".jpg");
-//            riversRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-//                    imageUser.setImageBitmap(bitmap);
-//                }
-//            });
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         databaseReference.child(email).child("url").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

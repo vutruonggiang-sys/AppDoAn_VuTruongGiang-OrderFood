@@ -36,11 +36,10 @@ public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecy
     Context context;
     AdapterRecyleViewGioHang adapterRecyleViewGioHang;
     int d=0;
-    //String ma_delete="";
     FirebaseDatabase firebaseDatabase;
-    //IThanhToan iThanhToan;
     String tongFood="";
     long tong=0;
+    String idRes="";
     public AdapterRecyleViewSumDaGiao(List<ThongTinNguoiOrder> thongTinNguoiOrderList, String email, Context context) {
         this.thongTinNguoiOrderList = thongTinNguoiOrderList;
         this.email=email;
@@ -60,7 +59,6 @@ public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecy
     public void onBindViewHolder(@NonNull AdapterRecyleViewSumDaGiao.ViewHoder holder, int position) {
         ThongTinNguoiOrder thongTinNguoiOrder=thongTinNguoiOrderList.get(position);
         boolean check=false;
-        //ma_delete=ma_delete+key.getId();
         if(thongTinNguoiOrder==null) {
             holder.tv_sum_dagiao.setText(0+"");
             return;
@@ -81,6 +79,7 @@ public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecy
                     tong=tong+food_order.getPrice()*food_order.getAmount();
                     tongFood=tongFood+food_order.getName()+" (X"+(food_order.getPrice()*food_order.getAmount())+") ";
                 }
+                idRes=idRes+food_orderList.get(0).getIdNhaHang();
                 adapterRecyleViewGioHang=new AdapterRecyleViewGioHang(food_orderList,context);
                 holder.dataDagiao.setAdapter(adapterRecyleViewGioHang);
                 holder.tv_sum_dagiao.setText(tong+"");
@@ -107,10 +106,12 @@ public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecy
                     Toast.makeText(context,"Quý Khách Vui Lòng Chọn Đơn Hàng Thanh Toán",Toast.LENGTH_SHORT).show();
                     return;
                 }else{
-                    //iThanhToan.getKey_delete(key.getId());
                     Calendar calendar=Calendar.getInstance();
                     DateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                     String time=dateFormat.format(calendar.getTime());
+                    for(int i=0;i<food_orderList.size();i++){
+                        databaseReference.child("doanhthu").child(idRes).child(food_orderList.get(i).getId()).setValue(food_orderList.get(i).getAmount()*food_orderList.get(i).getPrice()+"");
+                    }
                     
                     databaseReference.child("thong_tin_nguoi_nhan_hang").child(email).child(thongTinNguoiOrder.getId()).removeValue();
                     databaseReference.child("da_giao").child(email).child(thongTinNguoiOrder.getId()).removeValue();
