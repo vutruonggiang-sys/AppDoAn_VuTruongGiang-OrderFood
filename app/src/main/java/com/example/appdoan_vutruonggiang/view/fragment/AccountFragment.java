@@ -171,7 +171,7 @@ public class AccountFragment extends Fragment {
         tvLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] strings = {"", ENGLISH_CODE, VN_CODE};
+                String[] strings = {"Check Language", ENGLISH_CODE, VN_CODE};
                 alertDialog = new AlertDialog.Builder(getContext())
                         .setTitle(getContext().getString(R.string.language))
                         .setSingleChoiceItems(strings, 0, new DialogInterface.OnClickListener() {
@@ -223,12 +223,13 @@ public class AccountFragment extends Fragment {
             Bitmap bitmap = (Bitmap) bundle.get("data");
             imageUser.setImageBitmap(bitmap);
             imageUri=saveImageCamera(bitmap);
+            updateAvt(imageUri);
         }
         if (requestCode == REQUEST_CODE_CAMERA && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
             imageUser.setImageURI(imageUri);
+            updateAvt(imageUri);
         }
-        updateProfile(imageUri);
     }
 
     @Override

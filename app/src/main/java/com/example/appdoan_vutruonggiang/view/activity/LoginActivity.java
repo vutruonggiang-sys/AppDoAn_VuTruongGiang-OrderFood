@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.presenter.NetworkChangeListener;
 import com.example.appdoan_vutruonggiang.view.fragment.LoginFragment;
+import com.example.appdoan_vutruonggiang.view.fragment.SP_Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -67,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
             language = language + "en";
             changeLanguage("en");
         }
-        getFragment(LoginFragment.newInstance());
+        getFragment(SP_Fragment.newInstance());
     }
 
     public void getFragment(Fragment fragment) {

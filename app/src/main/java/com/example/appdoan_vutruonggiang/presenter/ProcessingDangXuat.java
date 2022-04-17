@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.view.activity.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ProcessingDangXuat {
     public ProcessingDangXuat() {
@@ -22,6 +23,7 @@ public class ProcessingDangXuat {
 
         Button but_Cancel=dialog.findViewById(R.id.but_logout_Cancel);
         Button but_OK=dialog.findViewById(R.id.but_logout_OK);
+        FirebaseAuth auth=FirebaseAuth.getInstance();
 
         but_Cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +34,7 @@ public class ProcessingDangXuat {
         but_OK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                auth.signOut();
                 dialog.dismiss();
                 Intent intent=new Intent(context,login_activityClass);
                 context.startActivity(intent);

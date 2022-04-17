@@ -263,7 +263,7 @@ public class FragmentCart extends Fragment {
                                                     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                                                     DatabaseReference databaseReference = firebaseDatabase.getReference().child("thong_tin_nguoi_nhan_hang").child(email);
                                                     ThongTinNguoiOrder thongTinNguoiOrder = new ThongTinNguoiOrder(time, Long.parseLong(tv_MaGiamGia.getText().toString()), tietName.getText().toString()
-                                                            , tietPhoneNumber.getText().toString(), address);
+                                                            , tietPhoneNumber.getText().toString(), address,listTable.get(0).getIdNhaHang());
                                                     databaseReference.child(time).setValue(thongTinNguoiOrder);
                                                     DatabaseReference databaseReference3=firebaseDatabase.getReference().child("food_giohang").child(email);
                                                     for (int i = 0; i < listTable.size(); i++) {

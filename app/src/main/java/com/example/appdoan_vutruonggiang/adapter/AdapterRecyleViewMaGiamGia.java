@@ -44,7 +44,7 @@ public class AdapterRecyleViewMaGiamGia extends RecyclerView.Adapter<AdapterRecy
         GiamGia giamGia1=new GiamGia("abc","haha",0);
         databaseReference.child("haha").setValue(giamGia1);
         databaseReference.child("haha1").setValue(giamGia1);
-        holder.tv_ma.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 HashMap<String,Object> valueUpdate=new HashMap<>();
