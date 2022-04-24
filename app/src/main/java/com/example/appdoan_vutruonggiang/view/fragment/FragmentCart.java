@@ -252,7 +252,7 @@ public class FragmentCart extends Fragment {
                                                 if (!acCity.getText().toString().trim().equals("City") && !acDistrict.getText().toString().trim().equals("District")) {
                                                     DatabaseReference databaseReference2;
                                                     Calendar calendar1 = Calendar.getInstance();
-                                                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                                                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
                                                     String time = dateFormat.format(calendar1.getTime());
                                                     //luu thong tin mon an trong hoa don
                                                     databaseReference2 = firebaseDatabase.getReference().child("da_giao").child(email).child(time);
@@ -263,8 +263,10 @@ public class FragmentCart extends Fragment {
                                                     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                                                     DatabaseReference databaseReference = firebaseDatabase.getReference().child("thong_tin_nguoi_nhan_hang").child(email);
                                                     ThongTinNguoiOrder thongTinNguoiOrder = new ThongTinNguoiOrder(time, Long.parseLong(tv_MaGiamGia.getText().toString()), tietName.getText().toString()
-                                                            , tietPhoneNumber.getText().toString(), address,listTable.get(0).getIdNhaHang());
+                                                            , tietPhoneNumber.getText().toString(), address,listTable.get(0).getIdNhaHang(),email);
                                                     databaseReference.child(time).setValue(thongTinNguoiOrder);
+                                                    DatabaseReference databaseReferenceTotalBill=firebaseDatabase.getReference().child("TotalBill");
+                                                    databaseReferenceTotalBill.child((email+time)).setValue(thongTinNguoiOrder);
                                                     DatabaseReference databaseReference3=firebaseDatabase.getReference().child("food_giohang").child(email);
                                                     for (int i = 0; i < listTable.size(); i++) {
                                                         databaseReference3.child(listTable.get(i).getId()).removeValue();

@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdoan_vutruonggiang.R;
 import com.example.appdoan_vutruonggiang.modle.Food_Order;
+import com.example.appdoan_vutruonggiang.modle.RevenueByTime;
 import com.example.appdoan_vutruonggiang.modle.ThongTinNguoiOrder;
 import com.example.appdoan_vutruonggiang.modle.TotalRevenueRes;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +27,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecyleViewSumDaGiao.ViewHoder> {
@@ -39,9 +44,9 @@ public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecy
     FirebaseDatabase firebaseDatabase;
     String tongFood = "";
     long tong = 0;
-    Food_Order food_order;
+    List<RevenueByTime> revenueByTimeList = new ArrayList<>();
     List<TotalRevenueRes> totalRevenueResList = new ArrayList<>();
-    String idRes="";
+    String idRes = "";
 
     public AdapterRecyleViewSumDaGiao(List<ThongTinNguoiOrder> thongTinNguoiOrderList, String email, Context context) {
         this.thongTinNguoiOrderList = thongTinNguoiOrderList;
@@ -81,8 +86,8 @@ public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecy
                 for (DataSnapshot data : dataSnapshotIterable) {
                     Food_Order food_order = data.getValue(Food_Order.class);
                     food_orderList.add(food_order);
-                    if(food_orderList.size()==1){
-                        idRes=idRes+food_orderList.get(0).getIdNhaHang();
+                    if (food_orderList.size() == 1) {
+                        idRes = idRes + food_orderList.get(0).getIdNhaHang();
                     }
                     tong = tong + food_order.getPrice() * food_order.getAmount();
                     tongFood = tongFood + food_order.getName() + " (X" + (food_order.getPrice() * food_order.getAmount()) + ") ";
@@ -113,6 +118,21 @@ public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecy
 
             }
         });
+        databaseReference.child("TotalRevenueTime").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Iterable<DataSnapshot> dataSnapshotIterable1 = snapshot.getChildren();
+                for (DataSnapshot data : dataSnapshotIterable1) {
+                    RevenueByTime revenueByTime = data.getValue(RevenueByTime.class);
+                    revenueByTimeList.add(revenueByTime);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         holder.checkBox_ThanhToan.setChecked(check);
         holder.checkBox_ThanhToan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -130,19 +150,46 @@ public class AdapterRecyleViewSumDaGiao extends RecyclerView.Adapter<AdapterRecy
                 } else {
                     holder.progressBar.setVisibility(View.VISIBLE);
                     holder.progressBar.isShown();
+                    long totalMoneyTime = 0;
                     for (int i = 0; i < food_orderList.size(); i++) {
                         for (int j = 0; j < totalRevenueResList.size(); j++) {
                             if (totalRevenueResList.get(j).getId().equals(food_orderList.get(i).getId())) {
                                 TotalRevenueRes totalRevenueRes1 = totalRevenueResList.get(j);
-                                databaseReference.child("doanhthu").child(food_orderList.get(i).getIdNhaHang()).child(food_orderList.get(i).getId()).child("total").setValue(totalRevenueRes1.getTotal()+food_orderList.get(i).getPrice()*food_orderList.get(i).getAmount());
+                                databaseReference.child("doanhthu").child(food_orderList.get(i).getIdNhaHang()).child(food_orderList.get(i).getId()).child("total").setValue(totalRevenueRes1.getTotal() + food_orderList.get(i).getPrice() * food_orderList.get(i).getAmount());
                             }
                         }
-                        if(i==food_orderList.size()){
+                        if (i == food_orderList.size()) {
                             holder.progressBar.setVisibility(View.GONE);
                         }
+                        totalMoneyTime = totalMoneyTime + food_orderList.get(i).getAmount() * food_orderList.get(i).getPrice();
                     }
                     databaseReference.child("thong_tin_nguoi_nhan_hang").child(email).child(thongTinNguoiOrder.getId()).removeValue();
                     databaseReference.child("da_giao").child(email).child(thongTinNguoiOrder.getId()).removeValue();
+                    Calendar calendar = Calendar.getInstance();
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+                    String gioHienTai = simpleDateFormat.format(calendar.getTime());
+                    try {
+                        Date hienTai = simpleDateFormat.parse(gioHienTai);
+                        Date tenHour = simpleDateFormat.parse("11:00");
+                        Date onePmHour = simpleDateFormat.parse("13:00");
+                        Date fivePmHour = simpleDateFormat.parse("17:00");
+                        Date sevenPmHour = simpleDateFormat.parse("19:00");
+                        for (int i = 0; i < revenueByTimeList.size(); i++) {
+                            if (idRes.equals(revenueByTimeList.get(i).getId())) {
+                                if (hienTai.after(tenHour) && hienTai.before(onePmHour)) {
+                                    databaseReference.child("TotalRevenueTime").child(idRes).child("lunch").setValue(totalMoneyTime + revenueByTimeList.get(i).getLunch());
+                                } else {
+                                    if (hienTai.after(fivePmHour) && hienTai.before(sevenPmHour)) {
+                                        databaseReference.child("TotalRevenueTime").child(idRes).child("tonight").setValue(totalMoneyTime + revenueByTimeList.get(i).getTonight());
+                                    } else {
+                                        databaseReference.child("TotalRevenueTime").child(idRes).child("nothing").setValue(totalMoneyTime + revenueByTimeList.get(i).getNothing());
+                                    }
+                                }
+                            }
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
